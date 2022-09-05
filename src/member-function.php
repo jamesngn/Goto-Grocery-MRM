@@ -5,6 +5,7 @@
     <a href="page_member/add-member.php">Add Member Record<br></a>
     <a href="page_member/validate-memberID-read.php">Read Member Record<br></a>
     <a href="page_member/validate-memberID-edit.php">Update Member Record<br></a>
+    <a href="page_member/validate-memberID-delete.php">Delete Member Record<br></a>
     <?php include 'includes/footer.inc'; ?>
 </body>
 </html>
