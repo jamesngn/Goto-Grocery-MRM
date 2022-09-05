@@ -1,10 +1,10 @@
-<?php include 'includes/header.inc'; 
+<?php include '../includes/header.inc'; 
 session_start();
 ?>
 
 
 <body>
-    <?php include 'includes/menu.inc'; ?>
+    <?php include '../includes/menu.inc'; ?>
     <h2>Validate grocery item ID for reading</h2>
 
 
@@ -29,7 +29,7 @@ session_start();
             $data = htmlspecialchars($data);
             return $data;
         }
-        include 'includes/dbAuthentication.inc';
+        include '../includes/dbAuthentication.inc';
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $conn = OpenConnection();
 
@@ -55,6 +55,6 @@ session_start();
     ?>
 
 
-<?php include 'includes/footer.inc'; ?>
+<?php include '../includes/footer.inc'; ?>
     </body>
 </html>
