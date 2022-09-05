@@ -9,9 +9,10 @@
 
 
     <h2>List of Product functions</h2>
-    <a href="pages_product/add-grocery.php">Add New Grocery Item</a><br>
-    <a href="pages_product/grocery-search.php">Search Grocery Item For Reading Test</a><br>
-    
+    <a href="pages_product/add-product.php">Add Product Record</a><br>
+    <a href="pages_product/validate-productID-read.php">Search Product Record</a><br>
+    <a href="pages_product/validate-productID-edit.php">Update Product Record</a><br>
+    <a href="pages_product/validate-productID-delete.php">Delete Product Record</a><br>
     <?php include 'includes/footer.inc'; ?>
 </body>
 </html>
