@@ -1,9 +1,14 @@
-<?php include 'includes/header.inc'; ?>
-<body>
-    <?php include 'includes/menu.inc'; ?>
-    <h2>Add New Member</h2>
+<?php include '../includes/header.inc';
+session_start();
+$regValue = $_SESSION["memberID"];
+?>
 
-    <form method="post" action="add-member.php">
+<body>
+    <?php include '../includes/menu.inc'; ?>
+    <h2>Edit Current Member</h2>
+
+
+    <form method="post" action="edit-member.php">
         <fieldset>
             <legend>Enter new member details</legend>
             <p>
@@ -33,8 +38,8 @@
             $data = htmlspecialchars($data);
             return $data;
         }
-        
-        include 'includes/dbAuthentication.inc';
+        $c_memberID = $_SESSION["memberID"];
+        include '../includes/dbAuthentication.inc';
         // put all the stuff to be done following form submission in here
        if ($_SERVER["REQUEST_METHOD"] == "POST")
         {
@@ -61,12 +66,15 @@
             // add to the database
 
             $sql = 
-            "INSERT INTO member (customer_firstname, customer_lastname, customer_email)
-            VALUES ('$c_fname', '$c_lname', '$c_email')";
+            "UPDATE member 
+            SET customer_firstname=$c_fname, 
+            customer_lastname=$c_lname, 
+            customer_email= $c_email 
+            WHERE customer_id = $c_memberID";
 
             if (mysqli_query($conn, $sql))
             {
-                echo nl2br("\r\n Added customer $c_fname $c_lname to the database.");
+                echo nl2br("\r\n Edited customer $c_fname $c_lname to the database.");
             }
             else
             {
@@ -77,7 +85,40 @@
         }
     ?>
 
-    <?php include 'includes/footer.inc'; ?>
+<?php
+    include '../includes/dbAuthentication.inc';
+    $conn = OpenConnection();
+    $sql = "SELECT * FROM member WHERE customer_id = '$c_memberID' ";
+            if(mysqli_query($conn, $sql))
+            {
+                $result=mysqli_query($conn, $sql);
+                if (mysqli_num_rows($result)>0)
+                {
+                    while($row = $result->fetch_assoc())
+                    {
+                    echo nl2br("\r\n Customer_id: " . $row["customer_id"]);
+                    echo nl2br("\r\n First Name: ". $row["customer_firstname"]); 
+                    echo nl2br("\r\n Last Name " . $row["customer_lastname"]);
+                    echo nl2br("\r\n Email:" . $row["customer_email"]);
+                    }
+                    session_unset();
+                    session_destroy();
+                }
+                else{
+              
+                    echo nl2br("\r\n Error:DB is correct.");
+            
+                }
+                
+            }
+            else
+            {
+                echo nl2br("\r\n SQL error: " . mysqli_error($conn));
+            }
+    CloseConnection($conn);
+    ?>
+
+    <?php include '../includes/footer.inc'; ?>
 </body>
 </html>
 
