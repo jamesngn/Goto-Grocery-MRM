@@ -11,11 +11,11 @@ $regValue = $_SESSION["memberID"];
 
     <?php
     $c_memberID = $_SESSION["memberID"];
-                      session_unset();
-                    session_destroy();
+    session_unset();
+    session_destroy();
 
-        include '../includes/dbAuthentication.inc';
-        /*  $servername = "sql213.epizy.com";
+    include '../includes/dbAuthentication.inc';
+    /*  $servername = "sql213.epizy.com";
             $username = "epiz_32522623";
             $password = "tgaBdbN4MPFDQu";
             $dbname = "epiz_32522623_gotogromrmDB";
@@ -28,28 +28,25 @@ $regValue = $_SESSION["memberID"];
             }
             echo "Sucess Connection";
 */
-            $conn = OpenConnection();
+    $conn = OpenConnection();
 
-            $sql = 
-            "DELETE FROM member 
+    $sql =
+        "DELETE FROM member 
             WHERE customer_id = '$c_memberID'";
 
-            if (mysqli_query($conn, $sql))
-            {
-                echo nl2br("\r\n Delete customer $c_memberID from the database.");
-                session_unset();
-                session_destroy();
-            }
-            else
-            {
-                echo nl2br("\r\n SQL error: " . mysqli_error($conn));
-            }
-            CloseConnection($conn);
-          //  $conn->close();
+    if (mysqli_query($conn, $sql)) {
+        echo nl2br("\r\n Delete customer $c_memberID from the database.");
+        session_unset();
+        session_destroy();
+    } else {
+        echo nl2br("\r\n SQL error: " . mysqli_error($conn));
+    }
+    CloseConnection($conn);
+    //  $conn->close();
 
     ?>
 
     <?php include '../includes/footer.inc'; ?>
 </body>
-</html>
 
+</html>
