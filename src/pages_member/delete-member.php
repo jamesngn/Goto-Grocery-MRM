@@ -14,9 +14,6 @@ $regValue = $_SESSION["memberID"];
   
 
         include '../includes/dbAuthentication.inc';
-        // put all the stuff to be done following form submission in here
-       if ($_SERVER["REQUEST_METHOD"] == "POST")
-        {
         /*  $servername = "sql213.epizy.com";
             $username = "epiz_32522623";
             $password = "tgaBdbN4MPFDQu";
@@ -46,7 +43,7 @@ $regValue = $_SESSION["memberID"];
             }
             CloseConnection($conn);
           //  $conn->close();
-        }
+
     ?>
 
     <?php include '../includes/footer.inc'; ?>
