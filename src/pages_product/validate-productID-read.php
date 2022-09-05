@@ -8,7 +8,7 @@ session_start();
     <h2>Validate grocery item ID for reading</h2>
 
 
-    <form action="grocery-search.php" method="post">
+    <form action="validate-productID-read.php" method="post">
         <fieldset>
             <legend>Enter the grocery item ID</legend>
             <p>
@@ -35,16 +35,16 @@ session_start();
 
             $c_id = mysqli_real_escape_string($conn,cleanInput($_POST['id']));
             
-            $sql = "SELECT * FROM product WHERE id = $c_id";
+            $sql = "SELECT * FROM product WHERE id = '$c_id'";
             $result = mysqli_query($conn, $sql);
 
             if ($result) {
                 if (mysqli_num_rows($result) == 0) {
-                    echo nl2br ("\r\n Error: Product ID is not found.");
+                    echo nl2br ("\r\n Error: Product ID $c_id is not found.");
                 } else {
                     $product = mysqli_fetch_assoc($result);
                     $_SESSION["productAssoc"] = $product;
-                    header("location: grocery-display.php");
+                    header("location: read-product.php");
                 }
             } else {
                 echo nl2br ("\r\n SQL error: " . mysqli_error($conn));

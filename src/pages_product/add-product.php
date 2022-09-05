@@ -1,7 +1,8 @@
 <?php include '../includes/header.inc'; ?>
 <body>
     <?php include '../includes/menu.inc'; ?>
-    <form action="add-grocery.php" method="post">
+    <h2>Add New Product</h2>
+    <form action="add-product.php" method="post">
         <fieldset>
             <legend>Add new grocery items</legend>
             <p>

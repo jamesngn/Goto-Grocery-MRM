@@ -2,7 +2,7 @@
 <?php 
 session_start();
 $product = $_SESSION['productAssoc'];
-printf($product);
+
 include '../includes/header.inc'; 
 ?>
 <head>
@@ -19,7 +19,7 @@ include '../includes/header.inc';
 </head>
 <body>
     <?php include '../includes/menu.inc'; ?>
-    <h2>Read Grocery Item</h2>
+    <h2>Read Grocery Product</h2>
     
 
     <table>
