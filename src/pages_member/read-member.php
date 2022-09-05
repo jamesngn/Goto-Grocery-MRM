@@ -29,7 +29,7 @@ $regValue = $_SESSION["memberID"];
                 }
                 else{
               
-                    echo nl2br("\r\n Error:DB is correct.");
+                    echo nl2br("\r\n Error:DB is incorrect.");
             
                 }
                 
