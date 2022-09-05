@@ -11,7 +11,8 @@ $regValue = $_SESSION["memberID"];
 
     <?php
     $c_memberID = $_SESSION["memberID"];
-  
+                      session_unset();
+                    session_destroy();
 
         include '../includes/dbAuthentication.inc';
         /*  $servername = "sql213.epizy.com";
@@ -36,6 +37,8 @@ $regValue = $_SESSION["memberID"];
             if (mysqli_query($conn, $sql))
             {
                 echo nl2br("\r\n Delete customer $c_memberID from the database.");
+                session_unset();
+                session_destroy();
             }
             else
             {
