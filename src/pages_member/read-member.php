@@ -5,6 +5,7 @@ $regValue = $_SESSION["memberID"];
 <body>
     <?php include '../includes/menu.inc'; ?>
     <h2>Read member</h2>
+    
     <?php
     echo nl2br("\r\n". $_SESSION["memberID"]);
     $c_memberID = $_SESSION["memberID"];
