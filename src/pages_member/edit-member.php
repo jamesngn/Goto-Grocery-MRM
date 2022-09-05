@@ -78,6 +78,8 @@ $regValue = $_SESSION["memberID"];
             if (mysqli_query($conn, $sql))
             {
                 echo nl2br("\r\n Edited customer $c_fname $c_lname to the database.");
+                session_unset();
+                session_destroy();
             }
             else
             {
