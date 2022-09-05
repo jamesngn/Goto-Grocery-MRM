@@ -1,6 +1,6 @@
-<?php include 'includes/header.inc'; ?>
+<?php include '../includes/header.inc'; ?>
 <body>
-    <?php include 'includes/menu.inc'; ?>
+    <?php include '../includes/menu.inc'; ?>
     <form action="add-grocery.php" method="post">
         <fieldset>
             <legend>Add new grocery items</legend>
@@ -48,7 +48,7 @@
         return $data;
     }
 
-    include 'includes/dbAuthentication.inc';
+    include '../includes/dbAuthentication.inc';
     
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -75,7 +75,7 @@
         CloseConnection($conn);
     }
 ?>
-<?php include 'includes/footer.inc'; ?>
+<?php include '../includes/footer.inc'; ?>
     </body>
 </html>
 

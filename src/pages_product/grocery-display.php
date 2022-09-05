@@ -3,7 +3,7 @@
 session_start();
 $product = $_SESSION['productAssoc'];
 printf($product);
-include 'includes/header.inc'; 
+include '../includes/header.inc'; 
 ?>
 <head>
     <style>
@@ -18,7 +18,7 @@ include 'includes/header.inc';
         </style>
 </head>
 <body>
-    <?php include 'includes/menu.inc'; ?>
+    <?php include '../includes/menu.inc'; ?>
     <h2>Read Grocery Item</h2>
     
 
@@ -39,7 +39,7 @@ include 'includes/header.inc';
 <?php 
 session_unset();
 session_destroy();
-include 'includes/footer.inc'; ?>
+include '../includes/footer.inc'; ?>
     </body>
 </html>
 

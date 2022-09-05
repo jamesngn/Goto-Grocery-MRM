@@ -9,8 +9,8 @@
 
 
     <h2>List of Product functions</h2>
-    <a href="pages_product/add-grocery.php">Add New Grocery Item</a>
-    <a href="pages_product/grocery-search.php">Search Grocery Item For Reading Test</a>
+    <a href="pages_product/add-grocery.php">Add New Grocery Item</a><br>
+    <a href="pages_product/grocery-search.php">Search Grocery Item For Reading Test</a><br>
     
     <?php include 'includes/footer.inc'; ?>
 </body>
