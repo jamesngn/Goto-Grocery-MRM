@@ -70,10 +70,10 @@ $regValue = $_SESSION["memberID"];
 
             $sql = 
             "UPDATE member 
-            SET customer_firstname=$c_fname, 
-            customer_lastname=$c_lname, 
-            customer_email= $c_email 
-            WHERE customer_id = 5";
+            SET customer_firstname ='$c_fname', 
+            customer_lastname ='$c_lname', 
+            customer_email = '$c_email' 
+            WHERE customer_id = '$c_memberID'";
 
             if (mysqli_query($conn, $sql))
             {

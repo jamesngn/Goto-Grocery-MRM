@@ -31,7 +31,7 @@ $regValue = $_SESSION["memberID"];
 
             $sql = 
             "DELETE FROM member 
-            WHERE customer_id = $c_memberID";
+            WHERE customer_id = '$c_memberID'";
 
             if (mysqli_query($conn, $sql))
             {
