@@ -1,4 +1,5 @@
 <?php
+
     function OpenConnection()
     {
         $servername = "sql213.epizy.com";
@@ -12,13 +13,14 @@
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
-        echo "Sucess";
+        echo nl2br("Sucess Connection");
         return $conn;
     }
 
 function CloseConnection($conn)
 {
     $conn->close();
+     echo nl2br("\r\n Sucess Close Connection");
 }
 ?>
 
