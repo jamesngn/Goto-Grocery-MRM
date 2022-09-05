@@ -23,6 +23,8 @@ $regValue = $_SESSION["memberID"];
                     echo nl2br("\r\n Last Name " . $row["customer_lastname"]);
                     echo nl2br("\r\n Email:" . $row["customer_email"]);
                     }
+                    session_unset();
+                    session_destroy();
                 }
                 else{
               
