@@ -13,7 +13,7 @@
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
-        echo nl2br("Sucess Connection");
+        echo nl2br("\r\n Sucess Connection");
         return $conn;
     }
 
