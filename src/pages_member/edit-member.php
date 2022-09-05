@@ -1,6 +1,7 @@
 <?php include '../includes/header.inc';
 session_start();
 $regValue = $_SESSION["memberID"];
+
 ?>
 
 <body>
@@ -31,6 +32,8 @@ $regValue = $_SESSION["memberID"];
     </form>
 
     <?php
+    $c_memberID = $_SESSION["memberID"];
+  
         function cleanInput($data) 
         {
             $data = trim($data);
@@ -38,7 +41,7 @@ $regValue = $_SESSION["memberID"];
             $data = htmlspecialchars($data);
             return $data;
         }
-        $c_memberID = $_SESSION["memberID"];
+
         include '../includes/dbAuthentication.inc';
         // put all the stuff to be done following form submission in here
        if ($_SERVER["REQUEST_METHOD"] == "POST")
@@ -70,7 +73,7 @@ $regValue = $_SESSION["memberID"];
             SET customer_firstname=$c_fname, 
             customer_lastname=$c_lname, 
             customer_email= $c_email 
-            WHERE customer_id = $c_memberID";
+            WHERE customer_id = 5";
 
             if (mysqli_query($conn, $sql))
             {
@@ -85,48 +88,7 @@ $regValue = $_SESSION["memberID"];
         }
     ?>
 
-<?php
-    include '../includes/dbAuthentication.inc';
-    $conn = OpenConnection();
-    $sql = "SELECT * FROM member WHERE customer_id = '$c_memberID' ";
-            if(mysqli_query($conn, $sql))
-            {
-                $result=mysqli_query($conn, $sql);
-                if (mysqli_num_rows($result)>0)
-                {
-                    while($row = $result->fetch_assoc())
-                    {
-                    echo nl2br("\r\n Customer_id: " . $row["customer_id"]);
-                    echo nl2br("\r\n First Name: ". $row["customer_firstname"]); 
-                    echo nl2br("\r\n Last Name " . $row["customer_lastname"]);
-                    echo nl2br("\r\n Email:" . $row["customer_email"]);
-                    }
-                    session_unset();
-                    session_destroy();
-                }
-                else{
-              
-                    echo nl2br("\r\n Error:DB is correct.");
-            
-                }
-                
-            }
-            else
-            {
-                echo nl2br("\r\n SQL error: " . mysqli_error($conn));
-            }
-    CloseConnection($conn);
-    ?>
-
     <?php include '../includes/footer.inc'; ?>
 </body>
 </html>
 
-if (mysqli_affected_rows($conn) > 0)
-                    {
-                        echo nl2br("\r\n Customer with $c_memberID is found on the database.");
-                    }
-                    else
-                    {
-                        echo "Error: No database records changed. Check ID is correct.";
-                    }
