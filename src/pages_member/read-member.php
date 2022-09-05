@@ -1,14 +1,14 @@
-<?php include 'includes/header.inc';
+<?php include '../includes/header.inc';
 session_start();
 $regValue = $_SESSION["memberID"];
 ?>
 <body>
-    <?php include 'includes/menu.inc'; ?>
+    <?php include '../includes/menu.inc'; ?>
     <h2>Read member</h2>
     <?php
     echo nl2br("\r\n". $_SESSION["memberID"]);
     $c_memberID = $_SESSION["memberID"];
-    include 'includes/dbAuthentication.inc';
+    include '../includes/dbAuthentication.inc';
     $conn = OpenConnection();
     $sql = "SELECT * FROM member WHERE customer_id = '$c_memberID' ";
             if(mysqli_query($conn, $sql))
@@ -39,6 +39,6 @@ $regValue = $_SESSION["memberID"];
     ?>
 
 
-    <?php include 'includes/footer.inc'; ?>
+    <?php include '../includes/footer.inc'; ?>
 </body>
 </html>

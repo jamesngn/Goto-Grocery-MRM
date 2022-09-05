@@ -80,3 +80,12 @@
     <?php include 'includes/footer.inc'; ?>
 </body>
 </html>
+
+if (mysqli_affected_rows($conn) > 0)
+                    {
+                        echo nl2br("\r\n Customer with $c_memberID is found on the database.");
+                    }
+                    else
+                    {
+                        echo "Error: No database records changed. Check ID is correct.";
+                    }

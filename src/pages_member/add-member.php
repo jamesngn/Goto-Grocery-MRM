@@ -1,16 +1,22 @@
-<?php include 'includes/header.inc';
-session_start();
-?>
+<?php include '../includes/header.inc'; ?>
 <body>
-    <?php include 'includes/menu.inc'; ?>
-    <h2>Validate memeber ID for reading </h2>
+    <?php include '../includes/menu.inc'; ?>
+    <h2>Add New Member</h2>
 
-    <form method="post" action="validate-memberID-read.php">
+    <form method="post" action="add-member.php">
         <fieldset>
             <legend>Enter new member details</legend>
             <p>
-                <label for="memberID">Enter memberID</label>
-                <input type="text" name="memberID" id="memberID" required />
+                <label for="fname">First name</label>
+                <input type="text" name="fname" id="fname" required />
+            </p>
+            <p>
+                <label for="lname">Last name</label>
+                <input type="text" name="lname" id="lname" required />
+            </p>
+            <p>
+                <label for="email">Email address</label>
+                <input type="text" name="email" id="email" required />
             </p>
             <p>
             <input type="submit" value="Submit">
@@ -28,7 +34,7 @@ session_start();
             return $data;
         }
         
-        include 'includes/dbAuthentication.inc';
+        include '../includes/dbAuthentication.inc';
         // put all the stuff to be done following form submission in here
        if ($_SERVER["REQUEST_METHOD"] == "POST")
         {
@@ -48,26 +54,19 @@ session_start();
             $conn = OpenConnection();
 
             // the cleaned – "safe" – inputs ready to be added to the database
-            $c_memberID = mysqli_real_escape_string($conn, cleanInput($_POST["memberID"]));
-            // check to the database
-            $result =mysqli_query($conn, $sql);
-            $sql = "SELECT * FROM member WHERE customer_id = '$c_memberID' ";
-            if(mysqli_query($conn, $sql))
-            {
-                $result=mysqli_query($conn, $sql);
-                if (mysqli_num_rows($result)==0)
-                {
-                    echo nl2br("\r\n Error:Check ID is correct.");
+            $c_fname = mysqli_real_escape_string($conn, cleanInput($_POST["fname"]));
+            $c_lname = mysqli_real_escape_string($conn, cleanInput($_POST["lname"]));
+            $c_email = mysqli_real_escape_string($conn, cleanInput($_POST["email"]));
 
-                }
-                else{
-                    echo nl2br("\r\n Customer with $c_memberID is found on the database.");
-                    echo nl2br("\r\n Do you wish to proceed with this ID  $c_memberID.");
-                    $_SESSION["memberID"] =$c_memberID;
-                    header ("location: read-member.php");
-            
-                }
-                
+            // add to the database
+
+            $sql = 
+            "INSERT INTO member (customer_firstname, customer_lastname, customer_email)
+            VALUES ('$c_fname', '$c_lname', '$c_email')";
+
+            if (mysqli_query($conn, $sql))
+            {
+                echo nl2br("\r\n Added customer $c_fname $c_lname to the database.");
             }
             else
             {
@@ -78,6 +77,6 @@ session_start();
         }
     ?>
 
-    <?php include 'includes/footer.inc'; ?>
+    <?php include '../includes/footer.inc'; ?>
 </body>
 </html>
