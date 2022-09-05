@@ -33,11 +33,12 @@
             $data = htmlspecialchars($data);
             return $data;
         }
-
+        
+        include 'includes/dbAuthentication.inc';
         // put all the stuff to be done following form submission in here
-        if ($_SERVER["REQUEST_METHOD"] == "POST")
+       if ($_SERVER["REQUEST_METHOD"] == "POST")
         {
-            $servername = "sql213.epizy.com";
+        /*  $servername = "sql213.epizy.com";
             $username = "epiz_32522623";
             $password = "tgaBdbN4MPFDQu";
             $dbname = "epiz_32522623_gotogromrmDB";
@@ -48,7 +49,9 @@
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             }
-            echo "Sucess Connection/n";
+            echo "Sucess Connection";
+*/
+            $conn = OpenConnection();
 
             // the cleaned – "safe" – inputs ready to be added to the database
             $c_fname = mysqli_real_escape_string($conn, cleanInput($_POST["fname"]));
@@ -63,14 +66,14 @@
 
             if (mysqli_query($conn, $sql))
             {
-                echo "Added customer $c_fname $c_lname to the database.";
+                echo nl2br("\r\n Added customer $c_fname $c_lname to the database.");
             }
             else
             {
-                echo "SQL error: " . mysqli_error($conn);
+                echo nl2br("\r\n SQL error: " . mysqli_error($conn));
             }
-
-            $conn->close();
+            CloseConnection($conn);
+          //  $conn->close();
         }
     ?>
 
