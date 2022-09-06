@@ -1,38 +1,67 @@
-<?php
- 
-    // Database Connection
-    include '../includes/dbAuthentication.inc';
-    $conn = OpenConnection();
+<?php 
+ob_start();
+// Database Connection
+ include '../includes/dbAuthentication.inc';
+ob_end_clean();
+ $conn = OpenConnection();
+ $table = array("member");
+ //Zipping
+ $zipname = 'csv.zip';
+ $zip = new ZipArchive;
+ $zip->open($zipname, ZipArchive::CREATE);
 
+ for ($i = 0; $i < count($table); $i++) {
 
-
+    // create a temporary file
+    $fd = fopen('php://temp/maxmemory:1048576', 'w');
+    if (false === $fd) {
+        die('Failed to create temporary file');
+    }
+    
     // Table Column
-    $sql = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_SCHEMA='epiz_32522623_gotogromrmDB' and TABLE_NAME='member'";
+    $sql = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_SCHEMA='epiz_32522623_gotogromrmDB' and TABLE_NAME='".$table[$i]."'";
     $column_name = mysqli_query($conn,$sql) or die("Selection Error " . mysqli_error($conn));
-    $header = array();
+    $column_table = array();
 
 
-    // get users list
-    $sql = "SELECT * FROM member";
+    // get data from table
+    $sql = "SELECT * FROM ".$table[$i];
     $result = mysqli_query($conn, $sql) or die("Selection Error " . mysqli_error($conn));
- 
-    header('Content-Type: text/csv; charset=utf-8');
-    header('Content-Disposition: attachment; filename=users-sample.csv');
-    $fOutput = fopen('php://output', 'w');
+
+    // write the data to csv
     if (mysqli_num_rows($column_name) > 0)
     {
         while($column_row = mysqli_fetch_array($column_name))
         {
-            array_push($header, $column_row);
-            fputcsv($fOutput, $header);
+            array_push($column_table, $column_row[0]);
+            
         }
-        
+        fputcsv($fd, $column_table);
     }
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-            fputcsv($fOutput, $row);
+            fputcsv($fd, $row);
         }
     }
-    fclose($fOutput);
-    CloseConnection($conn);
+
+    // return to the start of the stream
+    rewind($fd);
+     
+    // add the in-memory file to the archive, giving a name
+    $zip->addFromString('file-'.$table[$i].'.csv', stream_get_contents($fd) );
+    //close the file
+    fclose($fd);
+}
+CloseConnection($conn);
+// close the archive
+$zip->close();
+
+
+header('Content-Type: application/zip');
+header('Content-disposition: attachment; filename='.$zipname);
+header('Content-Length: ' . filesize($zipname));
+readfile($zipname);
+// remove the zip archive
+// you could also use the temp file method above for this.
+unlink($zipname);
 ?>
