@@ -4,7 +4,7 @@ ob_start();
  include '../includes/dbAuthentication.inc';
 ob_end_clean();
  $conn = OpenConnection();
- $table = array("member");
+ $table = $_POST['Table'];
  //Zipping
  $zipname = 'csv.zip';
  $zip = new ZipArchive;
