@@ -48,5 +48,5 @@ $regValue = $_SESSION["memberID"];
 
     <?php include '../includes/footer.inc'; ?>
 </body>
-
+<!--Author:THANH NGUYEN DATE:05/09/2022-->
 </html>

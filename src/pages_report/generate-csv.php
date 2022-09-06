@@ -64,4 +64,5 @@ readfile($zipname);
 // remove the zip archive
 // you could also use the temp file method above for this.
 unlink($zipname);
+//<!--Author:THANH NGUYEN DATE:06/09/2022-->
 ?>
