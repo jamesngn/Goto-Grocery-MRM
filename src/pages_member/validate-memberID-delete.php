@@ -30,8 +30,6 @@ session_start();
         
         include '../includes/dbAuthentication.inc';
         // put all the stuff to be done following form submission in here
-       if ($_SERVER["REQUEST_METHOD"] == "POST")
-        {
             $conn = OpenConnection();
 
             // the cleaned – "safe" – inputs ready to be added to the database
@@ -62,7 +60,7 @@ session_start();
             }
             CloseConnection($conn);
           //  $conn->close();
-        }
+
     ?>
 
     <?php include '../includes/footer.inc'; ?>
