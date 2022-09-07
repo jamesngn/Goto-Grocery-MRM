@@ -10,7 +10,7 @@ session_start();
             <legend>Enter new member details</legend>
             <p>
                 <label for="memberID">Enter memberID</label>
-                <input type="text" name="memberID" id="memberID" required />
+                <input type="text" name="memberID" id="memberID" pattern="\d{1,10}" maxlength="10" required />
             </p>
             <p>
             <input type="submit" value="Submit">
@@ -32,19 +32,6 @@ session_start();
         // put all the stuff to be done following form submission in here
        if ($_SERVER["REQUEST_METHOD"] == "POST")
         {
-        /*  $servername = "sql213.epizy.com";
-            $username = "epiz_32522623";
-            $password = "tgaBdbN4MPFDQu";
-            $dbname = "epiz_32522623_gotogromrmDB";
-    
-            // Create connection
-            $conn = mysqli_connect($servername, $username, $password,$dbname);
-            // Check connection
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-            echo "Sucess Connection";
-*/
             $conn = OpenConnection();
 
             // the cleaned – "safe" – inputs ready to be added to the database

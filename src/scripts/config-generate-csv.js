@@ -11,7 +11,7 @@
 {
     var form_data = new FormData(document.getElementById("list_table"));
     
-    if(!form_data.has("Table[][]"))
+    if(!form_data.has("Table[]"))
     {
         document.getElementById("chk_option_error").style.visibility = "visible";
       return false;

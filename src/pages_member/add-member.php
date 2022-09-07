@@ -8,15 +8,15 @@
             <legend>Enter new member details</legend>
             <p>
                 <label for="fname">First name</label>
-                <input type="text" name="fname" id="fname" required />
+                <input type="text" name="fname" id="fname" pattern="^[A-Za-z-]+$" maxlength="50" required />
             </p>
             <p>
                 <label for="lname">Last name</label>
-                <input type="text" name="lname" id="lname" required />
+                <input type="text" name="lname" id="lname" pattern="^[A-Za-z-]+$" maxlength="50" required />
             </p>
             <p>
                 <label for="email">Email address</label>
-                <input type="text" name="email" id="email" required />
+                <input type="text" name="email" id="email" maxlength="50" required />
             </p>
             <p>
             <input type="submit" value="Submit">
@@ -37,20 +37,7 @@
         include '../includes/dbAuthentication.inc';
         // put all the stuff to be done following form submission in here
        if ($_SERVER["REQUEST_METHOD"] == "POST")
-        {
-        /*  $servername = "sql213.epizy.com";
-            $username = "epiz_32522623";
-            $password = "tgaBdbN4MPFDQu";
-            $dbname = "epiz_32522623_gotogromrmDB";
-    
-            // Create connection
-            $conn = mysqli_connect($servername, $username, $password,$dbname);
-            // Check connection
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-            echo "Sucess Connection";
-*/
+
             $conn = OpenConnection();
 
             // the cleaned – "safe" – inputs ready to be added to the database
