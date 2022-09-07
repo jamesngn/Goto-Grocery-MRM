@@ -18,11 +18,11 @@ $regValue = $_SESSION["memberID"];
             </p>
             <p>
                 <label for="lname">Last name</label>
-                <input type="text" name="lname" id="lname" required />
+                <input type="text" name="lname" id="lname" pattern="^[A-Za-z-]+$" maxlength="50"  required />
             </p>
             <p>
                 <label for="email">Email address</label>
-                <input type="text" name="email" id="email" pattern="^[A-Za-z-]+$" maxlength="50" required />
+                <input type="text" name="email" id="email"  required />
             </p>
             <p>
             <input type="submit" value="Submit">
@@ -58,7 +58,7 @@ $regValue = $_SESSION["memberID"];
             $sql = 
             "UPDATE member 
             SET customer_firstname ='$c_fname', 
-            customer_lastname ='$c_lname', 
+             
             customer_email = '$c_email' 
             WHERE customer_id = '$c_memberID'";
 
