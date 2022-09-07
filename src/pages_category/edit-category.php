@@ -5,7 +5,7 @@
     $category_id = $_SESSION['categoryID'];
     $conn = OpenConnection();
     
-    $sql = "SELECT * FROM category WHERE id = $category_id";
+    $sql = "SELECT * FROM category WHERE categoryID = $category_id";
     $result = mysqli_query($conn, $sql);
     if ($result) {
         $category = mysqli_fetch_assoc($result);
@@ -26,15 +26,13 @@
     <h2>Edit Category Page</h2>
     <form action="edit-category.php" method="post">
         <fieldset>
-            <legend>Edit the category</legend>
+            <legend>Edit the Category</legend>
             <p>
-                <label for="category-name">Category Name:</label>
+                <label for="category-name">Grocery Name:</label>
                 <input type="text" name="category-name" id="category-name" value = "<?php echo $category['name'];?>">
-            </p>           
-            <p>
-                <label for="category-id">Category ID:</label>
-                <input type="text" name="category-id" id="category-id" value = "<?php echo $category['category_ID'];?>">
-            </p>           
+            </p>
+           
+            
             <button type="submit">Edit</button>
             <button type="reset">Reset</button>
         </fieldset>
@@ -53,18 +51,18 @@
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $conn = OpenConnection();
 
-            $c_category_name = mysqli_real_escape_string($conn, cleanInput($_POST['category-name']));  
-            $c_category_id = mysqli_real_escape_string($conn, cleanInput($_POST['category-id']));
+            $c_category_name = mysqli_real_escape_string($conn, cleanInput($_POST['category-name']));
+            
 
             $sql = 
             "UPDATE category 
             SET 
                 name = '$c_category_name',
-                category_ID = '$c_category_id',
-            WHERE id = $category_id";
+                
+            WHERE categoryID = $category_id";
 
             if (mysqli_query($conn, $sql)) {
-                echo "\r\nRecord updated successfuly";
+                echo "\r\nRecord updated successfully";
                 session_unset();
                 session_destroy();
             } else {
