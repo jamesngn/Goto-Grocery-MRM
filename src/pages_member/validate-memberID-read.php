@@ -7,7 +7,7 @@ session_start();
 
     <form method="post" action="validate-memberID-read.php">
         <fieldset>
-            <legend>Enter new member details</legend>
+            <legend>Enter Member ID</legend>
             <p>
                 <label for="memberID">Enter memberID</label>
                 <input type="text" name="memberID" id="memberID" pattern="\d{1,10}" maxlength="10" required />
