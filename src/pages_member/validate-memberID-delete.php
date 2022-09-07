@@ -3,7 +3,7 @@ session_start();
 ?>
 <body>
     <?php include '../includes/menu.inc'; ?>
-    <h2>Validate memeber ID for editing </h2>
+    <h2>Validate memeber ID for deleting </h2>
 
     <form method="post" action="validate-memberID-delete.php">
         <fieldset>
