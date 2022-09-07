@@ -45,7 +45,7 @@
         
 
         //Add to database
-        $sql = "INSERT INTO category (name,category_ID)
+        $sql = "INSERT INTO category (name,categoryID)
         VALUES ('$c_name','$c_category_id')";
 
         if (mysqli_query($conn,$sql)) {
