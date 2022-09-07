@@ -31,7 +31,7 @@ session_start();
         include '../includes/dbAuthentication.inc';
         // put all the stuff to be done following form submission in here
        if ($_SERVER["REQUEST_METHOD"] == "POST")
-
+        {
             $conn = OpenConnection();
 
             // the cleaned – "safe" – inputs ready to be added to the database
@@ -66,6 +66,7 @@ session_start();
     ?>
 
     <?php include '../includes/footer.inc'; ?>
+    <?php include '../includes/bootstrapcore.inc'; ?>
 </body>
 <!--Author:THANH NGUYEN DATE:05/09/2022-->
 </html>
