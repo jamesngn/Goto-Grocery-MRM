@@ -4,11 +4,11 @@
 <body>
     <?php include '../includes/menu.inc'; ?>
     <h2>Confiugration for CSV</h2>
-    <form onsubmit="return checkboxchecker()" method="post" action="generate-csv.php">
+    <form id=list_table onsubmit="return handleData()" method="post" action="generate-csv.php">
   		<!--Table Allocation-->
 	<fieldset id="csv_table_name">
 		<legend> Select tables to generate CSV file:</legend>
-        <div style="visibility:hidden; color:red; " id="chk_error">
+        <div style="visibility:hidden; color:red; " id="chk_option_error">
         Please select at least one option.
         </div>
 			<p id="checkbox">	
