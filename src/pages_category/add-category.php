@@ -14,7 +14,10 @@
                 <label for="category-id">Category ID:</label>
                 <input type="text" name="category-id" id="category-id">
             </p>
-           
+            <p>
+            <input type="submit" value="Submit">
+            <input type="reset"> 
+            </p>
             
         </fieldset>
     </form>
