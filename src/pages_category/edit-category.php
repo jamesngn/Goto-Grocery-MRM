@@ -59,7 +59,7 @@
             SET 
                 Name = '$c_category_name',
                 
-            WHERE CategoryID = $category_id";
+            WHERE CategoryID = '$category_id'";
 
             if (mysqli_query($conn, $sql)) {
                 echo "\r\nRecord updated successfully";
