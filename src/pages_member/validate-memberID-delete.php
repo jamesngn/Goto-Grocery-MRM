@@ -66,6 +66,7 @@ session_start();
     ?>
 
     <?php include '../includes/footer.inc'; ?>
+    <?php include '../includes/bootstrapcore.inc'; ?>
 </body>
 <!--Author:THANH NGUYEN DATE:05/09/2022-->
 </html>
