@@ -14,7 +14,10 @@
                 <label for="category-id">Category ID:</label>
                 <input type="text" name="category-id" id="category-id">
             </p>
-           
+            <p>
+            <input type="submit" value="Submit">
+            <input type="reset"> 
+            </p>
             
         </fieldset>
     </form>
@@ -42,7 +45,7 @@
         
 
         //Add to database
-        $sql = "INSERT INTO category (name,category_ID)
+        $sql = "INSERT INTO category (name,categoryID)
         VALUES ('$c_name','$c_category_id')";
 
         if (mysqli_query($conn,$sql)) {

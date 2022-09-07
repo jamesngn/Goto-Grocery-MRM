@@ -13,7 +13,7 @@
         $conn = OpenConnection();
 
         $sql = "DELETE FROM category 
-        WHERE id = '$category_id'";
+        WHERE categoryID = '$category_id'";
 
         if (mysqli_query($conn, $sql)) {
             echo nl2br("\r\n Successfully deleted the category ID = $category_id from the database");
