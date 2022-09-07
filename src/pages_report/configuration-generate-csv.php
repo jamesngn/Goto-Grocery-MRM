@@ -7,7 +7,7 @@
     <form onsubmit="return handleData()" method="post" action="generate-csv.php">
   		<!--Table Allocation-->
 	<fieldset id="csv_table_name">
-		<legend> Select all the scripting languages you know:</legend>
+		<legend> Select tables to generate CSV file:</legend>
         <div style="visibility:hidden; color:red; " id="chk_option_error">
         Please select at least one option.
         </div>
