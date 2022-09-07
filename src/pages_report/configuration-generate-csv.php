@@ -4,7 +4,7 @@
 <body>
     <?php include '../includes/menu.inc'; ?>
     <h2>Confiugration for CSV</h2>
-    <form method="post" action="generate-csv.php">
+    <form onsubmit="return handleData()" method="post" action="generate-csv.php">
   		<!--Table Allocation-->
 	<fieldset id="csv_table_name">
 		<legend> Select all the scripting languages you know:</legend>
