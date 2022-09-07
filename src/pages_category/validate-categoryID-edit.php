@@ -38,7 +38,7 @@ include '../includes/header.inc';
             //Clean the id value to prevent from attack.
             $category_id = mysqli_real_escape_string($conn, cleanInput($_POST['categoryID']));
             //select the row from the category table to match with the input id.
-            $sql = "SELECT * FROM category WHERE categoryID = $category_id";
+            $sql = "SELECT * FROM category WHERE CategoryID = $category_id";
             //perform a query against the database.
             $result = mysqli_query($conn, $sql);
             //validation check

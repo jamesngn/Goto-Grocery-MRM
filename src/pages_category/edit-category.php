@@ -5,7 +5,7 @@
     $category_id = $_SESSION['ID'];
     $conn = OpenConnection();
     
-    $sql = "SELECT * FROM category WHERE categoryID = $category_id";
+    $sql = "SELECT * FROM category WHERE CategoryID = $category_id";
     $result = mysqli_query($conn, $sql);
     if ($result) {
         $category = mysqli_fetch_assoc($result);
@@ -29,7 +29,7 @@
             <legend>Edit the Category</legend>
             <p>
                 <label for="category-name">Category Name:</label>
-                <input type="text" name="category-name" id="category-name" value = "<?php echo $category['name'];?>">
+                <input type="text" name="category-name" id="category-name" value = "<?php echo $category['Name'];?>">
             </p>
            
             
@@ -57,9 +57,9 @@
             $sql = 
             "UPDATE category 
             SET 
-                name = '$c_category_name',
+                Name = '$c_category_name',
                 
-            WHERE categoryID = $category_id";
+            WHERE CategoryID = $category_id";
 
             if (mysqli_query($conn, $sql)) {
                 echo "\r\nRecord updated successfully";
