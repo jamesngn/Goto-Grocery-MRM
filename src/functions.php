@@ -29,7 +29,10 @@
 
 
     <h2>List of Categories functions </h2>
-
+    <a href="pages_category/add-category.php">Add Category Record</a><br>
+    <a href="pages_category/validate-categoryID-read.php">Search Category Record</a><br>
+    <a href="pages_category/validate-categoryID-edit.php">Update Category Record</a><br>
+    <a href="pages_category/validate-categoryID-delete.php">Delete Category Record</a><br>
 
     
     <?php include 'includes/footer.inc'; ?>
