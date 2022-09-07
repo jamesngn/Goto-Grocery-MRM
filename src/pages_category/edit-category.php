@@ -28,7 +28,7 @@
         <fieldset>
             <legend>Edit the Category</legend>
             <p>
-                <label for="category-name">Grocery Name:</label>
+                <label for="category-name">Category Name:</label>
                 <input type="text" name="category-name" id="category-name" value = "<?php echo $category['name'];?>">
             </p>
            
