@@ -2,7 +2,7 @@
     include '../includes/dbAuthentication.inc';
     session_start();
 
-    $category_id = $_SESSION['categoryID'];
+    $category_id = $_SESSION['ID'];
     $conn = OpenConnection();
     
     $sql = "SELECT * FROM category WHERE categoryID = $category_id";
