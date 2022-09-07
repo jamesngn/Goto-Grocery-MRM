@@ -37,7 +37,7 @@
         $supp_name = mysqli_real_escape_string($conn, cleanInput($_POST['supplier_name']));
 
         //Add to database
-        $sql = "INSERT INTO supplier (name,supplier_id)
+        $sql = "INSERT INTO supplier (supplier_id,supplier_name)
         VALUES ('$supp_id','$supp_name')";
 
         if (mysqli_query($conn,$sql)) {
