@@ -1,17 +1,17 @@
 <?php include '../includes/header.inc';
 session_start();
-$regValue = $_SESSION["categoryID"];
+$regValue = $_SESSION["categoryid"];
 ?>
 <body>
     <?php include '../includes/menu.inc'; ?>
     <h2>Read category</h2>
     
     <?php
-    echo nl2br("\r\n". $_SESSION["categoryID"]);
-    $c_categoryID = $_SESSION["categoryID"];
+    echo nl2br("\r\n". $_SESSION["categoryid"]);
+    $c_categoryID = $_SESSION["categoryid"];
     include '../includes/dbAuthentication.inc';
     $conn = OpenConnection();
-    $sql = "SELECT * FROM category WHERE category_id = '$c_categoryID' ";
+    $sql = "SELECT * FROM category WHERE CategoryID = '$c_categoryID' ";
             if(mysqli_query($conn, $sql))
             {
                 $result=mysqli_query($conn, $sql);
@@ -19,8 +19,8 @@ $regValue = $_SESSION["categoryID"];
                 {
                     while($row = $result->fetch_assoc())
                     {
-                    echo nl2br("\r\n Category_id: " . $row["category_id"]);
-                    echo nl2br("\r\n Name: ". $row["name"]); 
+                    echo nl2br("\r\n CategoryID: " . $row["CategoryID"]);
+                    echo nl2br("\r\n Name: ". $row["Name"]); 
                     
                     }
                     session_unset();
