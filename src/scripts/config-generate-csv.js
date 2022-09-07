@@ -7,18 +7,18 @@
 * Credits: (Any guidance/help/code? Credit it here.)
 */
 
-  function handleData()
+  function checkboxchecker()
 {
     var form_data = new FormData(document.querySelector("form"));
     
     if(!form_data.has("Table[]"))
     {
-        document.getElementById("chk_option_error").style.visibility = "visible";
+        document.getElementById("chk_error").style.visibility = "visible";
       return false;
     }
     else
     {
-        document.getElementById("chk_option_error").style.visibility = "hidden";
+        document.getElementById("chk_error").style.visibility = "hidden";
       return true;
     }
     
