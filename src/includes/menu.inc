@@ -23,9 +23,9 @@ echo '<header>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="../pages_member/add-member.php">Create member</a>
-                <a class="dropdown-item" href="../pages_member/validate-memberID-read.php">Read member</a>
-                <a class="dropdown-item" href="../pages_member/validate-memberID-edit.php">Update Member</a>
-                <a class="dropdown-item" href="../pages_member/validate-memberID-delete.php">Delete Member</a>
+                <a class="dropdown-item" href="./pages_member/validate-memberID-read.php">Read member</a>
+                <a class="dropdown-item" href="./pages_member/validate-memberID-edit.php">Update Member</a>
+                <a class="dropdown-item" href="./pages_member/validate-memberID-delete.php">Delete Member</a>
                 </div>
             </li>
             </ul>
