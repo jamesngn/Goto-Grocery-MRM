@@ -16,7 +16,7 @@
     <h2>List of Purchase function</h2>
     <a href="pages_purchase/add-purchase.php">Add Purchase Record</a><br>
     <a href="pages_purchase/validate-purchaseID-read.php">Read Purchase Record</a><br>
-
+    <a href="pages_purchase/validate-purchaseID-delete.php">Delete Purchase Record</a><br>
     <h2>List of SalesDetail function</h2>
 
 
