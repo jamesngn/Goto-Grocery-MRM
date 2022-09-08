@@ -16,7 +16,7 @@
             </p>
             <p>
                 <label for="email">Email address</label>
-                <input type="text" name="email" id="email" maxlength="50" required />
+                <input type="text" name="email" id="email"pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" maxlength="50" required />
             </p>
             <p>
             <input type="submit" value="Submit">
@@ -73,3 +73,4 @@
 </body>
 <!--Author:THANH NGUYEN DATE:05/09/2022-->
 </html>
+
