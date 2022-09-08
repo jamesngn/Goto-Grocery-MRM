@@ -2,13 +2,13 @@
     include '../includes/dbAuthentication.inc';
     session_start();
 
-    $category_id = $_SESSION['categoryID'];
+    $supp_id = $_SESSION['supplier_id'];
     $conn = OpenConnection();
     
-    $sql = "SELECT * FROM category WHERE CategoryID = $category_id";
+    $sql = "SELECT * FROM supplier WHERE supplier_id = $supp_id";
     $result = mysqli_query($conn, $sql);
     if ($result) {
-        $category = mysqli_fetch_assoc($result);
+        $supplier = mysqli_fetch_assoc($result);
     }  else {
         echo "\r\nSQL error: " . mysqli_error($conn);
     }
@@ -23,13 +23,13 @@
 ?>
 <body>
     <?php include '../includes/menu.inc'?>
-    <h2>Edit Category Page</h2>
-    <form action="edit-category.php" method="post">
+    <h2>Edit Supplier Page</h2>
+    <form action="edit-supplier.php" method="post">
         <fieldset>
-            <legend>Edit the Category</legend>
+            <legend>Edit the Supplier</legend>
             <p>
-                <label for="category-name">Category Name:</label>
-                <input type="text" name="category-name" id="category-name" value = "<?php echo $category['Name'];?>">
+                <label for="supplier-name">Supplier Name:</label>
+                <input type="text" name="supplier-name" id="supplier-name" value = "<?php echo $supplier['supplier_name'];?>">
             </p>
            
             
@@ -51,15 +51,15 @@
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $conn = OpenConnection();
 
-            $c_category_name = mysqli_real_escape_string($conn, cleanInput($_POST['category-name']));
+            $c_supplier_name = mysqli_real_escape_string($conn, cleanInput($_POST['supplier-name']));
             
 
             $sql = 
-            "UPDATE category 
+            "UPDATE supplier 
             SET 
-                Name = '$c_category_name'
+            supplier_name = '$c_supplier_name'
                 
-            WHERE CategoryID = $category_id";
+            WHERE supplier_id = $supp_id";
 
             if (mysqli_query($conn, $sql)) {
                 echo "\r\nRecord updated successfully";

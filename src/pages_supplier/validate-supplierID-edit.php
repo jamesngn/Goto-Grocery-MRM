@@ -4,14 +4,14 @@ include '../includes/header.inc';
 
 <body>
     <?php include '../includes/menu.inc';?>
-    <h2>Validate category ID for editting</h2>
+    <h2>Validate Supplier ID for editting</h2>
 
-    <form action="validate-categoryID-edit.php" method="post">
+    <form action="validate-supplierID-edit.php" method="post">
         <fieldset>
-            <legend>Enter the category ID</legend>
+            <legend>Enter the Supplier ID</legend>
             <p>
-                <label for="categoryID">Category ID:</label>
-                <input type="text" name="categoryID" id="categoryID">
+                <label for="supplier_id">Supplier ID:</label>
+                <input type="text" name="supplier_id" id="supplier_id">
             </p>
 
             <p>
@@ -36,18 +36,18 @@ include '../includes/header.inc';
             //Connect to the database and store it in variable $conn.
             $conn = OpenConnection();
             //Clean the id value to prevent from attack.
-            $category_id = mysqli_real_escape_string($conn, cleanInput($_POST['categoryID']));
-            //select the row from the category table to match with the input id.
-            $sql = "SELECT * FROM category WHERE CategoryID = $category_id";
+            $supp_id = mysqli_real_escape_string($conn, cleanInput($_POST['supplier_id']));
+            //select the row from the supplier table to match with the input id.
+            $sql = "SELECT * FROM supplier WHERE supplier_id = $supp_id";
             //perform a query against the database.
             $result = mysqli_query($conn, $sql);
             //validation check
             if ($result) {
                 if (mysqli_num_rows($result) == 0) {
-                    echo nl2br("\r\n Error: Category ID $category_id is not found.");
+                    echo nl2br("\r\n Error: supplier ID $supp_id is not found.");
                 } else {
-                    $_SESSION['categoryID'] = $category_id;
-                    header("location:edit-category.php");
+                    $_SESSION['supplier_id'] = $supp_id;
+                    header("location:edit-supplier.php");
                 }
             }
             else {

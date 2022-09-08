@@ -39,6 +39,7 @@
        if ($_SERVER["REQUEST_METHOD"] == "POST")
         {
             $conn = OpenConnection();
+            
 
             // the cleaned – "safe" – inputs ready to be added to the database
             $c_fname = mysqli_real_escape_string($conn, cleanInput($_POST["fname"]));
@@ -49,9 +50,12 @@
 
             $sql = 
             "INSERT INTO member (customer_firstname, customer_lastname, customer_email)
-            VALUES ('$c_fname', '$c_lname', '$c_email')";
+            VALUES (?, ?, ?)";
 
-            if (mysqli_query($conn, $sql))
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("sss", $c_fname,$c_lname,$c_email);
+
+            if ($stmt->execute())
             {
                 echo nl2br("\r\n Added customer $c_fname $c_lname to the database.");
             }
@@ -59,6 +63,7 @@
             {
                 echo nl2br("\r\n SQL error: " . mysqli_error($conn));
             }
+            $stmt->close();
             CloseConnection($conn);
           //  $conn->close();
         }

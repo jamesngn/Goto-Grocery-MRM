@@ -28,6 +28,10 @@
     <a href="pages_supplier/validate-supplierID-read.php">Search Supplier Record</a><br>
     <a href="pages_supplier/validate-supplierID-edit.php">Update Supplier Record</a><br>
     <a href="pages_supplier/validate-supplierID-delete.php">Delete Supplier Record</a><br>
+<<<<<<< HEAD
+=======
+
+>>>>>>> e924c05ac2d4a2d544ef3547575588cabf9d5c38
 
     <h2>List of Categories functions </h2>
     <a href="pages_category/add-category.php">Add Category Record</a><br>
