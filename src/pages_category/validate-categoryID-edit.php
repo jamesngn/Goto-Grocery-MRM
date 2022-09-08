@@ -46,7 +46,7 @@ include '../includes/header.inc';
                 if (mysqli_num_rows($result) == 0) {
                     echo nl2br("\r\n Error: Category ID $category_id is not found.");
                 } else {
-                    $_SESSION['ID'] = $category_id;
+                    $_SESSION['categoryID'] = $category_id;
                     header("location:edit-category.php");
                 }
             }

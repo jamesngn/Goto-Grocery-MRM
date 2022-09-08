@@ -2,7 +2,7 @@
     include '../includes/dbAuthentication.inc';
     session_start();
 
-    $category_id = $_SESSION['ID'];
+    $category_id = $_SESSION['categoryID'];
     $conn = OpenConnection();
     
     $sql = "SELECT * FROM category WHERE CategoryID = $category_id";
@@ -57,9 +57,9 @@
             $sql = 
             "UPDATE category 
             SET 
-                Name = '$c_category_name',
+                Name = '$c_category_name'
                 
-            WHERE CategoryID = '$category_id'";
+            WHERE CategoryID = $category_id";
 
             if (mysqli_query($conn, $sql)) {
                 echo "\r\nRecord updated successfully";
