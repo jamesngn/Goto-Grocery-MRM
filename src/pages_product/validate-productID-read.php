@@ -51,7 +51,6 @@ session_start();
             }
             CloseConnection($conn);
         }
-
     ?>
 
 
