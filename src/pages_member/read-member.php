@@ -11,10 +11,13 @@ $regValue = $_SESSION["memberID"];
     $c_memberID = $_SESSION["memberID"];
     include '../includes/dbAuthentication.inc';
     $conn = OpenConnection();
-    $sql = "SELECT * FROM member WHERE customer_id = '$c_memberID' ";
-            if(mysqli_query($conn, $sql))
+    $sql = "SELECT * FROM member WHERE customer_id = ? ";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $c_memberID);
+    
+            if($stmt->execute())
             {
-                $result=mysqli_query($conn, $sql);
+                $result=$stmt->get_result();
                 if (mysqli_num_rows($result)>0)
                 {
                     while($row = $result->fetch_assoc())
@@ -24,8 +27,13 @@ $regValue = $_SESSION["memberID"];
                     echo nl2br("\r\n Last Name " . $row["customer_lastname"]);
                     echo nl2br("\r\n Email:" . $row["customer_email"]);
                     }
-                    session_unset();
-                    session_destroy();
+                    if(!session_destroy())
+                    {
+                      echo "session not destroyed";
+                    }
+                    else {
+                      echo "session destroyed";
+                    }
                 }
                 else{
               
@@ -38,6 +46,7 @@ $regValue = $_SESSION["memberID"];
             {
                 echo nl2br("\r\n SQL error: " . mysqli_error($conn));
             }
+    $stmt->close();
     CloseConnection($conn);
     ?>
 

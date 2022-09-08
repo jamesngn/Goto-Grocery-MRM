@@ -17,17 +17,30 @@ $regValue = $_SESSION["memberID"];
     include '../includes/dbAuthentication.inc';
     $conn = OpenConnection();
 
-    $sql =
+    $del =
         "DELETE FROM member 
-            WHERE customer_id = '$c_memberID'";
+            WHERE customer_id = ?";
+    $stmt = $conn->prepare($del);
+    $stmt->bind_param("i", $c_memberID);
+    $stmt->execute();
 
-    if (mysqli_query($conn, $sql)) {
+    $sql = "SELECT * FROM member WHERE customer_id = ? ";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $c_memberID);
+
+    if ($stmt->execute()!= null) {
         echo nl2br("\r\n Delete customer $c_memberID from the database.");
-        session_unset();
-        session_destroy();
+        if(!session_destroy())
+        {
+          echo "session not destroyed";
+        }
+        else {
+          echo "session destroyed";
+        }        
     } else {
         echo nl2br("\r\n SQL error: " . mysqli_error($conn));
     }
+    $stmt->close();
     CloseConnection($conn);
     //  $conn->close();
 

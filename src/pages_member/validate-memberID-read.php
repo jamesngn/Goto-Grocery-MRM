@@ -37,11 +37,15 @@ session_start();
             // the cleaned – "safe" – inputs ready to be added to the database
             $c_memberID = mysqli_real_escape_string($conn, cleanInput($_POST["memberID"]));
             // check to the database
-            $result =mysqli_query($conn, $sql);
-            $sql = "SELECT * FROM member WHERE customer_id = '$c_memberID' ";
-            if(mysqli_query($conn, $sql))
+           
+            $sql = "SELECT * FROM member WHERE customer_id = ? ";
+
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("i", $c_memberID);
+
+            if($stmt->execute())
             {
-                $result=mysqli_query($conn, $sql);
+                $result=$stmt->get_result();
                 if (mysqli_num_rows($result)==0)
                 {
                     echo nl2br("\r\n Error:Check ID is correct.");

@@ -57,21 +57,32 @@ $regValue = $_SESSION["memberID"];
 
             $sql = 
             "UPDATE member 
-            SET customer_firstname ='$c_fname', 
-             
-            customer_email = '$c_email' 
-            WHERE customer_id = '$c_memberID'";
+            SET customer_firstname =?, 
+            customer_lastname = ?, 
+            customer_email = ? 
+            WHERE customer_id = ?";
+       
+              $stmt = $conn->prepare($sql);
+              $stmt->bind_param("sssi", $c_fname,$c_lname,$c_email,$c_memberID);
 
-            if (mysqli_query($conn, $sql))
+
+            if ($stmt->execute())
             {
                 echo nl2br("\r\n Edited customer $c_fname $c_lname to the database.");
-                session_unset();
+                if(!session_destroy())
+                {
+                  echo "session not destroyed";
+                }
+                else {
+                  echo "session destroyed";
+                }                session_unset();
                 session_destroy();
             }
             else
             {
                 echo nl2br("\r\n SQL error: " . mysqli_error($conn));
             }
+            $stmt->close();
             CloseConnection($conn);
         }
     ?>
