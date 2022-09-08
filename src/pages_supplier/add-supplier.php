@@ -2,7 +2,7 @@
 <body>
     <?php include '../includes/menu.inc'; ?>
     <h2>Add New Supplier</h2>
-    <form action="add_supplier.php" method="post">
+    <form action="add-supplier.php" method="post">
         <fieldset>
             <legend> Add new Suppliers </legend>
             <p>
@@ -41,7 +41,7 @@
         VALUES ('$supp_id','$supp_name')";
 
         if (mysqli_query($conn,$sql)) {
-            echo nl2br ("\r\n Added $supp_name supplier to the database");
+            echo nl2br ("\r\n Added Supplier $supp_name to the database");
         } else {
             echo nl2br ("\r\nSQL errror: " . mysqli_error($conn));
         }

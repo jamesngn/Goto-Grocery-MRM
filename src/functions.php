@@ -26,6 +26,10 @@
 
 
     <h2>List of Supplier function</h2>
+    <a href="pages_supplier/add-supplier.php">Add Supplier Record</a><br>
+    <a href="pages_supplier/validate-supplierID-read.php">Search Supplier Record</a><br>
+    <a href="pages_supplier/validate-supplierID-edit.php">Update Supplier Record</a><br>
+    <a href="pages_supplier/validate-supplierID-delete.php">Delete Supplier Record</a><br>
 
 
     <h2>List of Categories functions </h2>
