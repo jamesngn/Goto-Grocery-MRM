@@ -1,44 +1,26 @@
-<?php 
-    include '../includes/dbAuthentication.inc';
-    session_start();
-
-    $prod_id = $_SESSION['product_id'];
-    $conn = OpenConnection();
-    
-    $sql = "SELECT * FROM wishlist WHERE product_id = $prod_id";
-    $result = mysqli_query($conn, $sql);
-    if ($result) {
-        $wishlist= mysqli_fetch_assoc($result);
-    }  else {
-        echo "\r\nSQL error: " . mysqli_error($conn);
-    }
-    CloseConnection($conn);
+<?php session_start();
+include '../includes/header.inc'; 
 ?>
 
-<?php
-    include '../includes/header.inc';
-?>
 <body>
-    <?php include '../includes/menu.inc'?>
-    <h2>Edit Wishlist</h2>
+    <?php include '../includes/menu.inc';?>
+    <h2>Edit/Update Wishlist</h2>
+
     <form action="edit_wishlist.php" method="post">
         <fieldset>
-            <legend>Edit the category</legend>
+            <legend>Enter the Wishlist ID</legend>
             <p>
-                <label for="cust_id">Customer ID:</label>
-                <input type="text" name="cust_id" id="cust_id" value = "<?php echo $wishlist['cust_id'];?>">
-            </p>           
+                <label for="wishlistid">Wishlist ID:</label>
+                <input type="text" name="wishlistid" id="wishlistid">
+            </p>
+
             <p>
-                <label for="product_id">Product ID:</label>
-                <input type="text" name="product_id" id="product_id" value = "<?php echo $wishlist['product_id'];?>">
-            </p>           
-            <button type="submit">Edit</button>
-            <button type="reset">Reset</button>
+                <button type="submit">Search</button>
+                <button type="reset">Reset</button>
+            </p>
         </fieldset>
     </form>
-
     <?php
-
         function cleanInput($data) 
         {
             $data = trim($data);
@@ -46,32 +28,34 @@
             $data = htmlspecialchars($data);
             return $data;
         }
-        
+
+        include '../includes/dbAuthentication.inc';
+
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            //Connect to the database and store it in variable $conn.
             $conn = OpenConnection();
-
-            $cust_id = mysqli_real_escape_string($conn, cleanInput($_POST['cust_id']));  
-            $prod_id = mysqli_real_escape_string($conn, cleanInput($_POST['product_id']));
-
-            $sql = 
-            "UPDATE wishlist 
-            SET 
-                cust_id = '$cust_id',
-                product_id = '$prod_id',
-            WHERE product_id = $prod_id";
-
-            if (mysqli_query($conn, $sql)) {
-                echo "\r\nRecord updated successfuly";
-                session_unset();
-                session_destroy();
-            } else {
-                echo "\r\nError updating record: " . mysqli_error($conn);
+            //Clean the id value to prevent from attack.
+            $wishid = mysqli_real_escape_string($conn, cleanInput($_POST['wishlistid']));
+            //select the row from the supplier table to match with the input id.
+            $sql = "SELECT * FROM wishlist WHERE wishlistid = $wishid";
+            //perform a query against the database.
+            $result = mysqli_query($conn, $sql);
+            //validation check
+            if ($result) {
+                if (mysqli_num_rows($result) == 0) {
+                    echo nl2br("\r\n Error: Wishlist ID $wishid is not found.");
+                } else {
+                    $_SESSION['wishlistid'] = $$wishid;
+                    header("location:edit_wishlist.php");
+                }
             }
-
+            else {
+                echo nl2br("\r\nSQL error: " . mysqli_error($conn));
+            }
             CloseConnection($conn);
         }
+
     ?>
-    
-    <?php include '../includes/footer.inc'?>
+
+    <?php include '../includes/footer.inc';?>
 </body>
-</html>

@@ -1,34 +1,55 @@
 <?php include '../includes/header.inc';
 session_start();
-$cust_id = $_SESSION["cust_id"];
 ?>
 <body>
     <?php include '../includes/menu.inc'; ?>
     <h2>Read Wishlist</h2>
-    
+
+    <form method="post" action="read_new_wishlist.php">
+        <fieldset>
+            <legend>Enter new wishlist details</legend>
+            <p>
+                <label for="wishlistid">Enter Wishlist ID</label>
+                <input type="text" name="wishlistid" id="wishlistid" pattern="\d{1,10}" maxlength="10" required />
+            </p>
+            <p>
+            <input type="submit" value="Submit">
+            <input type="reset"> 
+            </p>
+        </fieldset>
+    </form>
+
     <?php
-    echo nl2br("\r\n". $_SESSION["cust_id"]);
-    $cust_id= $_SESSION["cust_id"];
-    include '../includes/dbAuthentication.inc';
-    $conn = OpenConnection();
-    $sql = "SELECT * FROM wishlist WHERE cust_id = '$cust_id' ";
+        function cleanInput($data) 
+        {
+            $data = trim($data);
+            $data = stripslashes($data);
+            $data = htmlspecialchars($data);
+            return $data;
+        }
+        
+        include '../includes/dbAuthentication.inc';
+        
+       if ($_SERVER["REQUEST_METHOD"] == "POST")
+        {
+            $conn = OpenConnection();
+
+         
+          
+            $result =mysqli_query($conn, $sql);
+            $sql = "SELECT * FROM wishlist WHERE wishlistid = '$wishid' ";
             if(mysqli_query($conn, $sql))
             {
                 $result=mysqli_query($conn, $sql);
-                if (mysqli_num_rows($result)>0)
+                if (mysqli_num_rows($result)==0)
                 {
-                    while($row = $result->fetch_assoc())
-                    {
-                    echo nl2br("\r\n cust_id: " . $row["cust_id"]);
-                    echo nl2br("\r\n product_id: ". $row["product_id"]); 
-                   
-                    }
-                    session_unset();
-                    session_destroy();
+                    echo nl2br("\r\n Error:Check ID is correct.");
+
                 }
                 else{
-              
-                    echo nl2br("\r\n Error:DB is incorrect.");
+                 
+                    $_SESSION["wishlistid"] =$wishid;
+                    header ("location: read_new_wishlist.php");
             
                 }
                 
@@ -37,10 +58,13 @@ $cust_id = $_SESSION["cust_id"];
             {
                 echo nl2br("\r\n SQL error: " . mysqli_error($conn));
             }
-    CloseConnection($conn);
+            CloseConnection($conn);
+          //  $conn->close();
+        }
     ?>
 
-
     <?php include '../includes/footer.inc'; ?>
+    <?php include '../includes/bootstrapcore.inc'; ?>
 </body>
+
 </html>
