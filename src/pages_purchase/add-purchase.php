@@ -1,73 +1,107 @@
+<?php session_start(); 
+    $c_member_ID = $_SESSION["member-ID"];
 
-<?php 
-    // RETRIEVE CUSTOMER ID FROM MEMBER TABLE
-    include '../includes/dbAuthentication.inc';
-    $conn = openConnection();
+    include "../includes/dbAuthentication.inc";
+    $conn = OpenConnection();
 
-    $sql = "SELECT customer_id FROM member";
-    $result = mysqli_query($conn,$sql);
-    if ($result) { 
-        $customerIDs = mysqli_fetch_all($result, MYSQLI_ASSOC);
-    } else {
-        echo nl2br("\r\nSQL ERROR: " . mysqli_error($conn));
+    $sql = "SELECT cart.memberID as memberID, cart.productID as productID,cart.quantity as quantity, product.name as productName, product.price as price, product.qty_stock as qty_stock 
+            FROM cart 
+            LEFT JOIN product
+            ON cart.productID = product.id
+            LEFT JOIN member
+            ON cart.memberID = member.customer_id
+            WHERE memberID = ?";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i",$c_member_ID);
+
+    if ($stmt -> execute()) 
+    {
+        $result = $stmt->get_result();
+        if (mysqli_num_rows($result) == 0) 
+        {
+            $cartInfo = 0;
+            // echo nl2br("\r\nError: Your shopping cart is empty.");
+        } 
+        else 
+        {
+            $cartInfo = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        }
     }
-    mysqli_free_result($result);
-
-
-    $sql = "SELECT id, name, qty_stock from product";
-    $result = mysqli_query($conn,$sql);
-    if ($result) {
-        $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
-    } else {
-        echo nl2br ("\r\nSQL error: " . mysqli_error($conn));
+    else {
+        echo nl2br("\r\nSQL error: " . mysqli_error($conn));
     }
-    mysqli_free_result($result);
-
-    
-    // print_r($customerIDs);
 ?>
-
-
 <?php include '../includes/header.inc'; ?>
+
+<head>
+    <style>
+        button a:link {
+            text-decoration: none;
+            
+        }
+        button a {
+            color:black;
+        }
+        .container {
+            width:70%;
+        }
+        table {
+            width: 100%;
+            margin: 0 auto;
+        }
+        table,th,td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            text-align: center;
+        }
+        .total-amount {
+            font-size: 1.2em;
+            text-align: right;
+            margin-top: 0.5em;
+        }
+        .total-amount span {
+            font-size:1.5em;
+        }
+        </style>
+</head>
+
 <body>
     <?php include '../includes/menu.inc'; ?>
-    <h2>Add new Purchase</h2>
-    <form action="add-purchase.php" method="post">        
-        <p>
-            <label for="member-ID">Member ID:</label>
-            <select name="member-ID" id="member-ID">
-                <?php foreach($customerIDs as $customerID) { ?>
-                    <option value="<?php echo htmlspecialchars($customerID['customer_id']);?>"><?php echo htmlspecialchars($customerID['customer_id']);?></option>
-                <?php } ?>
-            </select>
-        </p>
-        <p>
-            <h4>Choose purchase product and Quantity</h4>
+    <h2>Purchase items in your shopping cart</h2>
+
+    <?php if ($cartInfo != 0) { ?>
+    <div class="container">
             <table>
                 <tr>
-                    <th>Item Name</th>
+                    <th>Product Name</th>
+                    <th>Price</th>
                     <th>Quantity</th>
                 </tr>
-                <?php foreach($products as $product) { ?>
+                <?php
+                $total = 0;
+                foreach($cartInfo as $c) {         
+                ?>
                 <tr>
-                    <td><?php echo $product['name'];?></td>
-                    <td>
-                        <select name="quantity-item-<?php echo $product['id'];?>" id="">
-                            <?php 
-                            for ($i = 0; $i <= $product['qty_stock']; $i++) { ?>
-                                <option value="<?php echo $i;?>"><?php echo $i;?></option>
-                            <?php }?>
-                        </select>
-                    </td>
+                    <td><?php echo htmlspecialchars($c['productName']);  ?></td>
+                    <td><?php echo htmlspecialchars($c['price']);  ?></td>
+                    <td><?php echo htmlspecialchars($c['quantity']); ?></td>     
                 </tr>
-                <?php } ?>
+                <?php 
+                //calculate the total money:
+                $total += $c['price'] * $c['quantity'];
+                }?>    
             </table>
-        </p>
-        
-        <button type="submit">Purchase</button>
-        <button type="reset">Reset</button>
-    </form>
+            <p class="total-amount">Total amount: <span><?php echo "$".$total?></span></p>
+    </div>
 
+    <form action="add-purchase.php" method="post">
+        <button type="submit" name = "purchaseStatus" value = "accept">Purchase</button>
+    </form>
+    <?php } else {?>
+    <h5>Your shopping cart is empty. You cannot proceed to purchase!</h5>
+    <button> <a href="../pages_cart/validate-memberID-add.php">Add to shopping cart</a></button>
+    <?php } ?>    
     <?php
         function cleanInput($data) 
         {
@@ -76,66 +110,101 @@
             $data = htmlspecialchars($data);
             return $data;
         }
-    
+
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $c_member_ID = mysqli_real_escape_string($conn, cleanInput($_POST['member-ID']));
-            //create an associate array named purchasedItems : "product_id" => "quantity";
-            foreach ($products as $product) {
-                $c_quantity = mysqli_real_escape_string($conn, cleanInput($_POST['quantity-item-'. $product['id']]));
-                if ($c_quantity > 0) {
-                    $purchaseItems[$product['id']] = $c_quantity;
+            if($_POST['purchaseStatus'] == "accept") {
+                //add memberID to the purchase table.
+                $sql2 = "INSERT INTO purchase(memberID) VALUES (?) ";
+
+                $stmt = $conn -> prepare($sql2);
+                $stmt->bind_param("i",$c_member_ID);
+
+                if ($stmt->execute()) {
+                    echo nl2br("\r\nMember ID $c_member_ID is successfully added to the purchase DB table.");
+                } else {
+                    echo nl2br("\r\n SQL error: " . mysqli_error($conn));
+                }
+
+                //retrieve purchaseId that is just added.
+                $sql3 = "SELECT MAX(purchaseID) FROM purchase WHERE memberID = ?";
+
+                $stmt = $conn -> prepare($sql3);
+                $stmt->bind_param("i",$c_member_ID);
+
+                if ($stmt->execute()) {
+                    $result = $stmt -> get_result();
+                    if (mysqli_num_rows($result) == 0) {
+                        echo "Cannot find the maximum purchaseID";
+                    } else {
+                        $fetch_purchaseID = mysqli_fetch_assoc($result);
+                        $purchaseID = $fetch_purchaseID['MAX(purchaseID)'];
+                    }
+                } else {
+                    echo nl2br("\r\n SQL error: " . mysqli_error($conn));
+                }
+
+                if ($purchaseID && $cartInfo) {
+                    //add to purchase items db;
+                    $lineNo = 1;
+                    foreach ($cartInfo as $cartItem) {
+                        $sql4 = "INSERT INTO purchaseItem(purchaseID, lineNo, productID, quantity) VALUES (?,?,?,?)";
+
+                        $stmt = $conn -> prepare($sql4);
+                        $stmt->bind_param("iiii",$purchaseID,$lineNo, $cartItem['productID'], $cartItem['quantity']);
+
+                        if ($stmt->execute()) {
+                            $result = $stmt -> get_result();
+                            if ($result) {
+                                // echo nl2br("\r\nFailed to add to the purchaseItem DB.");
+                            } else {
+                                // echo nl2br("\r\nSucceeded to add to the purchaseItem DB.");
+                                //delete items in the cart:
+                                $sql5 = "DELETE FROM cart WHERE memberID = ?";
+
+                                $stmt = $conn -> prepare($sql5);
+                                $stmt->bind_param("i",$c_member_ID);
+
+                                if ($stmt->execute()) {
+                                    $result = $stmt -> get_result();
+                                    if ($result) {
+                                        // echo nl2br("\r\nFailed to delete the cart info from cart DB.");
+                                    } else {
+                                        // echo nl2br("\r\nSucceeded to delete the cart info from cart DB.");
+                                    }
+                                } else {
+                                    echo nl2br("\r\n SQL error: " . mysqli_error($conn));
+                                }
+
+                                //substract the qty_stock after the customer purchases the item.
+                                $remaining_qty = $cartItem['qty_stock'] - $cartItem ['quantity'];
+                                $sql6 = "UPDATE product SET qty_stock = ? WHERE id = ?";
+
+                                $stmt = $conn -> prepare($sql6);
+                                $stmt->bind_param("ii",$remaining_qty,$cartItem['productID']);
+
+                                if ($stmt->execute()) {
+                                    $result = $stmt -> get_result();
+                                    if ($result) {
+                                        echo nl2br("\r\nFailed to update the stock quantity of product ID ". $cartItem['productID'] . " from product DB.");
+                                    } else {
+                                        echo nl2br("\r\nSucceeded to update the stock quantity of product ID ".$cartItem['productID']." from product DB.");
+                                    }
+                                } else {
+                                    echo nl2br("\r\n SQL error: " . mysqli_error($conn));
+                                }
+                            }
+                        } else {
+                            echo nl2br("\r\n SQL error: " . mysqli_error($conn));
+                        }
+                        $lineNo ++;
+                    }
                 }
             }
         }
-            
-        $sql2 = "INSERT INTO purchase (memberID) VALUES ('$c_member_ID')";
 
-        if (mysqli_query($conn,$sql2)) {
-            echo nl2br ("\r\n Added this purchase with member ID $c_member_ID to the database");
-        } else {
-            echo nl2br ("\r\nSQL errror: " . mysqli_error($conn));
-        }
-
-        // select the added purchaseID to add to the purchase Item table.
-        $sql3 = "SELECT MAX(purchaseID) FROM purchase";
-        $result = mysqli_query($conn,$sql3);
-        if ($result) {
-            $purchaseID = mysqli_fetch_row($result);
-        } else {
-            echo nl2br("\r\n SQL error: " . mysqli_error($conn));
-        }
-        $i = 1;
-        //add puchase items with quantity to the purchaseItem table
-        foreach ($purchaseItems as $product_id => $quantity) {
-            $sql4 = "INSERT INTO purchaseItem (purchaseID,lineNo,productID,quantity) VALUES ('$purchaseID[0]','$i','$product_id','$quantity')";
-            $result = mysqli_query($conn,$sql4);
-            if ($result) {
-                echo nl2br("\r\n Added the purchase Item with ID $product_id and quantity $quantity");
-            } else {
-                echo nl2br("\r\n SQL error: " . mysqli_error($conn));
-            }
-            //update q_ty stock based on productID in the table product
-            $sql5 = 
-            "UPDATE product
-            SET
-                qty_stock = qty_stock - $quantity
-            WHERE id = $product_id";
-
-            $result = mysqli_query($conn, $sql5);
-            if ($result) {
-                echo nl2br("\r\n Update the stock quantity for item with ID $product_id");
-            } else {
-                echo nl2br("\r\n SQL error: " . mysqli_error($conn));
-            }
-
-            $i = $i + 1;
-        }
-        
-        
-        mysqli_free_result($result);
-        CloseConnection($conn);
     ?>
 
-    </body>
+    <?php include '../includes/footer.inc'; ?>
+    <?php include '../includes/bootstrapcore.inc'; ?>
+</body>
 </html>
-
