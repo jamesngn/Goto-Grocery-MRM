@@ -25,8 +25,7 @@
     } else {
         echo nl2br ("\r\nSQL errror: " . mysqli_error($conn));
     }
-    
-    mysqli_free_result($result);
+
 
     function returnQuantityForProductID($productID, $addedCartItems) {
         foreach ($addedCartItems as $addedCartItem) {
@@ -47,17 +46,16 @@
     <form action="edit-cart.php" method="post">        
         <p>
             <table>
-                
+                <tr>
+                    <th>Item Name</th>
+                    <th>Quantity</th>
+                </tr>
                 <?php 
                     $addedNo = 0;
                     foreach($products as $product) { 
                     if (returnQuantityForProductID($product['id'], $addedCartItems) != 0) {
                         $addedNo ++;
                 ?>
-                <tr>
-                    <th>Item Name</th>
-                    <th>Quantity</th>
-                </tr>
                 <tr>
                     <td><?php echo $product['name'];?></td>
                     <td>
@@ -82,7 +80,7 @@
                 echo "<h6> Your shopping cart is empty. </h6>";
         ?>
             <button><a href="http://gotogromrm.infinityfreeapp.com/pages_cart/validate-memberID-add.php" target="_blank" rel="noopener noreferrer">Go add items</a></button>
-        <? } else { ?>
+        <?php } else { ?>
             <button type="submit">Edit Shopping Cart</button>
             <button type="reset">Reset</button>
         <?php
@@ -149,7 +147,6 @@
             // session_destroy();
         }
         
-        mysqli_free_result($result);
         CloseConnection($conn);
     ?>
 
