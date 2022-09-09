@@ -21,7 +21,6 @@
         echo nl2br ("\r\nSQL errror: " . mysqli_error($conn));
     }
     
-    mysqli_free_result($result);
 
 ?>
 
@@ -82,7 +81,6 @@
             session_destroy();
         }
         
-        mysqli_free_result($result);
         CloseConnection($conn);
     ?>
 
