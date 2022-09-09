@@ -1,21 +1,7 @@
 <?php 
     session_start();
-    // RETRIEVE CUSTOMER ID FROM MEMBER TABLE
-    include '../includes/dbAuthentication.inc';
-    $conn = openConnection();
-
-    $sql = "SELECT customer_id FROM member";
-    $result = mysqli_query($conn,$sql);
-    if ($result) { 
-        $customerIDs = mysqli_fetch_all($result, MYSQLI_ASSOC);
-    } else {
-        echo nl2br("\r\nSQL ERROR: " . mysqli_error($conn));
-    }
-
-    mysqli_free_result($result);
 
     
-    // print_r($customerIDs);
 ?>
 
 <?php include '../includes/header.inc'; ?>
@@ -42,6 +28,9 @@
         }
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
+            include '../includes/dbAuthentication.inc';
+            $conn = openConnection();
+
             $c_member_ID = mysqli_real_escape_string($conn, cleanInput($_POST['member-ID']));
 
             $sql2 = "SELECT customer_id FROM member WHERE customer_id = $c_member_ID";
@@ -56,6 +45,9 @@
             } else {
                 echo nl2br ("\r\nSQL errror: " . mysqli_error($conn));
             }
+
+            mysqli_free_result($result);
+            CloseConnection($conn);
         }
 
     ?>
