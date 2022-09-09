@@ -13,9 +13,16 @@
     <a href="pages_product/validate-productID-edit.php">Update Product Record</a><br>
     <a href="pages_product/validate-productID-delete.php">Delete Product Record</a><br>
     
+    <h2>List of Cart function</h2>
+    <a href="pages_cart/validate-memberID-add.php">Add Cart Record</a><br>
+    <a href="pages_cart/validate-memberID-read.php">Read Cart Record</a><br>
+    <a href="pages_cart/validate-memberID-edit.php">Edit Cart Record</a><br>
+    <a href="pages_cart/validate-memberID-delete.php">Delete Cart Record</a><br>
+
     <h2>List of Purchase function</h2>
     <a href="pages_purchase/add-purchase.php">Add Purchase Record</a><br>
     <a href="pages_purchase/validate-purchaseID-read.php">Read Purchase Record</a><br>
+    <a href="pages_purchase/validate-purchaseID-edit.php">Edit Purchase Record</a><br>
     <a href="pages_purchase/validate-purchaseID-delete.php">Delete Purchase Record</a><br>
     <h2>List of SalesDetail function</h2>
 
