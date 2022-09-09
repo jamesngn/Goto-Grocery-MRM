@@ -22,7 +22,7 @@ $regValue = $_SESSION["memberID"];
             </p>
             <p>
                 <label for="email">Email address</label>
-                <input type="text" name="email" id="email"  required />
+                <input type="text" name="email" id="email" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" maxlength="50" required />
             </p>
             <p>
             <input type="submit" value="Submit">

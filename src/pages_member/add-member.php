@@ -16,7 +16,7 @@
             </p>
             <p>
                 <label for="email">Email address</label>
-                <input type="text" name="email" id="email" maxlength="50" required />
+                <input type="text" name="email" id="email" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" maxlength="50" required />
             </p>
             <p>
             <input type="submit" value="Submit">
@@ -40,7 +40,6 @@
         {
             $conn = OpenConnection();
             
-
             // the cleaned – "safe" – inputs ready to be added to the database
             $c_fname = mysqli_real_escape_string($conn, cleanInput($_POST["fname"]));
             $c_lname = mysqli_real_escape_string($conn, cleanInput($_POST["lname"]));
@@ -71,5 +70,6 @@
     <?php include '../includes/footer.inc'; ?>
     <?php include '../includes/bootstrapcore.inc'; ?>
 </body>
-<!--Author:THANH NGUYEN DATE:05/09/2022-->
+<!--Author:THANH NGUYEN  Hello DATE:05/09/2022-->
 </html>
+

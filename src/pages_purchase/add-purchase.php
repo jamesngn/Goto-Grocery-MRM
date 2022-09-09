@@ -31,7 +31,7 @@
 <?php include '../includes/header.inc'; ?>
 <body>
     <?php include '../includes/menu.inc'; ?>
-    <h2>Purchase</h2>
+    <h2>Add new Purchase</h2>
     <form action="add-purchase.php" method="post">        
         <p>
             <label for="member-ID">Member ID:</label>
