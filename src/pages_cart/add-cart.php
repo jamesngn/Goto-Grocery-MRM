@@ -9,7 +9,7 @@
     } else {
         echo nl2br ("\r\nSQL error: " . mysqli_error($conn));
     }
-    mysqli_free_result($result);
+    
 
     
     // print_r($customerIDs);
@@ -101,8 +101,6 @@
             // session_destroy();
         }
 
-        
-        mysqli_free_result($result);
         CloseConnection($conn);
     ?>
 
