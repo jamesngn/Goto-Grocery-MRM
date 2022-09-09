@@ -20,7 +20,7 @@
     <a href="pages_cart/validate-memberID-delete.php">Delete Cart Record</a><br>
 
     <h2>List of Purchase function</h2>
-    <a href="pages_purchase/add-purchase.php">Add Purchase Record</a><br>
+    <a href="pages_purchase/validate-memberID-add.php">Add Purchase Record</a><br>
     <a href="pages_purchase/validate-purchaseID-read.php">Read Purchase Record</a><br>
     <a href="pages_purchase/validate-purchaseID-edit.php">Edit Purchase Record</a><br>
     <a href="pages_purchase/validate-purchaseID-delete.php">Delete Purchase Record</a><br>
