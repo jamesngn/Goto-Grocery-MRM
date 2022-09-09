@@ -84,7 +84,7 @@
             foreach($cartItems as $id => $c_quantity) {
                 //check added product ID
                 if (isProductAdded($id, $addedProductIDs)) {
-                    echo "<h5>The product ID $id is already added to shopping cart </h5>";
+                    echo "<h5>The product ID $id cannot be added to shopping cart as it already exists.</h5>";
                 } else {
                     //add the new productID to the cart:
                     $sql3 = "INSERT INTO cart VALUES ('$c_member_ID', '$id','$c_quantity')";
