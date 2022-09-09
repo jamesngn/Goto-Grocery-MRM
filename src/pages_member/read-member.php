@@ -26,6 +26,7 @@ $regValue = $_SESSION["memberID"];
                     echo nl2br("\r\n First Name: ". $row["customer_firstname"]); 
                     echo nl2br("\r\n Last Name " . $row["customer_lastname"]);
                     echo nl2br("\r\n Email:" . $row["customer_email"]);
+                    echo nl2br("\r\n Password:" . $row["CREATED_AT"]);
                     }
                     if(!session_destroy())
                     {
