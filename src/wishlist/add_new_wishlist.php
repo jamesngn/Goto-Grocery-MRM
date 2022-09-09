@@ -12,9 +12,10 @@
             </p>
             <p>
                 <label for="product_id">Product ID:</label>
-                <input type="text" name="product_id" id="product_id">
+                <input type="text" name="prod_id" id="prod_id">
             </p>
-           
+            <button type="submit">Submit</button>
+            <button type="reset">Reset</button>
             
         </fieldset>
     </form>
@@ -36,11 +37,11 @@
 
        
         $cust_id = mysqli_real_escape_string($conn, cleanInput($_POST['cust_id']));  
-        $prod_id = mysqli_real_escape_string($conn, cleanInput($_POST['product_id']));
+        $prod_id = mysqli_real_escape_string($conn, cleanInput($_POST['prod_id']));
         
 
         
-        $sql = "INSERT INTO wishlist (cust_id,product_id)
+        $sql = "INSERT INTO wishlist (cust_id,prod_id)
         VALUES ('$cust_id ','$prod_id')";
 
         if (mysqli_query($conn,$sql)) {

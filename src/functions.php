@@ -21,7 +21,7 @@
 
 
     <h2>List of Wishlist function</h2>
-
+    <a href="wishlist/add_new_wishlist.php">Add Supplier Record</a><br>
 
     <h2>List of Supplier function</h2>
     <a href="pages_supplier/add-supplier.php">Add Supplier Record</a><br>
