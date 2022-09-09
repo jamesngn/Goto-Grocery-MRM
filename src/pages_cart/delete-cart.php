@@ -40,7 +40,8 @@
             </p>
 
         <?php endforeach;?>    
-       
+       <button type="submit">Delete</button>
+       <button type="reset">Reset</button>
     </form>
 
     <?php
@@ -54,18 +55,22 @@
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
-            
-            foreach ($addedCartItems as $addedCartItem) {
-                if ($_POST[$addedCartItem['productID']] == "checked") {
-                    $deleteIDs['id'] = $addedCartItem['productID'];
+            $i = 0;
+            foreach ($addedCartItems as $addedCartItem) 
+            {
+                if ($_POST[$addedCartItem['productID']] == "on") 
+                {
+                    $deleteIDs[$i] = $addedCartItem['productID'];
+                    $i++;
                 }
             }
-
-            foreach ($deleteIDs as $key => $deleteID) {
-                $sql2 = "DELETE FROM car WHERE productID = '$deleteID'";
+            
+            for ($x = 0 ; $x < count($deleteIDs); $x++) 
+            {
+                $sql2 = "DELETE FROM cart WHERE productID = '$deleteIDs[$x]'";
                 $result = mysqli_query($conn,$sql2);
                 if ($result) {
-                    echo "<h5>The product ID $deletedID is successully deleted.h5>";
+                    echo "<h5>The product ID $deleteIDs[$x] is successully deleted.</h5>";
                 } else {
                     echo nl2br ("\r\nSQL errror: " . mysqli_error($conn));
                 }
