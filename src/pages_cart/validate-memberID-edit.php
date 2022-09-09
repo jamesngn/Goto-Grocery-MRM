@@ -44,13 +44,17 @@
 
             $c_member_ID = mysqli_real_escape_string($conn, cleanInput($_POST['member-ID']));
 
-            $sql2 = "SELECT customer_id FROM member WHERE customer_id = $c_member_ID";
+            $sql2 = "SELECT customer_id,customer_firstname as fName,customer_lastname as lName FROM member WHERE customer_id = $c_member_ID";
             $result = mysqli_query($conn,$sql2);
             if ($result) {
                 if (mysqli_num_rows($result) == 0) {
                     echo nl2br ("\r\nMember ID $c_member_ID is not found.");
                 } else {
                     $_SESSION["member-id"] = $c_member_ID;
+
+                    $customerInfo = mysqli_fetch_assoc($result); 
+                    $_SESSION["customer-name"] = $customerInfo['fName'] . " " . $customerInfo['lName'];
+
                     header("location:edit-cart.php");
                 }
             } else {

@@ -2,7 +2,7 @@
     session_start();
 
     $c_member_ID = $_SESSION["member-id"];
-
+    $member_name = $_SESSION["customer-name"];
     
     include '../includes/dbAuthentication.inc';
     $conn = openConnection();
@@ -43,20 +43,21 @@
     include '../includes/header.inc'; ?>
 <body>
     <?php include '../includes/menu.inc'; ?>
-    <h2>Hi <?php echo $c_member_ID;?>, please edit items in your shopping cart !</h2>
+    <h2>Hi <?php echo $member_name;?>, please edit items in your shopping cart !</h2>
     <form action="edit-cart.php" method="post">        
         <p>
             <table>
-                <tr>
-                    <th>Item Name</th>
-                    <th>Quantity</th>
-                </tr>
+                
                 <?php 
                     $addedNo = 0;
                     foreach($products as $product) { 
                     if (returnQuantityForProductID($product['id'], $addedCartItems) != 0) {
                         $addedNo ++;
                 ?>
+                <tr>
+                    <th>Item Name</th>
+                    <th>Quantity</th>
+                </tr>
                 <tr>
                     <td><?php echo $product['name'];?></td>
                     <td>
