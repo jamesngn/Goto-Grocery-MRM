@@ -21,11 +21,9 @@
 
     <h2>List of Purchase function</h2>
     <a href="pages_purchase/validate-memberID-add.php">Add Purchase Record</a><br>
-    <a href="pages_purchase/validate-purchaseID-read.php">Read Purchase Record</a><br>
-    <a href="pages_purchase/validate-purchaseID-edit.php">Edit Purchase Record</a><br>
+    <a href="pages_purchase/validate-purchaseID-read.php">Read Purchase Record By Purchase ID</a><br>
+    <a href="pages_purchase/validate-memberID-read.php">Read Purchase Record By Member ID</a><br>
     <a href="pages_purchase/validate-purchaseID-delete.php">Delete Purchase Record</a><br>
-    <h2>List of SalesDetail function</h2>
-
 
     <h2>List of Wishlist function</h2>
     <a href="pages_wishlist/add-wishlist.php">Add Wishlist Record</a><br>
