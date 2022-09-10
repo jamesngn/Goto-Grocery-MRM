@@ -3,18 +3,23 @@
     <?php include '../includes/menu.inc'; ?>
     <h2>Add Wishlist</h2>
 
-    <form method="post" action="add_new_wishlist.php">
+    <form method="post" action="add-wishlist.php">
         <fieldset>
             <legend>Enter new Wishlist</legend>
             <p>
-                <label for="cust_id">Customer_id</label>
+                <label for="wishlistid">Wishlist ID</label>
+                <input type="text" name="wishlistid" id="wishlistid" required />
+            </p>
+            <p>
+                <label for="cust_id">Customer ID</label>
                 <input type="text" name="cust_id" id="cust_id" required />
             </p>
             <p>
                 <label for="product_id">Product ID:</label>
-                <input type="text" name="product_id" id="product_id">
+                <input type="text" name="prod_id" id="prod_id">
             </p>
-           
+            <button type="submit">Submit</button>
+            <button type="reset">Reset</button>
             
         </fieldset>
     </form>
@@ -34,17 +39,17 @@
 
         $conn = OpenConnection();
 
-       
+        $wish_id = mysqli_real_escape_string($conn, cleanInput($_POST['wishlistid']));
         $cust_id = mysqli_real_escape_string($conn, cleanInput($_POST['cust_id']));  
-        $prod_id = mysqli_real_escape_string($conn, cleanInput($_POST['product_id']));
+        $prod_id = mysqli_real_escape_string($conn, cleanInput($_POST['prod_id']));
         
 
         
-        $sql = "INSERT INTO wishlist (cust_id,product_id)
-        VALUES ('$cust_id ','$prod_id')";
+        $sql = "INSERT INTO wishlist (wishlistid,cust_id,prod_id)
+        VALUES ('$wish_id','$cust_id ','$prod_id')";
 
         if (mysqli_query($conn,$sql)) {
-            echo nl2br ("\r\n Added $prod_id Product ID to the wishlist of $cust_id  customer ");
+            echo nl2br ("\r\n Added Product ID $prod_id to the wishlist of customer $cust_id");
         } else {
             echo nl2br ("\r\nSQL errror: " . mysqli_error($conn));
         }

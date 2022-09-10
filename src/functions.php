@@ -13,15 +13,23 @@
     <a href="pages_product/validate-productID-edit.php">Update Product Record</a><br>
     <a href="pages_product/validate-productID-delete.php">Delete Product Record</a><br>
     
-    <h2>List of Purchase function</h2>
-    <a href="pages_purchase/add-purchase.php">Add Purchase Record</a><br>
-    <a href="pages_purchase/validate-purchaseID-read.php">Read Purchase Record</a><br>
-    <a href="pages_purchase/validate-purchaseID-delete.php">Delete Purchase Record</a><br>
-    <h2>List of SalesDetail function</h2>
+    <h2>List of Cart function</h2>
+    <a href="pages_cart/validate-memberID-add.php">Add Cart Record</a><br>
+    <a href="pages_cart/validate-memberID-read.php">Read Cart Record</a><br>
+    <a href="pages_cart/validate-memberID-edit.php">Edit Cart Record</a><br>
+    <a href="pages_cart/validate-memberID-delete.php">Delete Cart Record</a><br>
 
+    <h2>List of Purchase function</h2>
+    <a href="pages_purchase/validate-memberID-add.php">Add Purchase Record</a><br>
+    <a href="pages_purchase/validate-purchaseID-read.php">Read Purchase Record By Purchase ID</a><br>
+    <a href="pages_purchase/validate-memberID-read.php">Read Purchase Record By Member ID</a><br>
+    <a href="pages_purchase/validate-purchaseID-delete.php">Delete Purchase Record</a><br>
 
     <h2>List of Wishlist function</h2>
-
+    <a href="pages_wishlist/add-wishlist.php">Add Wishlist Record</a><br>
+    <a href="pages_wishlist/validate-wishlistID-read.php">Read Wishlist Record</a><br>
+    <a href="pages_wishlist/validate-wishlistID-edit.php">Edit Wishlist Record</a><br>
+    <a href="pages_wishlist/validate-wishlistID-delete.php">Delete Wishlist Record</a><br>
 
     <h2>List of Supplier function</h2>
     <a href="pages_supplier/add-supplier.php">Add Supplier Record</a><br>

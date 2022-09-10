@@ -18,6 +18,10 @@
                 <label for="email">Email address</label>
                 <input type="text" name="email" id="email" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" maxlength="50" required />
             </p>
+            <p>   
+                <label for="password">Password</label>
+                <input type="text" name="password" id="password" maxlength="50" required />
+            </p>
             <p>
             <input type="submit" value="Submit">
             <input type="reset"> 
@@ -44,15 +48,16 @@
             $c_fname = mysqli_real_escape_string($conn, cleanInput($_POST["fname"]));
             $c_lname = mysqli_real_escape_string($conn, cleanInput($_POST["lname"]));
             $c_email = mysqli_real_escape_string($conn, cleanInput($_POST["email"]));
+            $c_password = mysqli_real_escape_string($conn, cleanInput($_POST["password"]));
 
             // add to the database
 
             $sql = 
-            "INSERT INTO member (customer_firstname, customer_lastname, customer_email)
-            VALUES (?, ?, ?)";
+            "INSERT INTO member (customer_firstname, customer_lastname, customer_email, customer_password)
+            VALUES (?, ?, ?, ?)";
 
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("sss", $c_fname,$c_lname,$c_email);
+            $stmt->bind_param("ssss", $c_fname,$c_lname,$c_email, $c_password);
 
             if ($stmt->execute())
             {
