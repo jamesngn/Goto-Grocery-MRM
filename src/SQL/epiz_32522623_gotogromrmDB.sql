@@ -89,8 +89,25 @@ INSERT INTO `product` (`id`, `name`, `description`, `qty_stock`, `price`, `categ
 (6, 'Coca Cola', 'An  energy drink with 100x power', 100, 1.5, 10, 5, '05-09-2022');
 
 -- --------------------------------------------------------
-
+-- table for employee
+CREATE TABLE `employee` (
+  `employee_ID` int(10) NOT NULL,
+  `fname` varchar(50) NOT NULL,
+  `lname` varchar(50) NOT NULL,
+  `dob` date NOT NULL,
+  'job_role' varchar(50) NOT NULL,
+  'salary'int(10) NOT NULL,
+  'hire_date' date NOT NULL,
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 --
+-- dumping data for table 'employee'
+INSERT INTO `employee` (`employee_ID`, `fname`, `lname`, `dob`, `job_role`, `salary`, `hire_date`) 
+VALUES (NULL, 'Tawsif', 'Karim', '25/02/2000', 'Accounts officer', '$60,000', '21/01/2021'),
+(NULL, 'Sajid', 'Muntasir', '26/01/2001', 'HR manager', '$65,000', '01/03/2021'),
+(NULL, 'Quang', 'Nguyen', '12/05/2001', 'CEO', '$80,000', '01/09/2020'),
+(NULL, 'Ricky', 'ponting', '05/06/2002', 'Admin Officer', '$65,000', '20/03/2021');
+
+
 -- Table structure for table `supplier`
 --
 
