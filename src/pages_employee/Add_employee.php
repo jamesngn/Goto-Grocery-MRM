@@ -24,7 +24,7 @@
             </p>
             <p>
                 <label for="salary">Salary</label>
-                <input type="text" name="salary" id="salary" pattern="^[A-Za-z-]+$" maxlength="20" required />
+                <input type="text" name="salary" id="salary" maxlength="20" />
             </p>
             <p>
                 <label for="hire_date">Hiring Date</label>
