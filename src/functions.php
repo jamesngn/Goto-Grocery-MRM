@@ -47,8 +47,8 @@
     <h2>List of Employee</h2>
     <a href="pages_employee/add_employee.php">Add Employee Record<br></a>
     <a href="pages_employee/validate-employee_edit.php">Update Employee Record<br></a>
-    <a href="pages_employee/validate_employee_read.php">Read Employee Record<br></a>
-    <a href="pages_employee/validate_employee_delete.php">Delete Employee Record<br></a>
+    <a href="pages_employee/validate-employee_read.php">Read Employee Record<br></a>
+    <a href="pages_employee/validate-employee_delete.php">Delete Employee Record<br></a>
 
     
     <?php include 'includes/footer.inc'; ?>
