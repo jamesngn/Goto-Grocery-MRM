@@ -44,6 +44,12 @@
     <a href="pages_category/validate-categoryID-edit.php">Update Category Record</a><br>
     <a href="pages_category/validate-categoryID-delete.php">Delete Category Record</a><br>
 
+    <h2>List of Employee</h2>
+    <a href="pages_employee/add_employee.php">Add Employee Record<br></a>
+    <a href="pages_employee/Edit_employee.php">Update Employee Record<br></a>
+    <a href="pages_employee/Read_employee.php">Read Employee Record<br></a>
+    <a href="pages_employee/Delete_employee.php">Delete Employee Record<br></a>
+
     
     <?php include 'includes/footer.inc'; ?>
     <?php include 'includes/bootstrapcore.inc'; ?>
