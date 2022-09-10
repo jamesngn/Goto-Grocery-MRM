@@ -2,10 +2,10 @@
     include '../includes/dbAuthentication.inc';
     session_start();
 
-    $employee_ID = $_SESSION['employee_ID'];
+    $c_ID = $_SESSION['employee_ID'];
     $conn = OpenConnection();
     
-    $sql = "SELECT * FROM employee WHERE employee_ID = $employee_ID";
+    $sql = "SELECT * FROM employee WHERE employee_ID = $c_ID";
     $result = mysqli_query($conn, $sql);
     if ($result) {
         $employee = mysqli_fetch_assoc($result);
