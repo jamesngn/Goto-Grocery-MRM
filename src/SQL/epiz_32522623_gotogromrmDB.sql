@@ -132,7 +132,11 @@ ALTER TABLE `category`
 ALTER TABLE `member`
   ADD PRIMARY KEY (`customer_id`);
 
---
+--index for table 'employee'--
+
+ALTER TABLE `employee`
+  ADD PRIMARY KEY (`employee_ID`);
+
 -- Indexes for table `product`
 --
 ALTER TABLE `product`
@@ -154,7 +158,9 @@ ALTER TABLE `category`
 ALTER TABLE `member`
   MODIFY `customer_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
---
+--AUTO_INCREMENT for table `employee`--
+ALTER TABLE `employee`
+  MODIFY `employee_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
