@@ -102,10 +102,10 @@ CREATE TABLE `employee` (
 --
 -- dumping data for table 'employee'
 INSERT INTO `employee` (`employee_ID`, `fname`, `lname`, `dob`, `job_role`, `salary`, `hire_date`) 
-VALUES (NULL, 'Tawsif', 'Karim', '25/02/2000', 'Accounts officer', '$60,000', '21/01/2021'),
-(NULL, 'Sajid', 'Muntasir', '26/01/2001', 'HR manager', '$65,000', '01/03/2021'),
-(NULL, 'Quang', 'Nguyen', '12/05/2001', 'CEO', '$80,000', '01/09/2020'),
-(NULL, 'Ricky', 'ponting', '05/06/2002', 'Admin Officer', '$65,000', '20/03/2021');
+VALUES (1, 'Tawsif', 'Karim', '25/02/2000', 'Accounts officer', '$60,000', '21/01/2021'),
+(3, 'Sajid', 'Muntasir', '26/01/2001', 'HR manager', '$65,000', '01/03/2021'),
+(4, 'Quang', 'Nguyen', '12/05/2001', 'CEO', '$80,000', '01/09/2020'),
+(2, 'Ricky', 'ponting', '05/06/2002', 'Admin Officer', '$65,000', '20/03/2021');
 
 
 -- Table structure for table `supplier`
