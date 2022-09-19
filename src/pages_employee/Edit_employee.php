@@ -1,4 +1,20 @@
-<?php include '../includes/header.inc'; ?>
+<?php 
+    include '../includes/dbAuthentication.inc';
+    session_start();
+
+    $c_ID = $_SESSION['employee_ID'];
+    $conn = OpenConnection();
+    
+    $sql = "SELECT * FROM employee WHERE employee_ID = $c_ID";
+    $result = mysqli_query($conn, $sql);
+    if ($result) {
+        $employee = mysqli_fetch_assoc($result);
+    }  else {
+        echo "\r\nSQL error: " . mysqli_error($conn);
+    }
+    CloseConnection($conn);
+?>
+
 <body>
     <?php include '../includes/menu.inc'; ?>
     <h2>Add New Employee</h2>
@@ -24,14 +40,14 @@
             </p>
             <p>
                 <label for="salary">Salary</label>
-                <input type="text" name="salary" id="salary" maxlength="20" />
+                <input type="text" name="salary" id="salary" pattern="^[A-Za-z-]+$" maxlength="20" required />
             </p>
             <p>
                 <label for="hire_date">Hiring Date</label>
                 <input type="text" name="hire_date" id="hire_date" placeholder="dd/mm/yyyy" required="required">
             </p>
             <p>
-            <input type="submit" value="Submit">
+            <button type="submit">Edit</button>
             <input type="reset"> 
             </p>
         </fieldset>
@@ -61,21 +77,29 @@
         $c_job_role = mysqli_real_escape_string($conn, cleanInput($_POST['job_role']));
         $c_salary = mysqli_real_escape_string($conn, cleanInput($_POST['salary']));
         $c_hire_date = mysqli_real_escape_string($conn, cleanInput($_POST['hire_date']));
-        
-        // adding to database
-        $sql = "INSERT INTO `employee` (`employee_ID`, `fname`, `lname`, `dob`, `job_role`, `salary`, `hire_date`) 
-        VALUES ('$c_fname','$c_lname','$c_dob','$c_job_role','$c_salary','$c_hire_date')";
 
-            if (mysqli_query($conn,$sql)) {
-                echo nl2br ("\r\n Added $c_fname $c_lname to the database.");
-                    } else {
-                echo nl2br ("\r\nSQL errror: " . mysqli_error($conn));
-                    }
-            CloseConnection($conn);
-            }       
-            ?>
-            <?php include '../includes/footer.inc'; ?>
-            <?php include '../includes/bootstrapcore.inc'; ?>
-        </body>
-  </html>     
+        $sql = 
+        "UPDATE product 
+        SET 
+        fname = '$c_fname',
+            lname = '$c_lname',
+            dob = '$c_dob',
+            job_role = '$c_job_role',
+            salary = '$c_salary',
+            hire_date = '$c_hire_date',
+        WHERE employee_ID = $employee_ID";
 
+        if (mysqli_query($conn, $sql)) {
+            echo "\r\nDetails updated successfuly";
+            session_unset();
+            session_destroy();
+        } else {
+            echo "\r\nError updating the details: " . mysqli_error($conn);
+        }
+
+        CloseConnection($conn);
+    }
+?>
+  <?php include '../includes/footer.inc'?>
+</body>
+</html>

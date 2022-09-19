@@ -39,7 +39,7 @@
             } else {
                 echo nl2br("\r\n SQL Error: " . mysqli_error($conn));
             }
+            CloseConnection($conn);
         }
-        CloseConnection($conn);
     ?>
 </body>

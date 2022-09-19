@@ -20,7 +20,6 @@
     session_unset();
     session_destroy();
 
-    print_r($member_info);
     mysqli_free_result($result);
     
 
@@ -80,7 +79,9 @@
                     <th>Price</th>
                     <th>Quantity</th>
                 </tr>
-                <?php foreach($cart_info as $c) {         
+                <?php
+                $total = 0;
+                foreach($cart_info as $c) {         
                 ?>
                 <tr>
                     <td><?php echo htmlspecialchars($c['firstname']) . " " . htmlspecialchars($c['lastname']);  ?></td>

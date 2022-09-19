@@ -20,12 +20,10 @@
     <a href="pages_cart/validate-memberID-delete.php">Delete Cart Record</a><br>
 
     <h2>List of Purchase function</h2>
-    <a href="pages_purchase/add-purchase.php">Add Purchase Record</a><br>
-    <a href="pages_purchase/validate-purchaseID-read.php">Read Purchase Record</a><br>
-    <a href="pages_purchase/validate-purchaseID-edit.php">Edit Purchase Record</a><br>
+    <a href="pages_purchase/validate-memberID-add.php">Add Purchase Record</a><br>
+    <a href="pages_purchase/validate-purchaseID-read.php">Read Purchase Record By Purchase ID</a><br>
+    <a href="pages_purchase/validate-memberID-read.php">Read Purchase Record By Member ID</a><br>
     <a href="pages_purchase/validate-purchaseID-delete.php">Delete Purchase Record</a><br>
-    <h2>List of SalesDetail function</h2>
-
 
     <h2>List of Wishlist function</h2>
     <a href="pages_wishlist/add-wishlist.php">Add Wishlist Record</a><br>
@@ -45,6 +43,12 @@
     <a href="pages_category/validate-categoryID-read.php">Search Category Record</a><br>
     <a href="pages_category/validate-categoryID-edit.php">Update Category Record</a><br>
     <a href="pages_category/validate-categoryID-delete.php">Delete Category Record</a><br>
+
+    <h2>List of Employee</h2>
+    <a href="pages_employee/Add_employee.php">Add Employee Record<br></a>
+    <a href="pages_employee/validate-employee_edit.php">Update Employee Record<br></a>
+    <a href="pages_employee/validate-employee_read.php">Read Employee Record<br></a>
+    <a href="pages_employee/validate-employee_delete.php">Delete Employee Record<br></a>
 
     
     <?php include 'includes/footer.inc'; ?>
