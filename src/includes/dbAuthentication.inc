@@ -2,9 +2,9 @@
 
     function OpenConnection()
     {
-        $servername = "sql213.epizy.com";
-        $username = "epiz_32522623";
-        $password = "tgaBdbN4MPFDQu";
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
         $dbname = "epiz_32522623_gotogromrmDB";
 
         // Create connection
@@ -16,9 +16,9 @@
         return $conn;
     }
 
-function CloseConnection($conn)
-{
-    $conn->close();
-}
+    function CloseConnection($conn)
+    {
+        $conn->close();
+    }
 ?>
 
