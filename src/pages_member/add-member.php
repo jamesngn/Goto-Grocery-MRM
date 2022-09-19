@@ -1,9 +1,13 @@
-<?php include '../includes/header.inc'; ?>
+<?php
+session_start();
+include '../php/time-page.php';
+$startpage = StartTime();
+include '../includes/header.inc'; ?>
 <body>
     <?php include '../includes/menu.inc'; ?>
     <h2>Add New Member</h2>
 
-    <form method="post" action="add-member.php">
+    <form method="post" action="">
         <fieldset>
             <legend>Enter new member details</legend>
             <p>
@@ -61,7 +65,10 @@
 
             if ($stmt->execute())
             {
-                echo nl2br("\r\n Added customer $c_fname $c_lname to the database.");
+                //echo nl2br("\r\n Added customer $c_fname $c_lname to the database.");
+                $_SESSION["firstname"] = $c_fname;
+                $_SESSION["lastname"] = $c_lname;
+                header('location: sucess-add-member.php');
             }
             else
             {
@@ -77,4 +84,7 @@
 </body>
 <!--Author:THANH NGUYEN  Hello DATE:05/09/2022-->
 </html>
-
+<?php
+$display_page_time = StopTime($startpage);
+echo $display_page_time;
+?>
