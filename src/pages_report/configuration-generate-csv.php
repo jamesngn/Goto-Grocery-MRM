@@ -1,3 +1,7 @@
+<?php
+include '../php/time-page.php';
+$startpage = StartTime()
+?>
 <script src="../scripts/config-generate-csv.js"></script>
 <?php include '../includes/header.inc'; 
 ?>
@@ -32,3 +36,7 @@
     </body>
 <!--Author:THANH NGUYEN DATE:07/09/2022-->
 </html>
+<?php
+$display_page_time = StopTime($startpage);
+echo $display_page_time;
+?>
