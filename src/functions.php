@@ -38,7 +38,7 @@
     <a href="pages_supplier/validate-supplierID-delete.php">Delete Supplier Record</a><br>
     
     <h2>List of Supply Delivery functions </h2>
-    <a href="pages_supplydelivery/add_supplydelivery.php">Add Supply Delivery Record</a><br>
+    <a href="pages_supplydelivery/add-supply-delivery.php">Add Supply Delivery Record</a><br>
 
     <h2>List of Categories functions </h2>
     <a href="pages_category/add-category.php">Add Category Record</a><br>
