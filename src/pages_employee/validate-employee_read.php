@@ -10,8 +10,8 @@ session_start();
         <fieldset>
             <legend>Enter Employee ID</legend>
             <p>
-                <label for="employeeID">Enter Employee ID</label>
-                <input type="text" name="employeeID" id="employeeID" pattern="\d{1,10}" maxlength="10" required />
+                <label for="employee_ID">Enter Employee ID</label>
+                <input type="text" name="employee_ID" id="employee_ID" pattern="\d{1,10}" maxlength="10" required />
             </p>
             <p>
             <input type="submit" value="Submit">
