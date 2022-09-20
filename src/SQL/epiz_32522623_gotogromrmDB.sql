@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: sql213.epizy.com
--- Generation Time: Sep 20, 2022 at 07:55 AM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 7.2.22
+-- Host: 127.0.0.1
+-- Generation Time: Sep 20, 2022 at 03:29 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `epiz_32522623_gotogromrmDB`
+-- Database: `epiz_32522623_gotogromrmdb`
 --
 
 -- --------------------------------------------------------
@@ -34,17 +33,6 @@ CREATE TABLE `cart` (
   `quantity` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `cart`
---
-
-INSERT INTO `cart` (`memberID`, `productID`, `quantity`) VALUES
-(1, 4, 1),
-(1, 5, 1),
-(1, 6, 2),
-(1, 7, 2),
-(1, 10, 3);
-
 -- --------------------------------------------------------
 
 --
@@ -55,14 +43,6 @@ CREATE TABLE `category` (
   `CategoryID` int(11) NOT NULL,
   `Name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `category`
---
-
-INSERT INTO `category` (`CategoryID`, `Name`) VALUES
-(123, 'samuel'),
-(235, '234');
 
 -- --------------------------------------------------------
 
@@ -78,7 +58,7 @@ CREATE TABLE `employee` (
   `job_role` varchar(50) NOT NULL,
   `salary` int(10) NOT NULL,
   `hire_date` date NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -130,18 +110,6 @@ CREATE TABLE `product` (
   `date_stock_in` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `product`
---
-
-INSERT INTO `product` (`id`, `name`, `description`, `qty_stock`, `price`, `category_ID`, `supplier_ID`, `date_stock_in`) VALUES
-(4, 'Iphone 13 Pro Max', 'An wonderful smartphone', 1, 2000, 1, 1, '05-09-2022'),
-(5, 'Logitech MX Anywhere 3', 'A good mouse for office use', 1, 99, 1, 2, '05-09-2022'),
-(6, 'Coca Cola', 'An  energy drink with 100x power', 100, 1.5, 10, 5, '05-09-2022'),
-(7, 'Laptop', 'A powerful ipad, good for study and entertainment', 10, 1300, 5, 10, '05-09-2022'),
-(8, 'Teddy Bear', 'Mr Bean\'s bear', 0, 100000, 536, 234, '22-10-2011'),
-(10, 'Samsung Galaxy Tab A8 WiFi 64GB Grey', 'The Samsung Galaxy Tab A8 aims to enhance your everyday with it\'s impressive portability and multi-tasking abilities. Enjoy more of your media thanks to the 10.5&quot;, ultra-slim bezel display and quad-speakers with Dolby Atmos. Beyond looks, this tablet', 25, 377, 10, 2, '09-09-2022');
-
 -- --------------------------------------------------------
 
 --
@@ -176,31 +144,15 @@ INSERT INTO `purchase` (`purchaseID`, `memberID`, `purchaseTime`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `purchaseItem`
+-- Table structure for table `purchaseitem`
 --
 
-CREATE TABLE `purchaseItem` (
+CREATE TABLE `purchaseitem` (
   `purchaseID` int(11) NOT NULL,
   `lineNo` int(11) NOT NULL,
   `productID` int(11) NOT NULL,
   `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `purchaseItem`
---
-
-INSERT INTO `purchaseItem` (`purchaseID`, `lineNo`, `productID`, `quantity`) VALUES
-(18, 1, 4, 1),
-(19, 1, 6, 10),
-(21, 1, 4, 2),
-(24, 1, 4, 1),
-(31, 1, 4, 1),
-(18, 2, 5, 1),
-(24, 2, 5, 19),
-(18, 3, 6, 6),
-(24, 3, 8, 1),
-(18, 4, 7, 1);
 
 -- --------------------------------------------------------
 
@@ -262,7 +214,8 @@ INSERT INTO `wishlist` (`wishlistid`, `cust_id`, `prod_id`) VALUES
 -- Indexes for table `cart`
 --
 ALTER TABLE `cart`
-  ADD PRIMARY KEY (`memberID`,`productID`);
+  ADD PRIMARY KEY (`memberID`,`productID`),
+  ADD KEY `FK_cart_productID` (`productID`);
 
 --
 -- Indexes for table `category`
@@ -287,7 +240,8 @@ ALTER TABLE `member`
 -- Indexes for table `product`
 --
 ALTER TABLE `product`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FK_product_catergoryID` (`category_ID`);
 
 --
 -- Indexes for table `purchase`
@@ -296,10 +250,12 @@ ALTER TABLE `purchase`
   ADD PRIMARY KEY (`purchaseID`);
 
 --
--- Indexes for table `purchaseItem`
+-- Indexes for table `purchaseitem`
 --
-ALTER TABLE `purchaseItem`
-  ADD PRIMARY KEY (`lineNo`,`purchaseID`);
+ALTER TABLE `purchaseitem`
+  ADD PRIMARY KEY (`lineNo`,`purchaseID`),
+  ADD KEY `FK_purchaseitem_purchaseID` (`purchaseID`),
+  ADD KEY `FK_purchaseitem_productID` (`productID`);
 
 --
 -- Indexes for table `wishlist`
@@ -346,6 +302,30 @@ ALTER TABLE `purchase`
 --
 ALTER TABLE `wishlist`
   MODIFY `wishlistid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2315;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `cart`
+--
+ALTER TABLE `cart`
+  ADD CONSTRAINT `FK_cart_memberID` FOREIGN KEY (`memberID`) REFERENCES `member` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_cart_productID` FOREIGN KEY (`productID`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `product`
+--
+ALTER TABLE `product`
+  ADD CONSTRAINT `FK_product_catergoryID` FOREIGN KEY (`category_ID`) REFERENCES `category` (`CategoryID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `purchaseitem`
+--
+ALTER TABLE `purchaseitem`
+  ADD CONSTRAINT `FK_purchaseitem_productID` FOREIGN KEY (`productID`) REFERENCES `product` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `FK_purchaseitem_purchaseID` FOREIGN KEY (`purchaseID`) REFERENCES `purchase` (`purchaseID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
