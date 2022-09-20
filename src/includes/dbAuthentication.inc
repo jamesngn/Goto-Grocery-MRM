@@ -6,7 +6,7 @@
         $username = "epiz_32522623";
         $password = "tgaBdbN4MPFDQu";
         $dbname = "epiz_32522623_gotogromrmDB";
-
+        
         // Create connection
         $conn = mysqli_connect($servername, $username, $password,$dbname);
         // Check connection
@@ -16,9 +16,9 @@
         return $conn;
     }
 
-function CloseConnection($conn)
-{
-    $conn->close();
-}
+    function CloseConnection($conn)
+    {
+        $conn->close();
+    }
 ?>
 
