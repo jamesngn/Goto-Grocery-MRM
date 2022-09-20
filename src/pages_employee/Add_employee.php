@@ -8,7 +8,7 @@
             <legend>Enter new employee details</legend>
             <p>
                 <label for="employee_ID">Employee ID</label>
-                <input type="text" name="employee_ID" id="employee_ID" pattern="^[A-Za-z0-9_]+$" maxlength="50" required />
+                <input type="text" name="employee_ID" id="employee_ID" pattern="\d{1,10}" maxlength="50" required />
             </p>
             <p>
                 <label for="fname">First name</label>
