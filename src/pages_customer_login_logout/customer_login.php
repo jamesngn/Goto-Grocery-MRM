@@ -59,7 +59,7 @@ session_start();//session starts here
 	}
 	if ((!$password=="") && (!$email=="")){
 	
-         require_once('settings.php');
+        
     
 	
 	$conn = OpenConnection();
