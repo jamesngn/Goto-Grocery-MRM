@@ -1,20 +1,23 @@
-<?php include '../includes/header.inc';
-session_start();
-?>
-<body>
-    <?php include '../includes/menu.inc'; ?>
-    <h2>Validate employee ID for editing </h2>
 
-    <form method="post" action="validate-employee_edit.php">
+<?php session_start();
+include '../includes/header.inc'; 
+?>
+
+<body>
+    <?php include '../includes/menu.inc';?>
+    <h2>Validate Employee ID for editting</h2>
+
+    <form action="validate-employee_edit.php" method="post">
         <fieldset>
-            <legend>Enter Employee ID</legend>
+            <legend>Enter the employee ID</legend>
             <p>
-                <label for="employeeID">Enter Employee ID</label>
-                <input type="text" name="employeeID" id="employeeID" pattern="\d{1,10}" maxlength="10" required />
+                <label for="employeeID">Employee ID:</label>
+                <input type="text" name="employee_ID" id="employee_ID" pattern="\d{1,10}" maxlength="10" required>
             </p>
+
             <p>
-            <input type="submit" value="Submit">
-            <input type="reset"> 
+                <button type="submit">Search</button>
+                <button type="reset">Reset</button>
             </p>
         </fieldset>
     </form>
@@ -31,10 +34,15 @@ session_start();
         include '../includes/dbAuthentication.inc';
 
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
-            $conn = OpenConnection(); 
+            //Connect to the database and store it in variable $conn.
+            $conn = OpenConnection();
+            //Clean the id value to prevent from attack.
             $c_ID = mysqli_real_escape_string($conn, cleanInput($_POST['employee_ID']));
+            //select the row from the employee table to match with the input id.
             $sql = "SELECT * FROM employee WHERE employee_ID = $c_ID";
+            //perform a query against the database.
             $result = mysqli_query($conn, $sql);
+            //validation check
             if ($result) {
                 if (mysqli_num_rows($result) == 0) {
                     echo nl2br("\r\n Error: Employee ID $c_ID is not found.");
