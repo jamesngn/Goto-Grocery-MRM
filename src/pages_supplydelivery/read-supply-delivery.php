@@ -2,20 +2,22 @@
 session_start();
 ?>
 
+
 <body>
     <?php include '../includes/menu.inc'; ?>
-    <h2>Validate employee ID for reading </h2>
+    <h2>Read Supply Delivery</h2>
 
-    <form method="post" action="validate-employee_read.php">
+
+    <form action="read-suppy-delivery.php" method="post">
         <fieldset>
-            <legend>Enter Employee ID</legend>
+            <legend>Enter the supplier ID</legend>
             <p>
-                <label for="employee_ID">Enter Employee ID</label>
-                <input type="text" name="employee_ID" id="employee_ID" pattern="\d{1,10}" maxlength="10" required />
+                <label for="supp_id">Supplier ID: </label>
+                <input type="text" name="supp_id" id="supp_id" value >
             </p>
             <p>
-            <input type="submit" value="Submit">
-            <input type="reset"> 
+                <button type="submit">Search</button>
+                <button type="reset">Reset</button>
             </p>
         </fieldset>
     </form>
@@ -31,18 +33,18 @@ session_start();
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $conn = OpenConnection();
 
-            $c_ID = mysqli_real_escape_string($conn,cleanInput($_POST['employee_ID']));
+            $supp_id = mysqli_real_escape_string($conn,cleanInput($_POST['supp_id']));
             
-            $sql = "SELECT * FROM employee WHERE employee_ID = '$c_ID'";
+            $sql = "SELECT * FROM supplydelivery WHERE supp_id = '$supp_id'";
             $result = mysqli_query($conn, $sql);
 
             if ($result) {
                 if (mysqli_num_rows($result) == 0) {
-                    echo nl2br ("\r\n Error: Employee ID $c_ID is not found.");
+                    echo nl2br ("\r\n Error: Supply delivery not found");
                 } else {
-                    $employee = mysqli_fetch_assoc($result);
-                    $_SESSION["employee_ID"] = $c_ID;
-                    header("location: Read_employee.php");
+                    $product = mysqli_fetch_assoc($result);
+                    $_SESSION["productAssoc"] = $product;
+                    header("location: read-product.php");
                 }
             } else {
                 echo nl2br ("\r\n SQL error: " . mysqli_error($conn));
@@ -50,6 +52,7 @@ session_start();
             CloseConnection($conn);
         }
     ?>
+
 
 <?php include '../includes/footer.inc'; ?>
     </body>

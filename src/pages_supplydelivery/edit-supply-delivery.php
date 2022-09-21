@@ -1,18 +1,17 @@
-
 <?php session_start();
 include '../includes/header.inc'; 
 ?>
 
 <body>
     <?php include '../includes/menu.inc';?>
-    <h2>Validate Employee ID for editting</h2>
+    <h2>Edit Supply delivery</h2>
 
-    <form action="validate-employee_edit.php" method="post">
+    <form action="edit-supply-delivery.php" method="post">
         <fieldset>
-            <legend>Enter the employee ID</legend>
+            <legend>Enter the supplier ID</legend>
             <p>
-                <label for="employeeID">Employee ID:</label>
-                <input type="text" name="employee_ID" id="employee_ID" pattern="\d{1,10}" maxlength="10" required>
+                <label for="supp_id">Supplier ID</label>
+                <input type="text" name="supp_id" id="supp_id">
             </p>
 
             <p>
@@ -37,18 +36,18 @@ include '../includes/header.inc';
             //Connect to the database and store it in variable $conn.
             $conn = OpenConnection();
             //Clean the id value to prevent from attack.
-            $c_ID = mysqli_real_escape_string($conn, cleanInput($_POST['employee_ID']));
-            //select the row from the employee table to match with the input id.
-            $sql = "SELECT * FROM employee WHERE employee_ID = $c_ID";
+            $c_id = mysqli_real_escape_string($conn, cleanInput($_POST['id']));
+            //select the row from the product table to match with the input id.
+            $sql = "SELECT * FROM supplydelivery WHERE id = $supp_id";
             //perform a query against the database.
             $result = mysqli_query($conn, $sql);
             //validation check
             if ($result) {
                 if (mysqli_num_rows($result) == 0) {
-                    echo nl2br("\r\n Error: Employee ID $c_ID is not found.");
+                    echo nl2br("\r\n Error: Supply delivery is not found.");
                 } else {
-                    $_SESSION['employee_ID'] = $c_ID;
-                    header("location:Edit_employee.php");
+                    $_SESSION['productID'] = $c_id;
+                    header("location:edit-supply-delivery.php");
                 }
             }
             else {
