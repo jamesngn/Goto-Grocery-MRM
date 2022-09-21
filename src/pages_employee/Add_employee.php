@@ -28,7 +28,7 @@
             </p>
             <p>
                 <label for="salary">Salary</label>
-                <input type="text" name="salary" id="salary" maxlength="20" />
+                <input type="text" name="salary" id="salary"  pattern="\d{1,15}"  />
             </p>
             <p>
                 <label for="hire_date">Hiring Date</label>
