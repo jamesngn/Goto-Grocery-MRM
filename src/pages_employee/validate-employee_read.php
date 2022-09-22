@@ -52,5 +52,5 @@ session_start();
     ?>
 
 <?php include '../includes/footer.inc'; ?>
-    </body>
+</body>
 </html>
