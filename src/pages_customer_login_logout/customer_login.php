@@ -87,7 +87,8 @@ session_start();//session starts here
 		if(mysqli_num_rows($result)) {
 			 {  
 			 $_SESSION['password']=$password;//here session is used and value of $password stored in $_SESSION.
-        echo "<script>window.open('../functions.php','_self')</script>";  
+        //echo "<script>window.open('../functions.php','_self')</script>";  
+		header('location: ../functions.php');
   
          
   
