@@ -3,7 +3,7 @@
     <?php include '../includes/menu.inc'; ?>
     <h2>Add New Employee</h2>
 
-    <form method="post" action="add_employee.php">
+    <form method="post" action="Add_employee.php">
         <fieldset>
             <legend>Enter new employee details</legend>
             <p>
