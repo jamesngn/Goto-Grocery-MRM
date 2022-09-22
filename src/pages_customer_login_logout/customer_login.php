@@ -44,22 +44,23 @@ session_start();//session starts here
 			$err_msg .= "<p>Only letters and number are allowed in password.</p>";
 	}
 	}
-
 	// email
 	if (trim($email) == "")
 		$err_msg .= "<p>Please enter email.</p>";
 	else {
+
 		$email =  sanitise_input($email);
-		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) 
-			$err_msg .= "<p>Email is not valid.</p>";
 	}
 	
 	if ($err_msg!=""){
 		echo $err_msg;
 	    exit();
 	}
-	if ((!$password=="") && (!$email=="")){
 	
+
+	if ((!$password=="" && $email=="")){
+
+	include '../includes/dbAuthentication.inc';
         
     
 	
@@ -71,33 +72,30 @@ session_start();//session starts here
 		echo "<p >Database connection failure</p>";  
 	} else {
 		// Upon successful connection
-		
+		echo nl2br("\r\n SQL error:1 ");
 	$sql_table="member";
 	
 		// Setting up the SQL command to add the data into the table
-		$query = "SELECT * from $sql_table WHERE password = '$password' AND email= '$email' ";
+		$query = "SELECT * from $sql_table WHERE customer_password = '$password' AND customer_email= '$email' ";
+	
 			
 		// executing the query and store result into the result pointer
 		$result = mysqli_query($conn, $query);
 		
 		// checks if the execuion was successful
 		if(!$result) {
+	
+
 			echo "<p >Something is wrong with ",	$query, "</p>";
 		} else {
-		if(mysqli_num_rows($result)) {
-			 {  
 			 $_SESSION['password']=$password;//here session is used and value of $password stored in $_SESSION.
         //echo "<script>window.open('../functions.php','_self')</script>";  
 		header('location: ../functions.php');
   
-         
-  
-    }  
 		} 
 		} 
 		// close the database connection
 		mysqli_close($conn);
-	} 
 	} 
 	} 
 ?>
