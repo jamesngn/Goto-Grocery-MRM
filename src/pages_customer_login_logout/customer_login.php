@@ -8,7 +8,7 @@ session_start();//session starts here
   
 ?>  
 	<h2>Log-in Form</h2>
-	<form method="post" action="customer_login.php">
+	<form method="post" action="">
 	<fieldset><legend>Customer Log-in</legend>
 		<p>	<label for="email">Email: </label>
 			<input type="text" name="email" id="email"  /></p>
