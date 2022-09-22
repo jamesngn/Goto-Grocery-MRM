@@ -54,14 +54,13 @@
         $c_employee_ID = mysqli_real_escape_string($conn, cleanInput($_POST['employee_ID']));
         $c_fname = mysqli_real_escape_string($conn, cleanInput($_POST['fname']));
         $c_lname = mysqli_real_escape_string($conn, cleanInput($_POST['lname']));
-        $c_dob = mysqli_real_escape_string($conn, cleanInput($_POST['dob']));
-        $c_job_role = mysqli_real_escape_string($conn, cleanInput($_POST['job_role']));
-        $c_salary = mysqli_real_escape_string($conn, cleanInput($_POST['salary']));
-        $c_hire_date = mysqli_real_escape_string($conn, cleanInput($_POST['hire_date']));
+        $c_email = mysqli_real_escape_string($conn, cleanInput($_POST['email']));
+        $c_password = mysqli_real_escape_string($conn, cleanInput($_POST['password']));
+
         
         // adding to database
-        $sql = "INSERT INTO employee (employee_ID, fname, lname, dob, job_role, salary, hire_date) 
-        VALUES ('$c_employee_ID','$c_fname','$c_lname','$c_dob','$c_job_role','$c_salary','$c_hire_date')";
+        $sql = "INSERT INTO employee (employee_ID, fname, lname, email, password) 
+        VALUES ('$c_employee_ID','$c_fname','$c_lname','$c_email','$c_password')";
 
             if (mysqli_query($conn,$sql)) {
                 echo nl2br ("\r\n Added $c_fname $c_lname to the database.");
