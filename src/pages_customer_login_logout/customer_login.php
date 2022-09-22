@@ -8,8 +8,8 @@ session_start();//session starts here
   
 ?>  
 	<h2>Log-in Form</h2>
-	<form method="post" action="login.php">
-	<fieldset><legend>Manager Log-in</legend>
+	<form method="post" action="customer_login.php">
+	<fieldset><legend>Customer Log-in</legend>
 		<p>	<label for="email">Email: </label>
 			<input type="text" name="email" id="email"  /></p>
 		<p>	<label for="password">Password: </label>
@@ -44,15 +44,16 @@ session_start();//session starts here
 			$err_msg .= "<p>Only letters and number are allowed in password.</p>";
 	}
 	}
+
 	// email
-	if (trim($email)=="")
-		$err_msg .= "<p>Please enter email. </p>";
+	if (trim($email) == "")
+		$err_msg .= "<p>Please enter email.</p>";
 	else {
-		$email=sanitise_input($email);
-		if (!preg_match("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$",$email)){
-			$err_msg .= "<p>Please put valid email address.</p>";
-		}
+		$email =  sanitise_input($email);
+		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) 
+			$err_msg .= "<p>Email is not valid.</p>";
 	}
+	
 	if ($err_msg!=""){
 		echo $err_msg;
 	    exit();
@@ -86,7 +87,7 @@ session_start();//session starts here
 		if(mysqli_num_rows($result)) {
 			 {  
 			 $_SESSION['password']=$password;//here session is used and value of $password stored in $_SESSION.
-        echo "<script>window.open('functions.php','_self')</script>";  
+        echo "<script>window.open('../functions.php','_self')</script>";  
   
          
   
