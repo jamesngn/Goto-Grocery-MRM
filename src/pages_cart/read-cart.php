@@ -1,4 +1,6 @@
 <?php 
+    include '../php/time-page.php';
+    $startpage = StartTime();
     session_start();
     $c_member_ID = $_SESSION["member-id"];
     
@@ -100,4 +102,7 @@
         <?php ;} CloseConnection($conn);?>
     </body>
 </html>
-
+<?php
+$display_page_time = StopTime($startpage);
+echo $display_page_time;
+?>
