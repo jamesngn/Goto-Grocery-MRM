@@ -19,20 +19,12 @@
                 <input type="text" name="lname" id="lname" pattern="^[A-Za-z-]+$" maxlength="50" required />
             </p>
             <p>
-                <label for="dob">Date Of Birth</label>
-                <input type="text" name="dob" id="dob" pattern="^[0-9]{4}-(((0[13578]|(10|12))-(0[1-9]|[1-2][0-9]|3[0-1]))|(02-(0[1-9]|[1-2][0-9]))|((0[469]|11)-(0[1-9]|[1-2][0-9]|30)))$" placeholder="YYYY-MM-DD" required="required">
+                <label for="email">Email address</label>
+                <input type="text" name="email" id="email" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" maxlength="50" required />
             </p>
-            <p>
-                <label for="job_role">Position</label>
-                <input type="text" name="job_role" id="job_role" pattern="^[A-Za-z-]+$" maxlength="50" required />
-            </p>
-            <p>
-                <label for="salary">Salary</label>
-                <input type="text" name="salary" id="salary"  pattern="\d{1,15}" />
-            </p>
-            <p>
-                <label for="hire_date">Hiring Date</label>
-                <input type="text" name="hire_date" id="hire_date" pattern="^[0-9]{4}-(((0[13578]|(10|12))-(0[1-9]|[1-2][0-9]|3[0-1]))|(02-(0[1-9]|[1-2][0-9]))|((0[469]|11)-(0[1-9]|[1-2][0-9]|30)))$" placeholder="YYYY-MM-DD" required="required">
+            <p>   
+                <label for="password">Password</label>
+                <input type="text" name="password" id="password" maxlength="50" required />
             </p>
             <p>
             <input type="submit" value="Submit">
