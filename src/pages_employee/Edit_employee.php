@@ -1,5 +1,4 @@
 
-
 <?php 
     include '../includes/dbAuthentication.inc';
     session_start();
