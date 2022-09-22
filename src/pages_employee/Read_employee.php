@@ -48,5 +48,4 @@ $regValue = $_SESSION["employee_ID"];
 
     <?php include '../includes/footer.inc'; ?>
 </body>
-
 </html>
