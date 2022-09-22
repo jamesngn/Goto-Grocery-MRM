@@ -59,7 +59,7 @@
 
         
         // adding to database
-        $sql = "INSERT INTO employee (employee_ID, fname, lname, email, password) 
+        $sql = "INSERT INTO employee (employee_ID, fname, lname, email, password)
         VALUES ('$c_employee_ID','$c_fname','$c_lname','$c_email','$c_password')";
 
             if (mysqli_query($conn,$sql)) {
