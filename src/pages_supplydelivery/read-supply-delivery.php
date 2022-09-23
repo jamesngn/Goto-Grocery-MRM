@@ -10,10 +10,10 @@ session_start();
 
     <form action="read-supply-delivery.php" method="post">
         <fieldset>
-            <legend>Enter the supplier ID</legend>
+            <legend>Enter the supply delivery ID</legend>
             <p>
-                <label for="supp_id">Supplier ID: </label>
-                <input type="text" name="supp_id" id="supp_id" value >
+            <label for="supplydeliveryid">Suppydelivery ID</label>
+                <input type="text" name="supplydeliveryid" id="supplydeliveryid">
             </p>
             <p>
                 <button type="submit">Search</button>
@@ -33,9 +33,9 @@ session_start();
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $conn = OpenConnection();
 
-            $supp_id = mysqli_real_escape_string($conn,cleanInput($_POST['supp_id']));
+            $supp_id = mysqli_real_escape_string($conn,cleanInput($_POST['supplydeliveryid']));
             
-            $sql = "SELECT * FROM supplydelivery WHERE supp_id = '$supp_id'";
+            $sql = "SELECT * FROM suppdelivery WHERE supplydeliveryid = '$supp_id'";
             $result = mysqli_query($conn, $sql);
 
             if ($result) {
