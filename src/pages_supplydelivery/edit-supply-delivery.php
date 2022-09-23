@@ -8,10 +8,10 @@ include '../includes/header.inc';
 
     <form action="edit-supply-delivery.php" method="post">
         <fieldset>
-            <legend>Enter the supplier ID</legend>
+            <legend>Enter the supplydelivery ID</legend>
             <p>
-                <label for="supp_id">Supplier ID</label>
-                <input type="text" name="supp_id" id="supp_id">
+                <label for="supplydeliveryid">Suppydelivery ID</label>
+                <input type="text" name="supplydeliveryid" id="supplydeliveryid">
             </p>
 
             <p>
@@ -36,9 +36,9 @@ include '../includes/header.inc';
             //Connect to the database and store it in variable $conn.
             $conn = OpenConnection();
             //Clean the id value to prevent from attack.
-            $c_id = mysqli_real_escape_string($conn, cleanInput($_POST['id']));
+            $supp_id = mysqli_real_escape_string($conn, cleanInput($_POST['supplydeliveryid']));
             //select the row from the product table to match with the input id.
-            $sql = "SELECT * FROM supplydelivery WHERE id = $supp_id";
+            $sql = "SELECT * FROM suppdelivery WHERE supplydeliveryid = $supp_id";
             //perform a query against the database.
             $result = mysqli_query($conn, $sql);
             //validation check
@@ -46,7 +46,7 @@ include '../includes/header.inc';
                 if (mysqli_num_rows($result) == 0) {
                     echo nl2br("\r\n Error: Supply delivery is not found.");
                 } else {
-                    $_SESSION['productID'] = $c_id;
+                    $_SESSION['supplydeliveryid'] = $supp_id;
                     header("location:edit-supply-delivery.php");
                 }
             }
