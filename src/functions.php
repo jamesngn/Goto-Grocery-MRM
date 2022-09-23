@@ -39,8 +39,8 @@
     
     <h2>List of Supply Delivery functions </h2>
     <a href="pages_supplydelivery/add-supply-delivery.php">Add Supply Delivery Record</a><br>
-    <a href="pages_supplydelivery/edit-supply-delivery.php">Edit Supply Delivery Record</a><br>
-    <a href="pages_supplydelivery/read-supply-delivery.php">Read Supply Delivery Record</a><br>
+    <a href="pages_supplydelivery/validate-supplydelivery-edit.php">edit validate Supply Delivery Record</a><br>
+    <a href="pages_supplydelivery/validate-supplydelivery-read.php">Read Supply Delivery Record</a><br>
     <a href="pages_supplydelivery/validate-supplydelivery-delete.php">delete validate Supply Delivery Record</a><br>
     <h2>List of Categories functions </h2>
     <a href="pages_category/add-category.php">Add Category Record</a><br>
