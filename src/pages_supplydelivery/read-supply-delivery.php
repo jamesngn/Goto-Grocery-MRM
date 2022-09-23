@@ -8,7 +8,7 @@ session_start();
     <h2>Read Supply Delivery</h2>
 
 
-    <form action="read-suppy-delivery.php" method="post">
+    <form action="read-supply-delivery.php" method="post">
         <fieldset>
             <legend>Enter the supplier ID</legend>
             <p>
@@ -44,7 +44,7 @@ session_start();
                 } else {
                     $product = mysqli_fetch_assoc($result);
                     $_SESSION["productAssoc"] = $product;
-                    header("location: read-product.php");
+                    header("location: read-supply-delivery.php");
                 }
             } else {
                 echo nl2br ("\r\n SQL error: " . mysqli_error($conn));
