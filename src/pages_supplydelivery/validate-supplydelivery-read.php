@@ -9,7 +9,7 @@ session_start();
         <fieldset>
             <legend>Enter Supply Delivery details</legend>
             <p>
-                <label for="supplydeliveryid">Enter supply delivery id</label>
+                <label for="supplydeliveryid">Enter supply delivery ID</label>
                 <input type="text" name="supplydeliveryid" id="supplydeliveryid" pattern="\d{1,10}" maxlength="10" required />
             </p>
             <p>
@@ -35,7 +35,7 @@ session_start();
             $conn = OpenConnection();
 
             // the cleaned – "safe" – inputs ready to be added to the database
-            $suppdel_id = mysqli_real_escape_string($conn, cleanInput($_POST["suppdelivery"]));
+            $suppdel_id = mysqli_real_escape_string($conn, cleanInput($_POST["supplydeliveryid"]));
             // check to the database
             $result =mysqli_query($conn, $sql);
             $sql = "SELECT * FROM suppdelivery WHERE supplydeliveryid = '$suppdel_id' ";
