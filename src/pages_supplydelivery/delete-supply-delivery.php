@@ -1,45 +1,27 @@
 <?php 
     session_start();
-    include '../includes/header.inc';
+    $supp_id = $_SESSION['supplydeliveryid'];
+    include '../includes/header.inc' 
 ?>
 <body>
-    <?php include '../includes/menu.inc'; ?>
-    <h2>Delete supply delivery</h2>
-    <form action="delete-supply-delivery.php" method="post">
-        <p>
-                <label for="supplydeliveryid">Suppydelivery ID</label>
-                <input type="text" name="supplydeliveryid" id="supplydeliveryid">
-        </p>
-        <button type="submit">Delete</button>
-    </form>
+    <?php include '../includes/menu.inc' ?>;
+    <h2>Delete Supplier</h2>
 
-    <?php
-        function cleanInput($data) 
-        {
-            $data = trim($data);
-            $data = stripslashes($data);
-            $data = htmlspecialchars($data);
-            return $data;
-        }
+    
+    <?php 
         include '../includes/dbAuthentication.inc';
+        $conn = OpenConnection();
 
-        if ($_SERVER['REQUEST_METHOD'] == "POST") {
-            $conn = OpenConnection();
-            $supp_id = mysqli_real_escape_string($conn,cleanInput($_POST['supplydeliveryid']));
+        $sql = "DELETE FROM suppdelivery WHERE supplydeliveryid = '$supp_id'";
 
-            $sql = "SELECT * FROM suppdelivery WHERE supplydeliveryid = '$supp_id'";
-            $result = mysqli_query($conn,$sql);
-            if ($result) {
-                if (mysqli_num_rows($result) == 0) {
-                    echo nl2br("\r\n Error: Supply delivery is not found.");
-                } else {
-                    $_SESSION['productID'] = $supp_id;
-                    header("location: delete-supply-delivery.php");
-                }
-            } else {
-                echo nl2br("\r\n SQL Error: " . mysqli_error($conn));
-            }
-            CloseConnection($conn);
+        if (mysqli_query($conn, $sql)) {
+            echo nl2br("\r\n Successfully deleted the supplier_id = $supp_id from the database");
+            session_unset();
+            session_destroy();
+        } else {
+            echo nl2br("\r\n SQL Error: " . mysqli_error($conn));
         }
+        CloseConnection($conn);
     ?>
+    <?php include '../includes/footer.inc'?>;
 </body>
