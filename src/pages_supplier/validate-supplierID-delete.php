@@ -34,7 +34,7 @@
                     echo nl2br("\r\n Error: Supplier ID $supp_id is not found.");
                 } else {
                     $_SESSION['supplier_id'] = $supp_id;
-                    header("location: delete-supplier.php");
+                    header("location: delete-supply-delivery.php");
                 }
             } else {
                 echo nl2br("\r\n SQL Error: " . mysqli_error($conn));
