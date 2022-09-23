@@ -90,8 +90,8 @@ session_start();//session starts here
 
 			echo "<p >Something is wrong with ",	$query, "</p>";
 		} else {
-			 $_SESSION['password']=$password;//here session is used and value of $password stored in $_SESSION.
-        //echo "<script>window.open('../functions.php','_self')</script>";  
+			 $_SESSION['email']=$email;//here session is used and value of $email stored in $_SESSION.
+        //echo "<script>window.open('../functions.php','_self')</script>"; //redundant code 
 		header('location: ../functions.php');
   
 		} 
