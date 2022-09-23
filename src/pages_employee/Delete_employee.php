@@ -6,8 +6,7 @@
 <body>
     <?php include '../includes/menu.inc' ?>;
     <h2>Delete Employee Details</h2>
-
-    
+ 
     <?php 
         include '../includes/dbAuthentication.inc';
         $conn = OpenConnection();
