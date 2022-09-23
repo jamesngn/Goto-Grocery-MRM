@@ -2,7 +2,7 @@
 <body>
     <?php include '../includes/menu.inc'; ?>
     <h2>Add New Supply Delivery</h2>
-    <form action="addsupplydelivery.php" method="post">
+    <form action="add-supply-delivery.php" method="post">
         <fieldset>
             <legend> Add new Supply Delivery </legend>
             <p>
@@ -21,7 +21,10 @@
                 <label for="delivery_date">Delivery Date</label>
                 <input type="text" name="delivery_date" id="delivery_date">
             </p>
-
+            <p>
+                <label for="supplier_price">Supplier Price</label>
+                <input type="text" name="supplier_price" id="supplier_price">
+            </p>
             <button type="submit">Submit</button>
             <button type="reset">Reset</button>
         </fieldset>
@@ -46,11 +49,12 @@
         $supp_name = mysqli_real_escape_string($conn, cleanInput($_POST['supp_id']));
         $quantity = mysqli_real_escape_string($conn, cleanInput($_POST['quantity']));
         $ddate = mysqli_real_escape_string($conn, cleanInput($_POST['delivery_date']));
+        $supplier_price = mysqli_real_escape_string($conn, cleanInput($_POST['supplier_price']));
 
 
         //Add to database
-        $sql = "INSERT INTO supplydelivery (prod_id,supp_id,quantity,delivery_date )
-        VALUES ('$prod_id','$supp_name','$quantity','$ddate')";
+        $sql = "INSERT INTO suppdelivery (prod_id,supp_id,quantity,delivery_date,supplier_price)
+        VALUES ('$prod_id','$supp_name','$quantity','$ddate','$supplier_price')";
 
         if (mysqli_query($conn,$sql)) {
             echo nl2br ("\r\n Added a delivery from a supplier");
