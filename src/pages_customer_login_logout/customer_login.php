@@ -11,7 +11,7 @@ session_start();//session starts here
 	<form method="post" action="">
 	<fieldset><legend>Customer Log-in</legend>
 		<p>	<label for="email">Email: </label>
-			<input type="text" name="email" id="email"  /></p>
+			<input type="text" name="email" id="email"  pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" maxlength="50" required /></p>
 		<p>	<label for="password">Password: </label>
 			<input type="text" name="password" id="password"  /></p>
 		<p>	<input type="submit" value="Log In" /></p>
@@ -44,6 +44,7 @@ session_start();//session starts here
 			$err_msg .= "<p>Only letters and number are allowed in password.</p>";
 	}
 	}
+	
 	// email
 	if (trim($email) == "")
 		$err_msg .= "<p>Please enter email.</p>";
@@ -52,14 +53,15 @@ session_start();//session starts here
 		$email =  sanitise_input($email);
 	}
 	
+	
 	if ($err_msg!=""){
 		echo $err_msg;
 	    exit();
 	}
+
 	
-
-	if ((!$password=="" && $email=="")){
-
+	if ((!$password=="" && !$email=="")){
+		
 	include '../includes/dbAuthentication.inc';
         
     
@@ -72,7 +74,7 @@ session_start();//session starts here
 		echo "<p >Database connection failure</p>";  
 	} else {
 		// Upon successful connection
-		echo nl2br("\r\n SQL error:1 ");
+		
 	$sql_table="member";
 	
 		// Setting up the SQL command to add the data into the table
@@ -88,15 +90,15 @@ session_start();//session starts here
 
 			echo "<p >Something is wrong with ",	$query, "</p>";
 		} else {
-			 $_SESSION['password']=$password;//here session is used and value of $password stored in $_SESSION.
-        //echo "<script>window.open('../functions.php','_self')</script>";  
+			 $_SESSION['email']=$email;//here session is used and value of $email stored in $_SESSION.
+        //echo "<script>window.open('../functions.php','_self')</script>"; //redundant code 
 		header('location: ../functions.php');
   
 		} 
 		} 
 		// close the database connection
 		mysqli_close($conn);
-	} 
+	} //echo nl2br("\r\n SQL error:1 "); // for debugging
 	} 
 ?>
 

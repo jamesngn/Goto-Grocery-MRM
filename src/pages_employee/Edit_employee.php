@@ -28,6 +28,7 @@
     <form action="Edit_employee.php" method="post">
         <fieldset>
             <legend>Edit Employee Details</legend>
+           
             <p>
                 <label for="employee_fname">First name</label>
                 <input type="text" name="employee_fname" id="employee_fname" pattern="^[A-Za-z-]+$" maxlength="50" required value = "<?php echo $employee['fname'];?>">
@@ -37,21 +38,15 @@
                 <input type="text" name="employee_lname" id="employee_lname" pattern="^[A-Za-z-]+$" maxlength="50" required value = "<?php echo $employee['lname'];?>">
             </p>
             <p>
-                <label for="employee_dob">Date Of Birth</label>
-                <input type="text" name="employee_dob" id="employee_dob" placeholder="dd/mm/yyyy" required="required" value = "<?php echo $employee['dob'];?>">
+                <label for="employee_email">Email address</label>
+                <input type="text" name="employee_email" id="employee_email" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" maxlength="50" required value = "<?php echo $employee['email'];?>" />
+            </p>
+            <p>   
+                <label for="employee_password">Password</label>
+                <input type="text" name="employee_password" id="employee_password" maxlength="50" required value = "<?php echo $employee['password'];?>" />
             </p>
             <p>
-                <label for="employee_job_role">Position</label>
-                <input type="text" name="employee_job_role" id="employee_job_role" pattern="^[A-Za-z-]+$" maxlength="50" required value = "<?php echo $employee['job_role'];?>">
-            </p>
-            <p>
-                <label for="employee_salary">Salary</label>
-                <input type="text" name="employee_salary" id="employee_salary" pattern="\d{1,15}" required value = "<?php echo $employee['salary'];?>">
-            </p>
-            <p>
-                <label for="employee_hire_date">Hiring Date</label>
-                <input type="text" name="employee_hire_date" id="employee_hire_date" placeholder="dd/mm/yyyy" required="required" value = "<?php echo $employee['hire_date'];?>">
-            </p>
+          
            
             
             <button type="submit">Edit</button>
@@ -68,18 +63,15 @@
             $data = htmlspecialchars($data);
             return $data;
         }
-        include '../includes/dbAuthentication.inc';
+        
         
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $conn = OpenConnection();
-
+            
             $c_employee_fname = mysqli_real_escape_string($conn, cleanInput($_POST['employee_fname']));
             $c_employee_lname = mysqli_real_escape_string($conn, cleanInput($_POST['employee_lname']));
-            $c_employee_dob = mysqli_real_escape_string($conn, cleanInput($_POST['employee_dob']));
-            $c_employee_job_role = mysqli_real_escape_string($conn, cleanInput($_POST['employee_job_role']));
-            $c_employee_salary = mysqli_real_escape_string($conn, cleanInput($_POST['employee_salary']));
-            $c_employee_hire_date = mysqli_real_escape_string($conn, cleanInput($_POST['employee_hire_date']));
-            
+            $c_employee_email = mysqli_real_escape_string($conn, cleanInput($_POST['employee_email']));
+            $c_employee_password = mysqli_real_escape_string($conn, cleanInput($_POST['employee_password']));
 
             $sql = 
             "UPDATE employee 
@@ -87,10 +79,8 @@
                 
                 fname = '$c_employee_fname',
             lname = '$c_employee_lname',
-            dob = '$c_employee_dob',
-            job_role = '$c_employee_job_role',
-            salary = '$c_employee_salary',
-            hire_date = '$c_employee_hire_date'
+            email = '$c_employee_email',
+            password = '$c_employee_password'
                 
             WHERE employee_ID = $c_ID";
 
