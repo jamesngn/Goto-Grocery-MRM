@@ -38,7 +38,7 @@ include '../includes/header.inc';
             //Clean the id value to prevent from attack.
             $suppdel_id = mysqli_real_escape_string($conn, cleanInput($_POST['supplydeliveryid']));
             //select the row from the wishlist table to match with the input id.
-            $sql = "SELECT * FROM supplydeliveryid WHERE supplydeliveryid = $suppdel_id";
+            $sql = "SELECT * FROM suppdelivery WHERE supplydeliveryid = $suppdel_id";
             //perform a query against the database.
             $result = mysqli_query($conn, $sql);
             //validation check

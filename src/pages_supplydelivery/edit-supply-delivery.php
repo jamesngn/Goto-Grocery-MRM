@@ -28,25 +28,25 @@
         <fieldset>
             <legend>Edit Supply Delivery Page</legend>
             <p>
-                <label for="prod_id">Product ID:</label>
-                <input type="text" name="prod_id" id="prod_id" value = "<?php echo $suppdel_id['prod_id'];?>">
+                <label for="s_prod_id">Product ID:</label>
+                <input type="text" name="s_prod_id" id="s_prod_id" value = "<?php echo $suppdel_id['prod_id'];?>">
             </p>
             <p>
-                <label for="supp_id">Supplier ID:</label>
-                <input type="text" name="supp_id" id="supp_id" value = "<?php echo $suppdel_id['supp_id'];?>">
+                <label for="s_supp_id">Supplier ID:</label>
+                <input type="text" name="s_supp_id" id="s_supp_id" value = "<?php echo $suppdel_id['supp_id'];?>">
             </p>
             <p>
-                <label for="quantity">Quantity:</label>
-                <input type="text" name="quantity" id="quantity" value = "<?php echo $suppdel_id['quantity'];?>">
+                <label for="s_quantity">Quantity:</label>
+                <input type="text" name="s_quantity" id="s_quantity" value = "<?php echo $suppdel_id['quantity'];?>">
             </p>
            
             <p>
-                <label for="delivery_date">Delivery Date :</label>
-                <input type="text" name="delivery_date" id="delivery_date" value = "<?php echo $suppdel_id['delivery_date'];?>">
+                <label for="s_delivery_date">Delivery Date :</label>
+                <input type="text" name="s_delivery_date" id="s_delivery_date"  value = "<?php echo $suppdel_id['delivery_date'];?>">
             </p>
             <p>
-                <label for="supplier_price">Supplier Price :</label>
-                <input type="text" name="supplier_price" id="supplier_price" value = "<?php echo $suppdel_id['supplier_price'];?>">
+                <label for="s_supplier_price">Supplier Price :</label>
+                <input type="text" name="s_supplier_price" id="s_supplier_price" value = "<?php echo $suppdel_id['supplier_price'];?>">
             </p>
            
            
@@ -69,11 +69,11 @@
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $conn = OpenConnection();
 
-            $prod_id = mysqli_real_escape_string($conn, cleanInput($_POST['prod_id']));
-            $supp_id = mysqli_real_escape_string($conn, cleanInput($_POST['supp_id']));
-            $quantity = mysqli_real_escape_string($conn, cleanInput($_POST['quantity']));
-            $delivery_date = mysqli_real_escape_string($conn, cleanInput($_POST['delivery_date']));
-            $supplier_price = mysqli_real_escape_string($conn, cleanInput($_POST['supplier_price']));
+            $prod_id = mysqli_real_escape_string($conn, cleanInput($_POST['s_prod_id']));
+            $supp_id = mysqli_real_escape_string($conn, cleanInput($_POST['s_supp_id']));
+            $quantity = mysqli_real_escape_string($conn, cleanInput($_POST['s_quantity']));
+            $delivery_date = mysqli_real_escape_string($conn, cleanInput($_POST['s_delivery_date']));
+            $supplier_price = mysqli_real_escape_string($conn, cleanInput($_POST['s_supplier_price']));
             
 
             $sql = 
@@ -83,7 +83,7 @@
                 prod_id = '$prod_id',
                 quantity = '$quantity',
                 delivery_date = '$delivery_date',
-                supplier_price = '$supplier_price',
+                supplier_price = '$supplier_price'
                 
                 
             WHERE supplydeliveryid = $suppdel_id";
