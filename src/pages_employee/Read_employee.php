@@ -23,11 +23,11 @@ $regValue = $_SESSION["employee_ID"];
                     
                     echo nl2br("\r\n Employee ID: " . $row["employee_ID"]);
                     echo nl2br("\r\n First Name: ". $row["fname"]); 
-                    echo nl2br("\r\n Last Name " . $row["lname"]);
-                    echo nl2br("\r\n DOB:" . $row["dob"]);
-                    echo nl2br("\r\n Position:" . $row["job_role"]);
-                    echo nl2br("\r\n Salary:" . $row["salary"]);
-                    echo nl2br("\r\n Date Hired:" . $row["hire_date"]);
+                    echo nl2br("\r\n Last Name: " . $row["lname"]);
+                    echo nl2br("\r\n Email: " . $row["email"]);
+                    echo nl2br("\r\n Password: " . $row["password"]);
+
+
                     
                     }
                     session_unset();
