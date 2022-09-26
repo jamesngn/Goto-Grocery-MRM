@@ -61,7 +61,7 @@ CREATE TABLE `employee` (
 -- --------------------------------------------------------
 -- Dumping data for table `member`
 --
-INSERT INTO `member` (`employee_ID`, `fname`, `lname`, `email`, `password`) VALUES
+INSERT INTO `employee` (`employee_ID`, `fname`, `lname`, `email`, `password`) VALUES
 (5, 'shsh', 'rick', '1234@twitch.tv', '12234'),
 (2, 'rrr', 'fff', 'rtt@gmail.com', 'nhd'),
 (4, 'vvvv', 'vvvv', 'wsdsa@ggfds', 'ssadsa');
