@@ -4,11 +4,11 @@
 ?>
 <body>
     <?php include '../includes/menu.inc'; ?>
-    <h2>Validate supplier ID for deleting</h2>
-    <form action="validate-supplierID-delete.php" method="post">
+    <h2>Validate Supply Delivery for deleting</h2>
+    <form action="validate-supplydelivery-delete.php" method="post">
         <p>
-            <label for="supplier_id">Supplier ID:</label>
-            <input type="text" name="supplier_id" id="supplier_id">
+            <label for="supplydeliveryid">Supply Delivery ID:</label>
+            <input type="text" name="supplydeliveryid" id="supplydeliveryid">
         </p>
         <button type="submit">Delete</button>
     </form>
@@ -25,15 +25,15 @@
 
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $conn = OpenConnection();
-            $supp_id = mysqli_real_escape_string($conn,cleanInput($_POST['supplier_id']));
+            $suppdel_id = mysqli_real_escape_string($conn,cleanInput($_POST['supplydeliveryid']));
 
-            $sql = "SELECT * FROM supplier WHERE supplier_id = '$supp_id'";
+            $sql = "SELECT * FROM suppdelivery WHERE supplydeliveryid = '$suppdel_id'";
             $result = mysqli_query($conn,$sql);
             if ($result) {
                 if (mysqli_num_rows($result) == 0) {
-                    echo nl2br("\r\n Error: Supplier ID $supp_id is not found.");
+                    echo nl2br("\r\n Error: Supply Delivery ID $suppdel_id is not found.");
                 } else {
-                    $_SESSION['supplier_id'] = $supp_id;
+                    $_SESSION['supplydeliveryid'] = $suppdel_id;
                     header("location: delete-supply-delivery.php");
                 }
             } else {
