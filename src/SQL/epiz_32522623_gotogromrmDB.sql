@@ -59,7 +59,7 @@ CREATE TABLE `employee` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
--- Dumping data for table `member`
+-- Dumping data for table `employee`
 --
 INSERT INTO `employee` (`employee_ID`, `fname`, `lname`, `email`, `password`) VALUES
 (5, 'shsh', 'rick', '1234@twitch.tv', '12234'),
