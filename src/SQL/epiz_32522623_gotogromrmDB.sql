@@ -54,10 +54,8 @@ CREATE TABLE `employee` (
   `employee_ID` int(10) NOT NULL,
   `fname` varchar(50) NOT NULL,
   `lname` varchar(50) NOT NULL,
-  `dob` date NOT NULL,
-  `job_role` varchar(50) NOT NULL,
-  `salary` int(10) NOT NULL,
-  `hire_date` date NOT NULL
+  'email' text NOT NULL,
+  'password' text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
