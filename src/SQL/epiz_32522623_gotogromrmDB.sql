@@ -66,11 +66,6 @@ INSERT INTO `member` (`employee_ID`, `fname`, `lname`, `email`, `password`) VALU
 (2, 'rrr', 'fff', 'rtt@gmail.com', 'nhd'),
 (4, 'vvvv', 'vvvv', 'wsdsa@ggfds', 'ssadsa');
 
-
-
-
-
-
 -- Table structure for table `member`
 --
 
