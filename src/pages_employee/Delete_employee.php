@@ -1,6 +1,6 @@
 <?php 
     session_start();
-    $c_ID = $_SESSION['employee_ID'];
+    $c_employee_ID = $_SESSION['employee_ID'];
     include '../includes/header.inc' 
 ?>
 <body>
@@ -11,10 +11,10 @@
         include '../includes/dbAuthentication.inc';
         $conn = OpenConnection();
 
-        $sql = "DELETE FROM employee WHERE employee_ID = '$c_ID'";
+        $sql = "DELETE FROM employee WHERE employee_ID = '$c_employee_ID'";
 
         if (mysqli_query($conn, $sql)) {
-            echo nl2br("\r\n Successfully deleted the employee ID = $c_ID from the database");
+            echo nl2br("\r\n Successfully deleted the employee ID = $c_employee_ID from the database");
             session_unset();
             session_destroy();
         } else {
