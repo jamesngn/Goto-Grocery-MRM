@@ -16,7 +16,7 @@
                         Addition fail
                     </div>
                     <div class="small-message">
-                        Error Message !
+                        Error Message!
                     </div>
                 </div>
             </div>
