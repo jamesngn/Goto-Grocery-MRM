@@ -20,7 +20,7 @@
                     </div>
                 </div>
             </div>
-            <button id="addMoreButton" class="add-more" onclick="RedirectToAddProductPage()">
+            <button id="addMoreButton" class="add" onclick="RedirectToAddProductPage()">
                 Add More
             </button>
             <button id = "closeButton" class="close" onclick="RedirectToProductPage()">
