@@ -30,6 +30,7 @@
 
     </section>
 
-<script src="../js/product.js"></script>        
+<script src="../js/product.js"></script>       
+<script src="../js/sidebar.js"></script>    
 </body>
 </html>
