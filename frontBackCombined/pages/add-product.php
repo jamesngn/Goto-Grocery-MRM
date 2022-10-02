@@ -50,12 +50,17 @@
                     <span>Product Page</span>
                 </a>
 
-                <div class="img-uploader">
-                    <label class="imgUploadLabel" for="productImgToUpload">
-                        <i class="fa-solid fa-circle-plus"></i>
-                        <input type="file" name="productImgToUpload" id="productImgToUpload">
-                    </label>
-                    <div class="title">Add Product Image</div>
+                <div class="product-img">
+                    <div id="img-container">
+                        
+                    </div>
+                    <div class="img-uploader" >
+                        <label class="imgUploadLabel" for="productImgToUpload">
+                            <i class="fa-solid fa-circle-plus"></i>
+                            <input type="file" name="productImgToUpload" id="productImgToUpload" onchange="displayImage(this)">
+                        </label>
+                        <div class="title">Add Product Image</div>
+                    </div>
                 </div>
 
                 <div class="text-input-container">
@@ -104,8 +109,7 @@
 
     </section>
 
-    <script src="../js/sidebar.js"></script>
-    <script src="../js/dashboard.js"></script>        
+    <script src="../js/product.js"></script>        
 </body>
 </html>
 
