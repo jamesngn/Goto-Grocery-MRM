@@ -171,6 +171,7 @@
         VALUES ('$fileDestination','$c_grocery_name','$c_description','$c_price','$c_category_id')";
 
         if (mysqli_query($conn,$sql)) {
+            header("location: add-product-success.php");
 
         } else {
             echo nl2br ("\r\nSQL errror: " . mysqli_error($conn));
