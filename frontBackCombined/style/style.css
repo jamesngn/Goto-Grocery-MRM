@@ -678,12 +678,15 @@
 .reponse-container .info {
     /* margin-top: 11.23vh; */
     display:flex;
-    justify-content: space-between;
+    justify-content: center;
     padding: 11.23vh 3.35vw 0;
 }
 .reponse-container .info img {
     width: 10vw;
     height:10vw;
+}
+.reponse-container .info img.fail-icon{
+    margin-right: 2vw;
 }
 .reponse-container .message-container {
     display:flex;
@@ -716,12 +719,12 @@
     font-size: 1.6vw;
     cursor: pointer;
 }
-.reponse-container button.add-more {
-    margin-top: 8.083vh;
+.reponse-container button.add {
+    margin-top: 5.083vh;
     border-color: #89DFFF;
     margin-bottom: 2.11vh;
 }
-.reponse-container button.add-more:hover {
+.reponse-container button.add:hover {
     background-color: rgba(255,255,255,0.3);
 }
 .reponse-container button.close {
