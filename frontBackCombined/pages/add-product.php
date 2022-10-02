@@ -16,7 +16,7 @@
         if ($result) {
             if (mysqli_num_rows($result) > 0) {
                 $array = mysqli_fetch_row($result);
-                $productID = $array[0];
+                $productID = $array[0]+1;
             } else {
                 $productID = 100000;
             }
@@ -57,7 +57,7 @@
                     <div class="img-uploader" >
                         <label class="imgUploadLabel" for="productImgToUpload">
                             <i class="fa-solid fa-circle-plus"></i>
-                            <input type="file" name="productImgToUpload" id="productImgToUpload" onchange="displayImage(this)">
+                            <input type="file" name="productImgToUpload" id="productImgToUpload" onchange="displayImage(this)" accept="image/*" required>
                         </label>
                         <div class="title">Add Product Image</div>
                     </div>
@@ -71,18 +71,18 @@
                         </div>
                         <div class="form-item">
                             <label for="displayName">Display Name</label>
-                            <input type="text" name="displayName" id="displayName">
+                            <input type="text" name="displayName" id="displayName" required>
                         </div>
                     </div>
 
                     <div class="form-wrap">
                         <div class="form-item">
                             <label for="price">Price</label>
-                            <input type="number" name="price" id="price">
+                            <input type="number" name="price" id="price" min="0" required>
                         </div>
                         <div class="form-item">
                             <label for="category">Category</label>
-                            <select name="category" id="category">
+                            <select name="category" id="category" required>
                                 <option value=""></option>
                                 <?php foreach($categories as $category): ?>
                                     <option value="<?php echo $category[0];?>"><?php echo $category[1];?></option>
@@ -100,7 +100,7 @@
                     
                     <div class="form-wrap">
                         <button type="submit" name="submit">Add</button>
-                        <button type="reset">Reset</button>
+                        <button type="reset" onclick="ResetInput()">Reset</button>
                     </div>
                 </div>
             </form>
@@ -167,8 +167,8 @@
         }
 
         //Add to database
-        $sql = "INSERT INTO product (name,description,retailPrice,category_ID)
-        VALUES ('$c_grocery_name','$c_description','$c_price','$c_category_id')";
+        $sql = "INSERT INTO product (image,name,description,retailPrice,category_ID)
+        VALUES ('$fileDestination','$c_grocery_name','$c_description','$c_price','$c_category_id')";
 
         if (mysqli_query($conn,$sql)) {
 
