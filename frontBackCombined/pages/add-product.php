@@ -45,7 +45,7 @@
         <div class="form-container">
             <form action="add-product.php" method="post"  enctype="multipart/form-data" id="addProductForm">
 
-                <a class="backButton" href="read-product.php">
+                <a class="backButton" href="product-table.php">
                     <i class="fa-solid fa-delete-left"></i>
                     <span>Product Page</span>
                 </a>
