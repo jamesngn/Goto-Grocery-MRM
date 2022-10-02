@@ -45,10 +45,12 @@
         <div class="form-container">
             <form action="add-product.php" method="post"  enctype="multipart/form-data" id="addProductForm">
 
-                <a class="backButton" href="product-table.php">
-                    <i class="fa-solid fa-delete-left"></i>
-                    <span>Product Page</span>
-                </a>
+                <div class="backButton">
+                    <a href="product-table.php">
+                        <i class="fa-solid fa-delete-left"></i>
+                        <span>Product Page</span>
+                    </a>
+                </div>
 
                 <div class="product-img">
                     <div id="img-container">
@@ -154,11 +156,11 @@
             if ($fileError === 0) {
                 if ($fileSize < 500000) {
                     $fileNameNew = $productID.".".$fileActualExt;
-                    $fileDestination = '../image/'.$fileNameNew;
+                    $fileDestination = '../image/product/'.$fileNameNew;
                     move_uploaded_file($fileTmpName,$fileDestination);
-                    echo "Successfully uploaded the image!";
+                    // echo "Successfully uploaded the image!";
                 } else {
-                    echo "Your file is too big!";
+                    // echo "Your file is too big!";
                 }
             } else {
                 echo "There was an error uploading your file!";
@@ -168,11 +170,11 @@
         }
 
         //Add to database
-        $sql = "INSERT INTO product (image,name,description,retailPrice,category_ID)
-        VALUES ('$fileDestination','$c_grocery_name','$c_description','$c_price','$c_category_id')";
+        $sql = "INSERT INTO product (id,image,name,description,retailPrice,category_ID)
+        VALUES ('$productID','$fileDestination','$c_grocery_name','$c_description','$c_price','$c_category_id')";
 
         if (mysqli_query($conn,$sql)) {
-            header("location: add-product-success.php");
+            echo '<script>window.location.href = "add-product-success.php"; </script>';
 
         } else {
             echo nl2br ("\r\nSQL errror: " . mysqli_error($conn));
