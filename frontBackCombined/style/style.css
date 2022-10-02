@@ -665,3 +665,70 @@
 #addProductForm .form-wrap button[type="reset"] {
     background-color: #F55A4E;
 }
+
+/* Add Product Success */
+.reponse-container {
+    background-color: #204051;
+    border-radius: 10px;
+    width:37.3vw;
+    height: 56.2vh;
+    margin-top: 15.19vh;
+    margin-left: 23.07vw;
+}
+.reponse-container .info {
+    /* margin-top: 11.23vh; */
+    display:flex;
+    justify-content: space-between;
+    padding: 11.23vh 3.35vw 0;
+}
+.reponse-container .info img {
+    width: 10vw;
+    height:10vw;
+}
+.reponse-container .message-container {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.reponse-container .info .big-message,
+.reponse-container .info .small-message {
+    color:white;
+}
+.reponse-container .info .big-message {
+    font-size: 2.5vw;
+}
+.reponse-container .info .small-message {
+    font-size: 1.25vw;
+    text-align: center;
+    margin-top: 0.6vw;
+}
+.reponse-container button {
+    background-color: #204051;
+    color: white;
+    border: 1px solid white;
+    width: 16.72vw;
+    height: 6.34vh;
+    text-align: center;
+    margin-left: 10.3vw;
+    padding: 1vh 0;
+    border-radius: 5px;
+    font-size: 1.6vw;
+    cursor: pointer;
+}
+.reponse-container button.add-more {
+    margin-top: 8.083vh;
+    border-color: #89DFFF;
+    margin-bottom: 2.11vh;
+}
+.reponse-container button.add-more:hover {
+    background-color: rgba(255,255,255,0.3);
+}
+.reponse-container button.close {
+    background-color: #BA52E0;
+    border-color: #204051;
+}
+.reponse-container button.close:hover {
+    background-color:#F6D2FA;
+    color: #204051;
+}
