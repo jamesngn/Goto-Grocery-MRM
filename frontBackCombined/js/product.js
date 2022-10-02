@@ -28,3 +28,10 @@ function ResetInput() {
         imgUploader[0].classList.remove("unshown");
     }
 }
+
+function RedirectToAddProductPage() {
+    window.location.href = "add-product.php";
+}
+function RedirectToProductPage() {
+    window.location.href = "product-table.php";
+}
