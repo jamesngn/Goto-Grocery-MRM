@@ -101,7 +101,7 @@
                     </div>
                     
                     <div class="form-wrap">
-                        <button type="submit" name="submit">Add</button>
+                        <button class="add" type="submit" name="submit">Add</button>
                         <button type="reset" onclick="ResetInput()">Reset</button>
                     </div>
                 </div>
