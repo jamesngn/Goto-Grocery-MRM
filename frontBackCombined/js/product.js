@@ -20,7 +20,9 @@ function displayImage(e) {
 
 function ResetInput() {
     var img = document.getElementById("img-container").getElementsByTagName("img");
-    img[0].remove();
+    if (img[0]) {
+        img[0].remove();
+    }
     var imgUploader = document.getElementsByClassName("img-uploader");
     if (imgUploader[0].classList.contains("unshown")) {
         imgUploader[0].classList.remove("unshown");
