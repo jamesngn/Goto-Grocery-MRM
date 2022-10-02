@@ -4,6 +4,38 @@
 <body>
     <?php include '../includes/sidebar.inc';?>;
 
+    <?php 
+        include '../includes/dbAuthentication.inc';
+
+        $conn = OpenConnection();
+
+        //select the latest id
+        $sql = "SELECT id FROM product ORDER BY id DESC LIMIT 1";
+        $result = mysqli_query($conn,$sql);
+
+        if ($result) {
+            if (mysqli_num_rows($result) > 0) {
+                $array = mysqli_fetch_row($result);
+                $productID = $array[0];
+            } else {
+                $productID = 100000;
+            }
+        } else {
+            echo nl2br ("\r\n SQL error: " . mysqli_error($conn));
+        }
+
+        $sql = "SELECT * FROM category";
+        $result = mysqli_query($conn,$sql);
+
+        if ($result) {
+            if (mysqli_num_rows($result) > 0) {
+                $categories = mysqli_fetch_all($result);
+            }
+        } else {
+            echo nl2br ("\r\n SQL error: " . mysqli_error($conn));
+        }
+    ?>
+
     <section class="home-section">
         <div class="top-bar">
             <i class="fas fa-solid fa-bars"></i>
@@ -30,7 +62,7 @@
                     <div class="form-wrap">
                         <div class="form-item">
                             <label for="productID">Product ID</label>
-                            <input type="text" name="productID" id="productID">
+                            <input type="text" name="productID" id="productID" value="<?php echo $productID; ?>" readonly>
                         </div>
                         <div class="form-item">
                             <label for="displayName">Display Name</label>
@@ -43,23 +75,6 @@
                             <label for="price">Price</label>
                             <input type="number" name="price" id="price">
                         </div>
-
-                        <?php 
-                            include '../includes/dbAuthentication.inc';
-
-                            $conn = OpenConnection();
-
-                            $sql = "SELECT * FROM category";
-                            $result = mysqli_query($conn,$sql);
-
-                            if ($result) {
-                                if (mysqli_num_rows($result) > 0) {
-                                    $categories = mysqli_fetch_all($result);
-                                }
-                            } else {
-                                echo nl2br ("\r\n SQL error: " . mysqli_error($conn));
-                            }
-                        ?>
                         <div class="form-item">
                             <label for="category">Category</label>
                             <select name="category" id="category">
@@ -109,17 +124,6 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         
-        //select the latest id
-        $sql = "SELECT id FROM product ORDER BY id DESC LIMIT 1";
-        $result = mysqli_query($conn,$sql);
-
-        if ($result) {
-            if (mysqli_num_rows($result) > 0) {
-                $productID = mysqli_fetch_row($result);
-            }
-        } else {
-            echo nl2br ("\r\n SQL error: " . mysqli_error($conn));
-        }
 
         // the cleaned – "safe" – inputs ready to be added to the database
         $c_grocery_name = mysqli_real_escape_string($conn, cleanInput($_POST['displayName']));
@@ -163,7 +167,7 @@
         VALUES ('$c_grocery_name','$c_description','$c_price','$c_category_id')";
 
         if (mysqli_query($conn,$sql)) {
-            
+
         } else {
             echo nl2br ("\r\nSQL errror: " . mysqli_error($conn));
         }
