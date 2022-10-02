@@ -10,10 +10,19 @@ function displayImage(e) {
             var imgContainer = document.getElementById("img-container");
             imgContainer.innerHTML = '<img src="'+e.target.result+'" onclick = "triggerClick()" alt="">';
             var imgUploader = document.getElementsByClassName("img-uploader");
-            if (imgUploader[0].classList != "unshown") {
+            if (!imgUploader[0].classList.contains("unshown")) {
                 imgUploader[0].classList.add("unshown");
             }
         }
         reader.readAsDataURL(e.files[0]);
+    }
+}
+
+function ResetInput() {
+    var img = document.getElementById("img-container").getElementsByTagName("img");
+    img[0].remove();
+    var imgUploader = document.getElementsByClassName("img-uploader");
+    if (imgUploader[0].classList.contains("unshown")) {
+        imgUploader[0].classList.remove("unshown");
     }
 }
