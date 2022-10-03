@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 03, 2022 at 03:55 AM
+-- Generation Time: Oct 03, 2022 at 04:07 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -52,6 +52,20 @@ INSERT INTO `category` (`CategoryID`, `Name`) VALUES
 (236, 'Phone'),
 (237, 'Laptop'),
 (238, 'Audio');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `employee`
+--
+
+CREATE TABLE `employee` (
+  `employee_ID` int(10) NOT NULL,
+  `fname` varchar(50) NOT NULL,
+  `lname` varchar(50) NOT NULL,
+  `email` text NOT NULL,
+  `password` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -166,6 +180,21 @@ INSERT INTO `purchaseitem` (`purchaseID`, `lineNo`, `productID`, `quantity`) VAL
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `suppdelivery`
+--
+
+CREATE TABLE `suppdelivery` (
+  `supplydeliveryid` int(11) NOT NULL,
+  `prod_id` int(10) NOT NULL,
+  `supp_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `delivery_date` date NOT NULL,
+  `supplier_price` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `supplier`
 --
 
@@ -219,6 +248,12 @@ ALTER TABLE `category`
   ADD PRIMARY KEY (`CategoryID`);
 
 --
+-- Indexes for table `employee`
+--
+ALTER TABLE `employee`
+  ADD PRIMARY KEY (`employee_ID`);
+
+--
 -- Indexes for table `member`
 --
 ALTER TABLE `member`
@@ -244,6 +279,12 @@ ALTER TABLE `purchaseitem`
   ADD PRIMARY KEY (`lineNo`,`purchaseID`);
 
 --
+-- Indexes for table `suppdelivery`
+--
+ALTER TABLE `suppdelivery`
+  ADD PRIMARY KEY (`supplydeliveryid`);
+
+--
 -- Indexes for table `wishlist`
 --
 ALTER TABLE `wishlist`
@@ -260,6 +301,12 @@ ALTER TABLE `category`
   MODIFY `CategoryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=239;
 
 --
+-- AUTO_INCREMENT for table `employee`
+--
+ALTER TABLE `employee`
+  MODIFY `employee_ID` int(10) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `member`
 --
 ALTER TABLE `member`
@@ -270,6 +317,12 @@ ALTER TABLE `member`
 --
 ALTER TABLE `purchase`
   MODIFY `purchaseID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `suppdelivery`
+--
+ALTER TABLE `suppdelivery`
+  MODIFY `supplydeliveryid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `wishlist`
