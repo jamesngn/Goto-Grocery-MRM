@@ -60,7 +60,7 @@ $regValue = $_SESSION["memberID"];
             SET customer_firstname =?, 
             customer_lastname = ?, 
             customer_email = ? 
-            WHERE customer_id = ?";
+            WHERE customer_id = ?" and customer_passwor = password input;
        
               $stmt = $conn->prepare($sql);
               $stmt->bind_param("sssi", $c_fname,$c_lname,$c_email,$c_memberID);

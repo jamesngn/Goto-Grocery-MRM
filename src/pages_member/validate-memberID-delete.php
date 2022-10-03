@@ -58,7 +58,6 @@ session_start();
                     header ("location: delete-member.php");
             
                 }
-                
             }
             else
             {
