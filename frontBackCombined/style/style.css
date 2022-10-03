@@ -665,6 +665,9 @@
     color:white;
     font-size: 1.65vw;
 }
+#addProductForm .form-wrap button.edit {
+    background-color: #E9B003;
+}
 #addProductForm .form-wrap button[type="reset"] {
     background-color: #F55A4E;
 }

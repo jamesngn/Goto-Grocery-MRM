@@ -1,26 +1,28 @@
 <?php 
-    include '../includes/header.inc';
-?>
-<body>
-    <?php include '../includes/sidebar.inc';?>;
+    session_start();
+    if ($_SERVER["REQUEST_METHOD"] == "GET") { 
 
-    <?php 
+        $product = ["image"=>"../image/product/no-product-found.png"];
+        $hasProduct = false; 
+
+        $productID = $_GET["productID"];
+    } else {
+        $productID = $_POST["productID"];
+    }
+    if ($productID) {
         include '../includes/dbAuthentication.inc';
-
         $conn = OpenConnection();
 
-        //select the latest id
-        $sql = "SELECT id FROM product ORDER BY id DESC LIMIT 1";
+        $sql = "SELECT * FROM product WHERE id = '$productID'";
         $result = mysqli_query($conn,$sql);
 
         if ($result) {
             if (mysqli_num_rows($result) > 0) {
-                $array = mysqli_fetch_row($result);
-                $productID = $array[0]+1;
-            } else {
-                $productID = 100000;
+                $product = mysqli_fetch_assoc($result);
+                $hasProduct = true;             
             }
-        } else {
+        }
+        else {
             echo nl2br ("\r\n SQL error: " . mysqli_error($conn));
         }
 
@@ -34,16 +36,23 @@
         } else {
             echo nl2br ("\r\n SQL error: " . mysqli_error($conn));
         }
-    ?>
 
+    }
+?>
+
+<?php 
+    include '../includes/header.inc';
+?>
+<body>
+    <?php include '../includes/sidebar.inc';?>;
     <section class="home-section">
         <div class="top-bar">
             <i class="fas fa-solid fa-bars"></i>
-            <span class="title">ADD NEW PRODUCT</span>
+            <span class="title">EDIT PRODUCT</span>
         </div>
 
         <div class="form-container">
-            <form action="add-product.php" method="post"  enctype="multipart/form-data" id="addProductForm">
+            <form action="edit-product.php?productID=<?php echo $productID ;?>" method="post"  enctype="multipart/form-data" id="addProductForm">
 
                 <div class="backButton">
                     <a href="product-table.php">
@@ -51,43 +60,45 @@
                         <span>Product Page</span>
                     </a>
                 </div>
-
+                
+                <?php if ($productID): ?>
+                
                 <div class="product-img">
                     <div id="img-container">
-                        
+                        <img src="<?php echo $product['image'];?>" onclick="triggerClick()" alt="">
                     </div>
-                    <div class="img-uploader" >
+                    <div class="img-uploader unshown" >
                         <label class="imgUploadLabel" for="productImgToUpload">
                             <i class="fa-solid fa-circle-plus"></i>
-                            <input type="file" name="productImgToUpload" id="productImgToUpload" onchange="displayImage(this)" accept="image/*" required>
+                            <input type="file" name="productImgToUpload" id="productImgToUpload" onchange="displayImage(this)" accept="image/*">
                         </label>
                         <div class="title">Add Product Image</div>
                     </div>
                 </div>
-
+                
                 <div class="text-input-container">
                     <div class="form-wrap">
                         <div class="form-item">
                             <label for="productID">Product ID</label>
-                            <input type="text" name="productID" id="productID" value="<?php echo $productID; ?>" readonly>
+                            <input type="text" name="productID" id="productID" value="<?php echo $product['id'];?>" readonly>
                         </div>
                         <div class="form-item">
                             <label for="displayName">Display Name</label>
-                            <input type="text" name="displayName" id="displayName" required>
+                            <input type="text" name="displayName" id="displayName" value="<?php echo $product['name'];?>" required>
                         </div>
                     </div>
 
                     <div class="form-wrap">
                         <div class="form-item">
                             <label for="price">Price</label>
-                            <input type="number" name="price" id="price" min="0" required>
+                            <input type="number" name="price" id="price" min="0" value="<?php echo $product['retailPrice'];?>" required>
                         </div>
                         <div class="form-item">
                             <label for="category">Category</label>
                             <select name="category" id="category" required>
                                 <option value=""></option>
                                 <?php foreach($categories as $category): ?>
-                                    <option value="<?php echo $category[0];?>"><?php echo $category[1];?></option>
+                                    <option <?php if($product['category_ID'] == $category[0]){echo "selected";} ?> value="<?php echo $category[0];?>"><?php echo $category[1];?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
@@ -96,23 +107,30 @@
                     <div class="form-wrap">
                         <div class="form-item description">
                             <label for="description">Description</label>
-                            <input type="text" name="description" id="description">
+                            <input type="text" name="description" id="description" value="<?php echo $product['description'];?>" required>
                         </div>
                     </div>
-                    
+
                     <div class="form-wrap">
-                        <button class="add" type="submit" name="submit">Add</button>
+                        <button class="edit" type="submit" name="submit">Edit</button>
                         <button type="reset" onclick="ResetInput()">Reset</button>
                     </div>
                 </div>
+
+                
+                <?php else: ?>
+                
+                <div class="not-found-img-container">
+                    <img src="<?php echo $product['image'];?>" alt="no-product-found">
+                </div>
+
+                <?php endif; ?>
             </form>
-            
         </div>
 
     </section>
-
-    <script src="../js/product.js"></script>    
-    <script src="../js/sidebar.js"></script>       
+    <script src="../js/product.js"></script>  
+    <script src="../js/sidebar.js"></script>    
 </body>
 </html>
 
@@ -140,7 +158,7 @@
         
         //process the image
         $file = $_FILES['productImgToUpload'];
-
+        
         $fileName = $_FILES['productImgToUpload']['name'];
         $fileTmpName = $_FILES['productImgToUpload']['tmp_name'];
         $fileSize = $_FILES['productImgToUpload']['size'];
@@ -152,30 +170,39 @@
 
         $allowed = array('jpg','jpeg','png');
 
+        if (empty($fileName)) {
+            $fileDestination = $product['image'];
+        }
+
         if (in_array($fileActualExt,$allowed)) {
             if ($fileError === 0) {
                 if ($fileSize < 500000) {
+                    unlink($product['image']);
                     $fileNameNew = $productID.".".$fileActualExt;
                     $fileDestination = '../image/product/'.$fileNameNew;
                     move_uploaded_file($fileTmpName,$fileDestination);
                     // echo "Successfully uploaded the image!";
-                } else {
-                    // echo "Your file is too big!";
-                }
+                } 
             } else {
-                echo "There was an error uploading your file!";
+                // echo "There was an error uploading your file!";
             }
         } else {
-            echo "You cannot upload files of this type!";
+            // echo "You cannot upload files of this type!";
         }
 
         //Add to database
-        $sql = "INSERT INTO product (id,image,name,description,retailPrice,category_ID)
-        VALUES ('$productID','$fileDestination','$c_grocery_name','$c_description','$c_price','$c_category_id')";
+        $sql = "UPDATE product
+        SET 
+            image = '$fileDestination',
+            name = '$c_grocery_name', 
+            description = '$c_description', 
+            retailPrice = '$c_price', 
+            category_ID = '$c_category_id'
+        WHERE id = '$productID'";
 
         if (mysqli_query($conn,$sql)) {
-            echo '<script>window.location.href = "add-product-success.php"; </script>';
-
+            $_SESSION['productID'] = $productID;
+            echo '<script>window.location.href = "edit-product-success.php"; </script>';
         } else {
             echo nl2br ("\r\nSQL errror: " . mysqli_error($conn));
         }

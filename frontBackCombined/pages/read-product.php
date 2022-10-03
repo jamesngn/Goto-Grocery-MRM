@@ -18,6 +18,9 @@
                     $hasProduct = true;             
                 }
             }
+            else {
+                echo nl2br ("\r\n SQL error: " . mysqli_error($conn));
+            }
     
             if ($hasProduct) {
                 $currCategoryID = $product['category_ID'];

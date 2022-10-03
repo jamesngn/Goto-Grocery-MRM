@@ -32,6 +32,9 @@ function ResetInput() {
 function RedirectToAddProductPage() {
     window.location.href = "add-product.php";
 }
+function RedirectToEditProductPage(productID) {
+    window.location.href = "edit-product.php?productID="+productID;
+}
 function RedirectToProductPage() {
     window.location.href = "product-table.php";
 }
