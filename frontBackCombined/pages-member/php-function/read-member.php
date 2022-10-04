@@ -4,7 +4,7 @@ function readMember()
     if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
 
-        $memberID = $_GET["productID"];
+        $memberID = $_GET["memberID"];
         if ($memberID) {
             require 'dbAuthentication.php';
             $conn = OpenConnection();
@@ -15,15 +15,16 @@ function readMember()
             if ($result) {
                 if (mysqli_num_rows($result) > 0) {
 
-                    $product = mysqli_fetch_assoc($result);
-                    return $product;
+                    $member = mysqli_fetch_assoc($result);
+                    return $member;
                 }
             } else {
                 echo nl2br("\r\n SQL error: " . mysqli_error($conn));
             }
+            CloseConnection($conn);
         }
     }
-    CloseConnection($conn);
+   
 }
 function hasMember($memberExist)
 {
