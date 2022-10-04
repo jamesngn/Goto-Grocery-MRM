@@ -548,7 +548,7 @@
 }
 
 /* Add new product page */
-.form-container.productPage {
+.form-container {
     width: 45.27vw;
     height: 82.16vh;
     border: 5px solid #9796A9;
