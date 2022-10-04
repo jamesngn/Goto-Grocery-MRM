@@ -14,7 +14,7 @@ include '../includes/header.inc';
             <div id="addProductForm">
 
                 <div class="backButton">
-                    <a href="product-table.php">
+                    <a href="member.php">
                         <i class="fa-solid fa-delete-left"></i>
                         <span>Member Page</span>
                     </a>
@@ -22,35 +22,54 @@ include '../includes/header.inc';
 
                 <?php
                 require 'php-function/read-member.php';
-                $member = readMember();
-                $hasMember = hasMember($member);
-                if ($hasMember) :
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    $existmemberID = $_POST["existmemberID"];
+                    $member = readMember($existmemberID);
+
+
+                    $hasMember = hasMember($member);
+                    if ($hasMember) {
+                        $fname = $member['customer_firstname'];
+                        $lname = $member['customer_lastname'];
+                        $fullname = "${fname} ${lname}";
                 ?>
-                    <div class="text-input-container">
-                        <div class="form-wrap">
-                            <div class="form-item">
-                                <label for="memberID">Member ID</label>
-                                <input type="text" name="memberID" id="memberID" value="<?php echo $member['customer_id']; ?>" readonly>
+                        <div class="text-input-container">
+                            <div class="form-wrap">
+                                <div class="form-item">
+                                    <label for="cName">First Name</label>
+                                    <input type="text" name="cName" id="cName" value="<?php echo $fullname; ?>" readonly>
+                                </div>
                             </div>
-                            <div class="form-item">
-                                <label for="fName">First Name</label>
-                                <input type="text" name="fName" id="fName" value="<?php echo $member['customer_firstname']; ?>" readonly>
+                            <div class="form-wrap">
+                                <div class="form-item">
+                                    <label for="memberID">Member ID</label>
+                                    <input type="text" name="memberID" id="memberID" value="<?php echo $member['customer_id']; ?>" readonly>
+                                </div>
+
                             </div>
-                            <div class="form-item">
-                                <label for="lName">Last Name</label>
-                                <input type="text" name="lName" id="lName" value="<?php echo $member['customer_lastname']; ?>" readonly>
+                            <div class="form-wrap">
+                                <div class="form-item">
+                                    <label for="email">Email</label>
+                                    <input type="text" name="email" id="email" value="<?php echo $member['customer_email']; ?>" readonly>
+                                </div>
                             </div>
-                            <div class="form-item">
-                                <label for="email">Email</label>
-                                <input type="text" name="email" id="email" value="<?php echo $member['customer_email']; ?>" readonly>
+
+                            <div class="form-wrap">
+                                <div class="form-item">
+                                    <label for="created_date">Date Joined</label>
+                                    <input type="text" name="created_date" id="created_date" value="<?php echo $member['CREATED_AT']; ?>" readonly>
+                                </div>
                             </div>
                         </div>
 
 
-                    </div>
-                <?php endif; ?>
-
             </div>
+
+    <?php }
+                }
+    ?>
+
+        </div>
         </div>
 
     </section>
