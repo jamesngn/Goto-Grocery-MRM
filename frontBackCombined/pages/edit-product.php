@@ -1,5 +1,4 @@
 <?php 
-    session_start();
     if ($_SERVER["REQUEST_METHOD"] == "GET") { 
 
         $product = ["image"=>"../image/product/no-product-found.png"];
@@ -201,7 +200,7 @@
         WHERE id = '$productID'";
 
         if (mysqli_query($conn,$sql)) {
-            $_SESSION['productID'] = $productID;
+            echo "<script>sessionStorage.setItem('productID',".$productID.");</script>";
             echo '<script>window.location.href = "edit-product-success.php"; </script>';
         } else {
             echo nl2br ("\r\nSQL errror: " . mysqli_error($conn));
