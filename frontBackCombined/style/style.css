@@ -742,6 +742,14 @@
     color: white;
 }
 
+.tablePage .table-container table .delete-success-msg {
+    background-color: #5CB85C;
+    font-size: 1.5vw;
+    text-align: center;
+    color: white;
+    font-style: italic;
+    font-weight: 300;
+}
 /* Add new product page */
 .form-container {
     width: 45.27vw;
