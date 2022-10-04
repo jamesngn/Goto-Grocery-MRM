@@ -546,9 +546,199 @@
     padding-top: 1vh;
     border-top: 4px solid #E2E2E2;
 }
+/* Product table */
+.tablePage .top-section {
+    margin:1.20vh 4.90vw 0 2.36vw;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.tablePage .top-section .left-items {
+    display:flex;
+    width:27.7vw;
+    justify-content: space-between;
+    align-items: center;
+}
+.tablePage .top-section .left-items .pageTitle {
+    font-size: 2.2vw;
+    color: #019267;
+    font-weight: 800;
+}
+.tablePage .top-section .left-items input[type="text"] {
+    width: 15vw;
+    height:3.98vh;
+    border: 2.5px solid #EAEAEA;
+    border-radius: 10px;
+    padding-left: 3.07vw;
+}
+.tablePage .top-section .left-items input[type="text"]::placeholder {
+    color: #9A9A9A;
+    font-size: 1vw;
+}
+.tablePage .top-section .left-items button[type="submit"] {
+    position: relative;
+    top:0;
+    left: calc(-15vw + 0.5vw);
+    font-size: 1vw;
+    cursor: pointer;
+    border:none;
+    background-color: Transparent;
+}
+.tablePage .top-section .addProductButton {
+    width: 12.14vw;
+    height: 5.09vh;
+    background-color: transparent;
+    font-size:1.4vw;
+    border:2px solid #00C897;
+    border-radius: 11px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.tablePage .top-section .addProductButton a {
+    text-decoration: none;
+    color: #00C897;
+    font-weight: 700;
+}
+.tablePage .top-section .addProductButton:hover{
+    transition: all 0.2s ease-in-out;
+    background-color: #00C897;
+}
+.tablePage .top-section .addProductButton a:hover{
+    color: white;
+}
+
+.tablePage .table-container {
+    width: 95%;
+    height: 68.9vh;
+    margin: 2vh auto;
+    /* background-color: gray; */
+}
+.tablePage .table-container table {
+    width: 100%;
+    text-align: left;
+    font-size: 1.1vw;
+    border-collapse: collapse;
+}
+.tablePage .table-container table .checkBox {
+    text-align: center;
+    width:7vw;
+}
+.tablePage .table-container table .checkBox input[type="checkbox"] {
+    accent-color: #1C6758;
+}
+.tablePage .table-container table .imageHeading {
+    visibility: hidden;
+    width:7vw;
+}
+.tablePage .table-container table .nameHeading {
+    width:18vw;
+}
+.tablePage .table-container table .actionHeading{
+    text-align: center;
+}
+.tablePage .table-container table thead {
+    height:6vh;
+}
+.tablePage .table-container table tbody tr {
+    height: 7.87vh;
+    border-bottom: 2px solid #E9E9E9;
+    border-top: 2px solid #E9E9E9;
+}
+
+.tablePage .table-container table img {
+    height: 6.5vh;
+    position:relative;
+    top : calc((7.87vh - 6.9vh)/2);
+    border: 2px solid #C0C0C0;
+    border-radius: 10px;
+}
+
+.tablePage .table-container table .actions {    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 7.87vh;
+}
+.tablePage .table-container table form {
+    display:inline-block;
+}
+.tablePage .table-container table button {
+    border: none;
+    background-color: transparent;
+}
+.tablePage .table-container table i {
+    font-size: 1.3vw;
+    margin: 0 0.5vw;
+    cursor: pointer;
+}
+.tablePage .table-container table .fa-eye {
+    color: #435D7D;
+}
+.tablePage .table-container table i.fa-pen {
+    color: #FEC928;
+}
+.tablePage .table-container table i.fa-trash{
+    color: #F55A4E;
+}
+.tablePage .table-container table i:hover{
+    scale: 1.15; 
+}
+
+.tablePage .table-container table .actions.delete-message {
+    width: 75%;
+    margin: 0 auto;
+    background-color: #435D7D;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.tablePage .table-container table .actions.delete-message .question {
+    color: white;
+    font-size:1.4vw;
+    font-weight: 700;
+}
+.tablePage .table-container table .actions.delete-message .choice {
+    display:flex;
+    width: 100%;
+    height: 50%;
+    justify-content: space-between;
+}
+.tablePage .table-container table .actions.delete-message .choice .yes-choice,
+.tablePage .table-container table .actions.delete-message .choice .no-choice {
+    width:50%;
+    background-color: #5CB85C;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.tablePage .table-container table .actions.delete-message .choice .yes-choice form {
+    width: 100%;
+    text-align: center;
+}
+.tablePage .table-container table .actions.delete-message .choice .yes-choice form button {
+    width: 100%;
+}
+.tablePage .table-container table .actions.delete-message .choice .yes-choice button:hover,
+.tablePage .table-container table .actions.delete-message .choice .no-choice:hover {
+    border: 2px solid black;
+    cursor: pointer;
+}
+.tablePage .table-container table .actions.delete-message .choice .yes-choice:hover i,
+.tablePage .table-container table .actions.delete-message .choice .no-choice:hover i{
+    scale:1.15;
+}
+.tablePage .table-container table .actions.delete-message .choice .no-choice {
+    background-color: #F55A4E;
+}
+.tablePage .table-container table .actions.delete-message .choice i {
+    font-size: 1.7vw;
+    color: white;
+}
 
 /* Add new product page */
-.form-container.productPage {
+.form-container {
     width: 45.27vw;
     height: 82.16vh;
     border: 5px solid #9796A9;
@@ -675,101 +865,7 @@
     background-color: #F55A4E;
 }
 
-/* Product table */
-.tablePage .top-section {
-    margin:1.20vh 4.90vw 0 2.36vw;
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.tablePage .top-section .left-items {
-    display:flex;
-    width:27.7vw;
-    justify-content: space-between;
-    align-items: center;
-}
-.tablePage .top-section .left-items .pageTitle {
-    font-size: 2.2vw;
-    color: #019267;
-    font-weight: 800;
-}
-.tablePage .top-section .left-items input[type="text"] {
-    width: 15vw;
-    height:3.98vh;
-    border: 2.5px solid #EAEAEA;
-    border-radius: 10px;
-    padding-left: 3.07vw;
-}
-.tablePage .top-section .left-items input[type="text"]::placeholder {
-    color: #9A9A9A;
-    font-size: 1vw;
-}
-.tablePage .top-section .left-items button[type="submit"] {
-    position: relative;
-    top:0;
-    left: calc(-15vw + 0.5vw);
-    font-size: 1vw;
-    cursor: pointer;
-    border:none;
-    background-color: Transparent;
-}
-.tablePage .top-section .addProductButton {
-    width: 12.14vw;
-    height: 5.09vh;
-    background-color: transparent;
-    font-size:1.5vw;
-    border:2px solid #00C897;
-    border-radius: 11px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.tablePage .top-section .addProductButton a {
-    text-decoration: none;
-    color: #00C897;
-}
-.tablePage .top-section .addProductButton:hover{
-    transition: all 0.2s ease-in-out;
-    background-color: #00C897;
-}
-.tablePage .top-section .addProductButton a:hover{
-    color: white;
-}
 
-.tablePage .table-container {
-    width: 79vw;
-    height: 68.9vh;
-    margin: 2vh auto;
-    /* background-color: gray; */
-}
-.tablePage .table-container table {
-    width: 100%;
-    text-align: left;
-    font-size: 1.1vw;
-    border-collapse: collapse;
-}
-.tablePage .table-container table .checkBox {
-    text-align: center;
-}
-.tablePage .table-container table .checkBox input[type="checkbox"] {
-    width:1.5vw;
-}
-.tablePage .table-container table .imageHeading {
-    visibility: hidden;
-    width:5.2vw;
-}
-.tablePage .table-container table .nameHeading {
-    width:18vw;
-}
-.tablePage .table-container table thead {
-    height:6vh;
-}
-.tablePage .table-container table tbody tr {
-    height: 7.87vh;
-    border-bottom: 2px solid #E9E9E9;
-    border-top: 2px solid #E9E9E9;
-}
 /* Add Product Success */
 .reponse-container {
     background-color: #204051;
