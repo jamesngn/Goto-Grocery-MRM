@@ -4,7 +4,7 @@
         $product = ["image"=>"../image/product/no-product-found.png"];
         $hasProduct = false; 
 
-        $productID = 1;
+        $productID = $_GET["productID"];
         if ($productID) {
             include '../includes/dbAuthentication.inc';
             $conn = OpenConnection();
