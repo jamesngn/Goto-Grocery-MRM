@@ -42,7 +42,7 @@
             <span class="title">ADD NEW PRODUCT</span>
         </div>
 
-        <div class="form-container">
+        <div class="form-container productPage">
             <form action="add-product.php" method="post"  enctype="multipart/form-data" id="addProductForm">
 
                 <div class="backButton">
