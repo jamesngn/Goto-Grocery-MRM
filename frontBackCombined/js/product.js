@@ -47,6 +47,50 @@ function highlightProduct(checkbox) {
         viewIcon.style.color = "#435D7D";
     }
 }
+function displayDeleteMessage(deleteButton) {
+    var parentElement = deleteButton.parentElement;
+    var child = parentElement.lastElementChild;
+    while (child) {
+        parentElement.removeChild(child);
+        child = parentElement.lastElementChild;
+    }
+    parentElement.classList.add("delete-message");
+    parentElement.innerHTML = 
+    "<div class='question'>DELETE ? </div>"+
+    "<div class='choice'>"+
+        "<div class='yes-choice'>"+
+            "<form action='delete-product.php' method='get'>"+
+                "<input type='hidden' name='productID' value='100000'>"+
+                "<button type='submit'>"+
+                    "<i class='fa-solid fa-check'></i>"+
+                "</button>"+
+            "</form>"+
+        "</div>"+
+        "<div class='no-choice'onclick='displayActionIcons(this)'>"+
+            "<i class='fa-solid fa-xmark'></i>"+
+        "</div>"+
+    "</div>";
+}
+function displayActionIcons(deleteButton) {
+    console.log("hello");
+    var parentElement = deleteButton.parentElement.parentElement;
+    var child = parentElement.lastElementChild;
+    while (child) {
+        parentElement.removeChild(child);
+        child = parentElement.lastElementChild;
+    }
+    parentElement.classList.remove("delete-message");
+    parentElement.innerHTML = 
+    "<form action='read-product.php' method='get'>"+
+        "<input type='hidden' name='productID' value='100000'>"+
+        "<button type='submit'><i class='fa-solid fa-eye'></i></button>"+
+    "</form>"+
+    "<form action='edit-product.php' method='get'>"+
+        "<input type='hidden' name='productID' value='100000'>"+
+        "<button type='submit'><i class='fa-solid fa-pen'></i></button>"+
+    "</form>"+
+    "<i class='fa-solid fa-trash' onclick='displayDeleteMessage(this)' name = 'productID' value = '100000'></i>";
+}
 function RedirectToAddProductPage() {
     window.location.href = "add-product.php";
 }
