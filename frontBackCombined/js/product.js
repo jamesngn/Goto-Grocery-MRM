@@ -59,9 +59,7 @@ function displayDeleteMessage(deleteButton) {
     "<div class='question'>DELETE ? </div>"+
     "<div class='choice'>"+
         "<div class='yes-choice'>"+
-            "<form action='delete-product.php' method='get'>"+
-                "<input type='hidden' name='productID' value='100000'>"+
-                "<button type='submit'>"+
+                "<button type='submit' onclick='deleteAjax(this)' value='"+deleteButton.getAttribute("value")+"'>"+
                     "<i class='fa-solid fa-check'></i>"+
                 "</button>"+
             "</form>"+
@@ -71,6 +69,19 @@ function displayDeleteMessage(deleteButton) {
         "</div>"+
     "</div>";
 }
+
+function deleteAjax(deleteButton) {
+    var deletedID = deleteButton.getAttribute("value");
+    $.ajax({
+        type:'post',
+        url: 'delete-product.php',
+        data: {delete_id:deletedID},
+        success:function(data){
+            $('#product'+deletedID).hide();
+        }
+    })
+}
+
 function displayActionIcons(deleteButton) {
     console.log("hello");
     var parentElement = deleteButton.parentElement.parentElement;
