@@ -50,7 +50,7 @@
             <span class="title">READ PRODUCT</span>
         </div>
 
-        <div class="form-container">
+        <div class="form-container productPage">
             <div id="addProductForm">
 
                 <div class="backButton">
