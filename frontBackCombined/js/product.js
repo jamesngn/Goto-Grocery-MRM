@@ -28,7 +28,25 @@ function ResetInput() {
         imgUploader[0].classList.remove("unshown");
     }
 }
-
+function highlightProduct(checkbox) {
+    var parentElement = checkbox.parentElement.parentElement;
+    var data = parentElement.getElementsByTagName("td");
+    var viewIcon = data[data.length - 1].getElementsByClassName("fa-eye")[0];
+    if (checkbox.checked) {
+        parentElement.style.backgroundColor = "#28B5B5";
+        for(var i = 0; i < data.length; i++) {
+            data[i].style.color="#F2FFE9";
+        }
+        viewIcon.style.color = "#C2F3FC";
+        console.log(viewIcon);
+    } else {
+        parentElement.style.backgroundColor = "white";
+        for(var i = 0; i < data.length; i++) {
+            data[i].style.color="black";
+        }
+        viewIcon.style.color = "#435D7D";
+    }
+}
 function RedirectToAddProductPage() {
     window.location.href = "add-product.php";
 }
