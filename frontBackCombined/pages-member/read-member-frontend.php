@@ -14,7 +14,7 @@ include '../includes/header.inc';
             <div id="addProductForm">
 
                 <div class="backButton">
-                    <a href="product-table.php">
+                    <a href="member.php">
                         <i class="fa-solid fa-delete-left"></i>
                         <span>Member Page</span>
                     </a>
@@ -51,6 +51,13 @@ include '../includes/header.inc';
                                 <div class="form-item">
                                     <label for="email">Email</label>
                                     <input type="text" name="email" id="email" value="<?php echo $member['customer_email']; ?>" readonly>
+                                </div>
+                            </div>
+
+                            <div class="form-wrap">
+                                <div class="form-item">
+                                    <label for="created_date">Date Joined</label>
+                                    <input type="text" name="created_date" id="created_date" value="<?php echo $member['CREATED_AT']; ?>" readonly>
                                 </div>
                             </div>
                         </div>

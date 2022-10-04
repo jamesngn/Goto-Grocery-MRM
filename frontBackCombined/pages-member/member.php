@@ -49,7 +49,7 @@ include 'php-function/read-member.php'
                                          echo '"/>
                                      </p>
                                      <p>
-                                     <input type="submit" value="Submit">
+                                     <button type="submit"><i class="fa-solid fa-eye"></i>
                                      </p>
                                  </fieldset>
                              </form></td> ';
