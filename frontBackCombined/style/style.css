@@ -548,7 +548,7 @@
 }
 
 /* Add new product page */
-.form-container {
+.form-container.productPage {
     width: 45.27vw;
     height: 82.16vh;
     border: 5px solid #9796A9;
@@ -737,6 +737,39 @@
     color: white;
 }
 
+.tablePage .table-container {
+    width: 79vw;
+    height: 68.9vh;
+    margin: 2vh auto;
+    /* background-color: gray; */
+}
+.tablePage .table-container table {
+    width: 100%;
+    text-align: left;
+    font-size: 1.1vw;
+    border-collapse: collapse;
+}
+.tablePage .table-container table .checkBox {
+    text-align: center;
+}
+.tablePage .table-container table .checkBox input[type="checkbox"] {
+    width:1.5vw;
+}
+.tablePage .table-container table .imageHeading {
+    visibility: hidden;
+    width:5.2vw;
+}
+.tablePage .table-container table .nameHeading {
+    width:18vw;
+}
+.tablePage .table-container table thead {
+    height:6vh;
+}
+.tablePage .table-container table tbody tr {
+    height: 7.87vh;
+    border-bottom: 2px solid #E9E9E9;
+    border-top: 2px solid #E9E9E9;
+}
 /* Add Product Success */
 .reponse-container {
     background-color: #204051;
