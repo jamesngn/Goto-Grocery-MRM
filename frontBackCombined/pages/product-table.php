@@ -1,6 +1,7 @@
 <?php 
     include '../includes/header.inc';
 ?>
+
 <body>
     <?php include '../includes/sidebar.inc';?>;
     <section class="home-section tablePage">
@@ -33,64 +34,55 @@
                         <th class="imageHeading">Image</th>
                         <th>ID</th>
                         <th class="nameHeading">Name</th>
-                        <th>Price</th>
+                        <th>Retail Price</th>
                         <th>Category</th>
                         <th class="actionHeading">Actions</th>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="checkBox"><input type="checkbox" name="100000" id="10000" onclick="highlightProduct(this)"></td>
-                        <td><img src="../image/product/100000.png" alt=""></td>
-                        <td>100000</td>
-                        <td>iPhone 14 Pro Max</td>
-                        <td>$2000.00</td>
-                        <td>Phone</td>
-                        <td class="actions">
-                            <form action="read-product.php" method="get">
-                                <input type="hidden" name="productID" value="100000">
-                                <button type="submit"><i class="fa-solid fa-eye"></i></button>
-                            </form>
-                            <form action="edit-product.php" method="get">
-                                <input type="hidden" name="productID" value="100000">
-                                <button type="submit"><i class="fa-solid fa-pen"></i></button>
-                            </form>
-                            <i class="fa-solid fa-trash" onclick="displayDeleteMessage()"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="checkBox"><input type="checkbox" name="100000" id="10000" onclick="highlightProduct(this)"></td>
-                        <td><img src="../image/product/100000.png" alt=""></td>
-                        <td>100000</td>
-                        <td>iPhone 14 Pro Max</td>
-                        <td>$2000.00</td>
-                        <td>Phone</td>
-                        <td class="actions delete-message">
-                            <div class="question">
-                                DELETE ?
-                            </div>
-                            <div class="choice">
-                                <div class="yes-choice">
-                                    <form action="delete-product.php" method="get">
-                                        <input type="hidden" name="productID" value="100000">
-                                        <button type="submit">
-                                            <i class="fa-solid fa-check"></i>
-                                        </button>
+                <?php 
+                    include '../includes/dbAuthentication.inc';
+                    $conn = OpenConnection();
+
+                    $sql = "SELECT product.id as id, product.image as image, product.name as name, product.retailPrice as retailPrice, category.Name as category
+                            FROM product
+                            LEFT JOIN category
+                            ON product.category_ID = category.CategoryID
+                            ";
+                    $result = mysqli_query($conn,$sql);
+
+                    if ($result) {
+                        if (mysqli_num_rows($result) > 0) {
+                            while($row = $result -> fetch_assoc()) { ?>
+                            
+                            <tr>
+                                <td class="checkBox"><input type="checkbox" name="<?php echo $row["id"];?>" onclick="highlightProduct(this)"></td>
+                                <td><img src="<?php echo $row["image"];?>" alt=""></td>
+                                <td><?php echo $row["id"];?></td>
+                                <td class="nameData"><?php echo $row["name"];?></td>
+                                <td>$<?php echo number_format($row["retailPrice"],2);?></td>
+                                <td><?php echo $row["category"];?></td>
+                                <td class="actions">
+                                    <form action="read-product.php" method="get">
+                                        <input type="hidden" name="productID" value="<?php echo $row["id"];?>">
+                                        <button type="submit"><i class="fa-solid fa-eye"></i></button>
                                     </form>
-                                </div>
-                                <div class="no-choice">
-                                    <i class="fa-solid fa-xmark"></i>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    
-         
-                    
+                                    <form action="edit-product.php" method="get">
+                                        <input type="hidden" name="productID" value="<?php echo $row["id"];?>">
+                                        <button type="submit"><i class="fa-solid fa-pen"></i></button>
+                                    </form>
+                                    <i class='fa-solid fa-trash' onclick='displayDeleteMessage(this)' name = 'productID' value = '<?php echo $row["id"];?>'></i>
+                                </td>
+                            </tr>
+
+                <?php
+                            }
+                        }
+                    }
+                    CloseConnection($conn);
+                ?>
                 </tbody>
             </table>
         </div>
-
-
 
     </section>
 
