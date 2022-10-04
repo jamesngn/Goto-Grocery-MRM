@@ -1,7 +1,4 @@
-<?php
-    session_start();
-    $product_id = $_SESSION['productID'];
-    
+<?php    
     include '../includes/header.inc';
 ?>
 <body>
@@ -23,7 +20,7 @@
                     </div>
                 </div>
             </div>
-            <button id="addMoreButton" class="add" onclick="RedirectToEditProductPage(<?php echo $product_id; session_unset(); session_destroy(); ?>)">
+            <button id="addMoreButton" class="add" onclick="RedirectToEditProductPage(sessionStorage.getItem('productID'))">
                 Edit Again
             </button>
             <button id = "closeButton" class="close" onclick="RedirectToProductPage()">
