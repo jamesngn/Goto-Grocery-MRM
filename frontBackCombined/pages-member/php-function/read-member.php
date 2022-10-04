@@ -1,30 +1,24 @@
 <?php
-function readMember()
+function readMember($memberID)
 {
-    if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    if ($memberID) {
+        require 'dbAuthentication.php';
+        $conn = OpenConnection();
 
+        $sql = "SELECT * FROM member WHERE customer_id = '$memberID'";
+        $result = mysqli_query($conn, $sql);
 
-        $memberID = $_GET["memberID"];
-        if ($memberID) {
-            require 'dbAuthentication.php';
-            $conn = OpenConnection();
+        if ($result) {
+            if (mysqli_num_rows($result) > 0) {
 
-            $sql = "SELECT * FROM member WHERE customer_id = '$memberID'";
-            $result = mysqli_query($conn, $sql);
-
-            if ($result) {
-                if (mysqli_num_rows($result) > 0) {
-
-                    $member = mysqli_fetch_assoc($result);
-                    return $member;
-                }
-            } else {
-                echo nl2br("\r\n SQL error: " . mysqli_error($conn));
+                $member = mysqli_fetch_assoc($result);
+                return $member;
             }
-            CloseConnection($conn);
+        } else {
+            echo nl2br("\r\n SQL error: " . mysqli_error($conn));
         }
+        CloseConnection($conn);
     }
-   
 }
 function hasMember($memberExist)
 {

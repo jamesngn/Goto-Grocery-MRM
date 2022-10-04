@@ -41,10 +41,10 @@ include 'php-function/read-member.php'
                                  echo "<td>$rows[$column]</td>";
                                  
                               }
-                              echo '<td><form method="post" action="">
+                              echo '<td><form method="post" action="read-member-frontend.php">
                                  <fieldset>
                                      <p>  
-                                         <input type="hidden" name="customer_id" id="customer_id" '; 
+                                         <input type="hidden" name="existmemberID" id="existmemberID" '; 
                                          echo 'value="'.$rows["customer_id"];
                                          echo '"/>
                                      </p>

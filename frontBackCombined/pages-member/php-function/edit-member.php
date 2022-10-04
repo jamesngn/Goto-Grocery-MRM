@@ -44,7 +44,7 @@ $regValue = $_SESSION["memberID"];
             return $data;
         }
 
-        include '../includes/dbAuthentication.inc';
+        require 'dbAuthentication.php';
         // put all the stuff to be done following form submission in here
        if ($_SERVER["REQUEST_METHOD"] == "POST")
         {
