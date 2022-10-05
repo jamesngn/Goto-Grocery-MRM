@@ -32,7 +32,9 @@ $regValue = $_SESSION["memberID"];
     </form>
 
     <?php
-    $c_memberID = $_SESSION["memberID"];
+    function editMember()
+    {
+        $c_memberID = $_SESSION["memberID"];
   
         function cleanInput($data) 
         {
@@ -86,6 +88,8 @@ $regValue = $_SESSION["memberID"];
             CloseConnection($conn);
         }
     ?>
+    }
+ 
 
     <?php include '../includes/footer.inc'; ?>
     <?php include '../includes/bootstrapcore.inc'; ?>
