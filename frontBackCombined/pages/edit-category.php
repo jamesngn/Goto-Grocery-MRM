@@ -1,9 +1,6 @@
 <?php 
     session_start();
     if ($_SERVER["REQUEST_METHOD"] == "GET") { 
-
-        
-
         $categoryID = $_GET["categoryID"];
     } else {
         $categoryID = $_POST["categoryID"];
@@ -11,7 +8,7 @@
    
    echo $categoryID;
    
-    if ($categoryID) {
+   if ($categoryID) {
         include '../includes/dbAuthentication.inc';
         $conn = OpenConnection();
 
@@ -35,6 +32,7 @@
 
 <?php 
     include '../includes/header.inc';
+    
 ?>
 <body>
     <?php include '../includes/sidebar.inc';?>;
@@ -45,8 +43,7 @@
         </div>
 
         <div class="form-container">
-            <form action="edit-category.php" method="get"  id="addProductForm">
-
+            <form action="edit-category.php?categoryID=<?php echo $categoryID;?>" method="post"  id="addProductForm">
                 <div class="backButton">
                     <a href="category-table.php">
                         <i class="fa-solid fa-delete-left"></i>
@@ -54,14 +51,14 @@
                     </a>
                 </div>
                 
-                
+
                 
                 <div class="text-input-container">
                     <div>
                     <div class="form-wrap">
                         <div class="form-item">
                             <label for="CategoryID">Category ID</label>
-                            <input type="text" name="CategoryID" id="CategoryID" value="<?php echo $category['CategoryID'];?>" readonly>
+                            <input type="text" name="categoryID" id="CategoryID" value="<?php echo $category['CategoryID'];?>" readonly>
                         </div>    
                     </div>
 
@@ -111,19 +108,14 @@
         // the cleaned – "safe" – inputs ready to be added to the database
         $c_category_name = mysqli_real_escape_string($conn, cleanInput($_POST['Name']));
        
-        
-        
-
+    
         //Add to database
         $sql = "UPDATE category
-        SET 
-            
-            name = '$c_category_name'
-            
+        SET name = '$c_category_name'
         WHERE CategoryID = '$categoryID'";
 
         if (mysqli_query($conn,$sql)) {
-            $_SESSION['CategoryID'] = $categoryID;
+            $_SESSION['categoryID'] = $categoryID;
             echo "<script>sessionStorage.setItem('categoryID',".$categoryID.");</script>";
             echo '<script>window.location.href = "edit-category-success.php"; </script>';
         } else {

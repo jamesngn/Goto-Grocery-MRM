@@ -1,6 +1,6 @@
 <?php
     session_start();
-    $product_id = $_SESSION['productID'];
+    $category_id = $_SESSION['categoryID'];
     
     include '../includes/header.inc';
 ?>
@@ -33,7 +33,7 @@
 
     </section>
 
-<script src="../js/product.js"></script>       
+<script src="../js/category.js"></script>       
 <script src="../js/sidebar.js"></script>    
 </body>
 </html>
