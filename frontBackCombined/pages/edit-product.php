@@ -106,7 +106,7 @@
                     <div class="form-wrap">
                         <div class="form-item description">
                             <label for="description">Description</label>
-                            <input type="text" name="description" id="description" value="<?php echo $product['description'];?>" required>
+                            <input type="text" name="description" id="description" value="<?php echo $product['description'];?>">
                         </div>
                     </div>
 
