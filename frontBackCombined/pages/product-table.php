@@ -43,10 +43,22 @@
                     include '../includes/dbAuthentication.inc';
                     $conn = OpenConnection();
 
+                    $num_per_page = 3;
+
+                    if (isset($_GET["page"])) {
+                        $page = $_GET["page"];
+                    }
+                    else {
+                        $page = 1;
+                    }
+
+                    $start_from = ($page - 1) * $num_per_page;
+
                     $sql = "SELECT product.id as id, product.image as image, product.name as name, product.retailPrice as retailPrice, category.Name as category
                             FROM product
                             LEFT JOIN category
                             ON product.category_ID = category.CategoryID
+                            LIMIT $start_from,$num_per_page
                             ";
                     $result = mysqli_query($conn,$sql);
 
@@ -54,7 +66,7 @@
                         if (mysqli_num_rows($result) > 0) {
                             while($row = $result -> fetch_assoc()) { ?>
                             
-                            <tr id="product<?php echo $row["id"];?>">
+                            <tr id="product<?php echo $row["id"];?>" value="<?php echo $page; ?>">
                                 <td class="checkBox"><input type="checkbox" name="<?php echo $row["id"];?>" onclick="highlightProduct(this)"></td>
                                 <td><img src="<?php echo $row["image"];?>" alt=""></td>
                                 <td><?php echo $row["id"];?></td>
@@ -78,11 +90,36 @@
                             }
                         }
                     }
-                    CloseConnection($conn);
+
+                    
                 ?>
                 
                 </tbody>
             </table>
+        </div>
+
+        <div class="pageNumbers-container">
+             
+            
+            <?php
+                $sql = "SELECT * FROM product";
+                $result = mysqli_query($conn, $sql);
+                $total_products = mysqli_num_rows($result);
+                $total_pages = ceil($total_products/$num_per_page);
+                
+                echo '<button class="previous-btn" onClick="goToPage('.($page-1).','.$total_pages.')">Previous</button>';
+
+                for ($i = 1; $i <= $total_pages; $i++) {
+                    if ($page == $i) {
+                        echo '<button class="pageNumber active">'.$i.'</button>';
+                    } else {
+                        echo '<button class="pageNumber" onClick="goToPage('.$i.','.$total_pages.')">'.$i.'</button>';
+                    }
+                }
+
+                echo '<button class="next-btn" onClick="goToPage('.($page+1).','.$total_pages.')">Next</button>';
+                CloseConnection($conn);
+            ?>
         </div>
 
     </section>
