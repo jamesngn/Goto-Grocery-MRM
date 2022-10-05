@@ -133,14 +133,20 @@ function deleteAjax(deleteButton) {
             parentElement.innerHTML = "<td colspan = '7' class='delete-success-msg'>Succeed to delete the product from the database</td>";
 
             setTimeout(removeMessage,2000,parentElement);
-           
+            setTimeout("window.location.reload();",500);
         }
     })
 }
 function removeMessage(parentElement) {
     parentElement.remove();
+    
 }
 
+function goToPage(number, maxNumber) {
+    if (maxNumber >= number && number > 0) {
+        window.location.href = "product-table.php?page="+number;
+    }
+}
 
 function RedirectToAddProductPage() {
     window.location.href = "add-product.php";
