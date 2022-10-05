@@ -54,7 +54,7 @@
                         if (mysqli_num_rows($result) > 0) {
                             while($row = $result -> fetch_assoc()) { ?>
                             
-                            <tr>
+                            <tr id="product<?php echo $row["id"];?>">
                                 <td class="checkBox"><input type="checkbox" name="<?php echo $row["id"];?>" onclick="highlightProduct(this)"></td>
                                 <td><img src="<?php echo $row["image"];?>" alt=""></td>
                                 <td><?php echo $row["id"];?></td>
@@ -80,6 +80,7 @@
                     }
                     CloseConnection($conn);
                 ?>
+                
                 </tbody>
             </table>
         </div>
@@ -88,5 +89,6 @@
 
     <script src="../js/product.js"></script>       
     <script src="../js/sidebar.js"></script>    
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
 </body>
 </html>
