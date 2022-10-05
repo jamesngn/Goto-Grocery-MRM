@@ -77,9 +77,22 @@ function deleteAjax(deleteButton) {
         url: 'delete-product.php',
         data: {delete_id:deletedID},
         success:function(data){
-            $('#product'+deletedID).hide();
+            var parentElement = document.getElementById("product"+deletedID);
+            console.log(parentElement);
+            var child = parentElement.lastElementChild;
+            while (child) {
+                parentElement.removeChild(child);
+                child = parentElement.lastElementChild;
+            }
+            parentElement.innerHTML = "<td colspan = '7' class='delete-success-msg'>Succeed to delete the product from the database</td>";
+
+            setTimeout(removeMessage,2000,parentElement);
+           
         }
     })
+}
+function removeMessage(parentElement) {
+    parentElement.remove();
 }
 
 function displayActionIcons(deleteButton) {
