@@ -751,6 +751,36 @@
     font-style: italic;
     font-weight: 300;
 }
+
+.tablePage .pageNumbers-container {
+    height: 13.36vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.tablePage .pageNumbers-container button {
+    margin: 0 0.5vw;
+    border:none;
+    background-color: transparent;
+    font-size: 1.3vw;
+    color: #595959;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+.tablePage .pageNumbers-container .pageNumber {
+    width:2.6vw;
+    height: 2.6vw;
+}
+.tablePage .pageNumbers-container .pageNumber.active,
+.tablePage .pageNumbers-container .pageNumber:hover {
+    background-color: #2AB5B5;
+    color: white;
+    border-radius: 5px;
+}
+.tablePage .pageNumbers-container .previous-btn:hover,
+.tablePage .pageNumbers-container .next-btn:hover {
+    text-decoration: underline;
+}
 /* Add new product page */
 .form-container {
     width: 45.27vw;
