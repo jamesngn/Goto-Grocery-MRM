@@ -47,7 +47,53 @@ function highlightProduct(checkbox) {
         viewIcon.style.color = "#435D7D";
     }
 }
-function displayDeleteMessage(deleteButton) {
+function highlightAll(allCheckBox) {
+    var rowElements = document.getElementsByTagName("tr");
+    for(var i = 1; i < rowElements.length; i++) {
+        var checkBox = rowElements[i].getElementsByTagName("input")[0];
+
+        console.log(allCheckBox.checked);
+        console.log(checkBox.checked);
+
+        if (checkBox.checked == false && allCheckBox.checked == true) {
+            checkBox.checked = true;
+            highlightProduct(checkBox);
+        }
+        else if (checkBox.checked) {
+            if (!allCheckBox.checked) {
+                checkBox.checked = false;
+                highlightProduct(checkBox);
+            } 
+            else {
+            }
+        }
+
+        
+    }
+}
+
+function displayActionIcons(deleteButton) {
+    console.log("hello");
+    var parentElement = deleteButton.parentElement.parentElement;
+    var child = parentElement.lastElementChild;
+    while (child) {
+        parentElement.removeChild(child);
+        child = parentElement.lastElementChild;
+    }
+    parentElement.classList.remove("delete-message");
+    parentElement.innerHTML = 
+    "<form action='read-product.php' method='get'>"+
+        "<input type='hidden' name='productID' value='100000'>"+
+        "<button type='submit'><i class='fa-solid fa-eye'></i></button>"+
+    "</form>"+
+    "<form action='edit-product.php' method='get'>"+
+        "<input type='hidden' name='productID' value='100000'>"+
+        "<button type='submit'><i class='fa-solid fa-pen'></i></button>"+
+    "</form>"+
+    "<i class='fa-solid fa-trash' onclick='displayDeleteQuestion(this)' name = 'productID' value = '100000'></i>";
+}
+
+function displayDeleteQuestion(deleteButton) {
     var parentElement = deleteButton.parentElement;
     var child = parentElement.lastElementChild;
     while (child) {
@@ -95,26 +141,7 @@ function removeMessage(parentElement) {
     parentElement.remove();
 }
 
-function displayActionIcons(deleteButton) {
-    console.log("hello");
-    var parentElement = deleteButton.parentElement.parentElement;
-    var child = parentElement.lastElementChild;
-    while (child) {
-        parentElement.removeChild(child);
-        child = parentElement.lastElementChild;
-    }
-    parentElement.classList.remove("delete-message");
-    parentElement.innerHTML = 
-    "<form action='read-product.php' method='get'>"+
-        "<input type='hidden' name='productID' value='100000'>"+
-        "<button type='submit'><i class='fa-solid fa-eye'></i></button>"+
-    "</form>"+
-    "<form action='edit-product.php' method='get'>"+
-        "<input type='hidden' name='productID' value='100000'>"+
-        "<button type='submit'><i class='fa-solid fa-pen'></i></button>"+
-    "</form>"+
-    "<i class='fa-solid fa-trash' onclick='displayDeleteMessage(this)' name = 'productID' value = '100000'></i>";
-}
+
 function RedirectToAddProductPage() {
     window.location.href = "add-product.php";
 }
