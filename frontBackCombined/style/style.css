@@ -657,6 +657,7 @@
     top : calc((7.87vh - 6.9vh)/2);
     border: 2px solid #C0C0C0;
     border-radius: 10px;
+    background-color: white;
 }
 
 .tablePage .table-container table .actions {    
