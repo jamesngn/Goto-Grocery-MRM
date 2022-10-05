@@ -29,7 +29,7 @@
             <table>
                 <thead>
                         <th class="checkBox">
-                            <input type="checkbox" name="all" id="">
+                            <input type="checkbox" id="" onclick="highlightAll(this)">
                         </th>
                         <th class="imageHeading">Image</th>
                         <th>ID</th>
@@ -70,7 +70,7 @@
                                         <input type="hidden" name="productID" value="<?php echo $row["id"];?>">
                                         <button type="submit"><i class="fa-solid fa-pen"></i></button>
                                     </form>
-                                    <i class='fa-solid fa-trash' onclick='displayDeleteMessage(this)' name = 'productID' value = '<?php echo $row["id"];?>'></i>
+                                    <i class='fa-solid fa-trash' onclick='displayDeleteQuestion(this)' name = 'productID' value = '<?php echo $row["id"];?>'></i>
                                 </td>
                             </tr>
 
