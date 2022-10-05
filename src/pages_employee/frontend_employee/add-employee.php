@@ -7,7 +7,6 @@
         include '../includes/dbAuthentication.inc';
 
         $conn = OpenConnection();
-
         //select the latest id
         $sql = "SELECT employee_ID FROM employee";
         $result = mysqli_query($conn,$sql);
