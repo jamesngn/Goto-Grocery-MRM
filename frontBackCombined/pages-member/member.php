@@ -51,7 +51,7 @@ include 'php-function/read-member.php'
 
                     <?php
                     while ($rows = $testRow->fetch_assoc()) { ?>
-                        <tr id="member<?php echo $rows["customer_id"]; ?>" value="<?php echo $page; ?>">
+                        <tr class="member" id="member<?php echo $rows["customer_id"]; ?>" value="<?php echo $page; ?>">
                             <td class="checkBox"><input type="checkbox" name="<?php echo $rows["customer_id"]; ?>" onclick="highlightProduct(this)"></td>
                             <?php foreach ($testColumn as $column) { ?>
 
@@ -59,21 +59,27 @@ include 'php-function/read-member.php'
                                 <td>
                                     <?php echo $rows[$column]; ?>
                                 </td>
+                              
 
-                            <?php } ?>
-                            <td class="actions">
+                            <?php } ?> 
+                            <td>
+                            <input type="hidden" name="existmemberID" id="existmemberID" value='<?php echo $rows["customer_id"]; ?>' />
+                        
+                            <button onclick="saveCurrentID()"><i class="fa-solid fa-eye"></i></button>
                                 <form method="post" action="read-member-frontend.php">
-                                    <input type="hidden" name="existmemberID" id="existmemberID" value='<?php echo $rows["customer_id"]; ?>' />
-                                    <button type="submit"><i class="fa-solid fa-eye"></i></button>
+                                    <input type="hidden"  name="checkmemberID" id="checkmemberID" value="" />
+                                    <button type="submit" ><i class="fa-solid fa-eye"></i></button>
                                 </form>
                                 <form method="post" action="edit-member-frontend.php">
-                                    <input type="hidden" name="existmemberID" id="existmemberID" value=' <?php echo $rows["customer_id"]; ?>' />
+                                    <input type="hidden" name="checkmemberID" id="checkmemberID" value="" />
                                     <button type="submit"><i class="fa-solid fa-pen"></i></button>
                                 </form>
                                 <i class='fa-solid fa-trash' onclick='displayDeleteQuestion(this)' name='memberID' value='<?php echo $rows["customer_id"]; ?>'></i>
                             </td>
                         </tr>
-                    <?php }
+                    <?php  echo "<script>
+                                    saveCurrentID();
+                            </script>"; }
 
                     require_once 'php-function/dbAuthentication.php';
                     $conn = OpenConnection();

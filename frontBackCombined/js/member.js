@@ -52,11 +52,20 @@ function highlightAll(allCheckBox) {
     }
 }
 
+
+function saveCurrentID()
+{
+    var inputValue = document.getElementsByClassName("member").getElementById("existmemberID").value;
+    
+    alert(inputValue);
+    //ocument.getElementById(memberMak).getElementById("checkmemberID").value = inputValue ;
+}
+
 function displayActionIcons(deleteButton) {
     console.log("hello");
     var parentElement = deleteButton.parentElement.parentElement;
     var child = parentElement.lastElementChild;
-    var memberID = document.getElementById("existmemberID");
+    var memberID = document.getElementById(existmemberID);
     while (child) {
         parentElement.removeChild(child);
         child = parentElement.lastElementChild;
@@ -64,12 +73,12 @@ function displayActionIcons(deleteButton) {
     parentElement.classList.remove("delete-message");
     parentElement.innerHTML = 
     "<form method='post' action='read-member-frontend.php'>" +
-    "<input type='hidden' name='existmemberID' id='existmemberID' value='<?php echo $rows['customer_id']; ?>'/>" +
-    "<button type='submit'><i class='fa-solid fa-eye'></i>"+
+    "<input type='hidden' name='checkmemberID' id='checkmemberID' value='"+memberID+"'/>" +
+    "<button type='submit'onclick='saveCurrentID()'><i class='fa-solid fa-eye'></i>"+
     "</form>"
     "<form method='post' action='edit-member-frontend.php'>"+
-        "<input type='hidden' name='existmemberID' id='existmemberID' value='<?php echo $rows['customer_id']; ?>'/>"+
-        "<button type='submit'><i class='fa-solid fa-pen'></i></button>"+
+        "<input type='hidden' name='checkmemberID' id='checkmemberID' value='"+memberID+"'/>"+
+        "<button type='submit' onclick='saveCurrentID()'><i class='fa-solid fa-pen'></i></button>"+
     "</form>"+
     "<i class='fa-solid fa-trash' onclick='displayDeleteQuestion(this)' name='memberID' value='"+memberID+"'></i>";
 }

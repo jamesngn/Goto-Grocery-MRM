@@ -26,7 +26,7 @@ include '../includes/header.inc';
 
 
                     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                        $existmemberID = $_POST["existmemberID"];
+                        $existmemberID = $_POST["checkmemberID"];
                         $member = readMember($existmemberID);
 
 
