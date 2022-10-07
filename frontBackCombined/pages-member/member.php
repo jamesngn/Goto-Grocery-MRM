@@ -5,65 +5,81 @@ include 'php-function/read-member.php'
 
 <body>
     <?php include '../includes/sidebar.inc'; ?>;
-    <section class="home-section">
+    <section class="home-section tablePage">
         <div class="top-bar">
             <i class="fas fa-solid fa-bars"></i>
             <span class="title">Display MEMEBER</span>
+        </div>
+
+        <div class="top-section">
+            <div class="left-items">
+                <div class="pageTitle">Member</div>
+                <div class="search-bar">
+                    <form action="member-table.php" method="get">
+                        <input type="text" name="query" id="query" placeholder="Search Member">
+                        <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="right-items addProductButton">
+                <a href="add-member-frontend.php">+ Add Member</a>
+            </div>
         </div>
 
 
         <?php
         $testColumn = getAllMemberColumn();
         ?>
-        <div class="table-responsive">
-            <table class="table table-bordered" ,border="1px" , cellpadding="4" cellspacing="50">
+        <div class="table-container">
+            <table >
                 <thead>
                     <tr>
+                        <th class="checkBox">
+                            <input type="checkbox" id="" onclick="highlightAll(this)">
+                        </th>
                         <?php
+
                         for ($i = 0; $i <= sizeof($testColumn) - 1; $i++) {
                             echo "<th>$testColumn[$i]</th>";
                         }
-                        echo "<th>Operation</th>";
+
                         ?>
+                        <th class="actionHeading">Actions</th>
                 </thead>
-                <?php
-                $testRow = getAllMemberRow();
-                ?>
+                <?php $testRow = getAllMemberRow(); ?>
                 <tbody>
 
                     <?php
-                    while ($rows = $testRow->fetch_assoc()) {
+                    while ($rows = $testRow->fetch_assoc()) { ?>
+                        <tr class="member" id="member<?php echo $rows["customer_id"]; ?>" value="<?php echo $page; ?>">
+                            <td class="checkBox"><input type="checkbox" name="<?php echo $rows["customer_id"]; ?>" onclick="highlightProduct(this)"></td>
+                            <?php foreach ($testColumn as $column) { ?>
 
-                        echo "<tr>";
-                        foreach ($testColumn as $column) {
 
-                            echo "<td>$rows[$column]</td>";
-                        }
-                        echo '<td>
+                                <td>
+                                    <?php echo $rows[$column]; ?>
+                                </td>
+                              
+
+                            <?php } ?> 
+                            <td>
+                            <input type="hidden" name="existmemberID" id="existmemberID" value='<?php echo $rows["customer_id"]; ?>' />
+                        
+                            <button onclick="saveCurrentID()"><i class="fa-solid fa-eye"></i></button>
                                 <form method="post" action="read-member-frontend.php">
-                                        <p>  
-                                                <input type="hidden" name="existmemberID" id="existmemberID" ';
-                                            echo 'value="' . $rows["customer_id"];
-                                            echo '"/>
-                                        </p>
-                                        <p>
-                                            <button type="submit"><i class="fa-solid fa-eye"></i>
-                                        </p>
-                    
+                                    <input type="hidden"  name="checkmemberID" id="checkmemberID" value="" />
+                                    <button type="submit" ><i class="fa-solid fa-eye"></i></button>
                                 </form>
                                 <form method="post" action="edit-member-frontend.php">
-                                        <p>  
-                                            <input type="hidden" name="existmemberID" id="existmemberID" ';
-                                            echo 'value="' . $rows["customer_id"];
-                                            echo '"/>
-                                        </p>
-                                        <p>
-                                            <button type="submit"><i class="fa-solid fa-pen"></i></button>
-                                        </p>
+                                    <input type="hidden" name="checkmemberID" id="checkmemberID" value="" />
+                                    <button type="submit"><i class="fa-solid fa-pen"></i></button>
                                 </form>
-                            </td> ';
-                        echo "</tr>";
-                    }
+                                <i class='fa-solid fa-trash' onclick='displayDeleteQuestion(this)' name='memberID' value='<?php echo $rows["customer_id"]; ?>'></i>
+                            </td>
+                        </tr>
+                    <?php  echo "<script>
+                                    saveCurrentID();
+                            </script>"; }
 
                     require_once 'php-function/dbAuthentication.php';
                     $conn = OpenConnection();
@@ -75,7 +91,7 @@ include 'php-function/read-member.php'
         </div>
 
     </section>
-
+    <script src="../js/member.js"></script>
     <script src="../js/sidebar.js"></script>
 </body>
 
