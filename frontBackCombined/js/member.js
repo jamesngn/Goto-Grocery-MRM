@@ -75,7 +75,7 @@ function displayActionIcons(deleteButton) {
     "<form method='post' action='read-member-frontend.php'>" +
     "<input type='hidden' name='checkmemberID' id='checkmemberID' value='"+memberID+"'/>" +
     "<button type='submit'onclick='saveCurrentID()'><i class='fa-solid fa-eye'></i>"+
-    "</form>"
+    "</form>"+
     "<form method='post' action='edit-member-frontend.php'>"+
         "<input type='hidden' name='checkmemberID' id='checkmemberID' value='"+memberID+"'/>"+
         "<button type='submit' onclick='saveCurrentID()'><i class='fa-solid fa-pen'></i></button>"+
