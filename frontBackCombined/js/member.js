@@ -55,10 +55,10 @@ function highlightAll(allCheckBox) {
 
 function saveCurrentID()
 {
-    var inputValue = document.getElementsByClassName("member").getElementById("existmemberID").value;
+    var inputValue = document.getElementById("existmemberID").value;
     
     alert(inputValue);
-    //ocument.getElementById(memberMak).getElementById("checkmemberID").value = inputValue ;
+    document.getElementById("checkmemberID").value = inputValue ;
 }
 
 function displayActionIcons(deleteButton) {
@@ -73,14 +73,14 @@ function displayActionIcons(deleteButton) {
     parentElement.classList.remove("delete-message");
     parentElement.innerHTML = 
     "<form method='post' action='read-member-frontend.php'>" +
-    "<input type='hidden' name='checkmemberID' id='checkmemberID' value='"+memberID+"'/>" +
-    "<button type='submit'onclick='saveCurrentID()'><i class='fa-solid fa-eye'></i>"+
+         "<input type='hidden' name='checkmemberID' id='checkmemberID' value='1'/>" +
+         "<button type='submit' ><i class='fa-solid fa-eye'></i></button>"+
     "</form>"+
     "<form method='post' action='edit-member-frontend.php'>"+
-        "<input type='hidden' name='checkmemberID' id='checkmemberID' value='"+memberID+"'/>"+
-        "<button type='submit' onclick='saveCurrentID()'><i class='fa-solid fa-pen'></i></button>"+
+        "<input type='hidden' name='checkmemberID' id='checkmemberID' value='1'/>"+
+        "<button type='submit' ><i class='fa-solid fa-pen'></i></button>"+
     "</form>"+
-    "<i class='fa-solid fa-trash' onclick='displayDeleteQuestion(this)' name='memberID' value='"+memberID+"'></i>";
+    "<i class='fa-solid fa-trash' onclick='displayDeleteQuestion(this)' name='memberID' value='1'></i>";
 }
 
 function displayDeleteQuestion(deleteButton) {
@@ -104,14 +104,15 @@ function displayDeleteQuestion(deleteButton) {
             "<i class='fa-solid fa-xmark'></i>"+
         "</div>"+
     "</div>";
+    alert(deleteButton.getAttribute("value"));
 }
 
 function deleteAjax(deleteButton) {
     var deletedID = deleteButton.getAttribute("value");
-    var memberID = document.getElementById("existmemberID");
+    alert(deleteButton.getAttribute("value"));
     $.ajax({
         type:'post',
-        url: '../php-function/delete-member.php',
+        url: 'pages-member/php-function/delete-member.php',
         data: {delete_id:deletedID},
         success:function(data){
             var parentElement = document.getElementById("member"+deletedID);

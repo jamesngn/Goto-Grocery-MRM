@@ -15,9 +15,8 @@
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $c_memberID);
 
-    if ($stmt->execute()!= null) {
-        echo nl2br("\r\n Delete customer $c_memberID from the database.");
-  
+    if ($stmt->execute) {
+
     } else {
         echo nl2br("\r\n SQL error: " . mysqli_error($conn));
     }

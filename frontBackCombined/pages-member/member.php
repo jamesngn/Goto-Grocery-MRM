@@ -62,24 +62,20 @@ include 'php-function/read-member.php'
                               
 
                             <?php } ?> 
-                            <td>
+                            <td class="actions">
                             <input type="hidden" name="existmemberID" id="existmemberID" value='<?php echo $rows["customer_id"]; ?>' />
-                        
-                            <button onclick="saveCurrentID()"><i class="fa-solid fa-eye"></i></button>
                                 <form method="post" action="read-member-frontend.php">
-                                    <input type="hidden"  name="checkmemberID" id="checkmemberID" value="" />
+                                    <input type="hidden"  name="checkmemberID" id="checkmemberID" value='<?php echo $rows["customer_id"]; ?>'  />
                                     <button type="submit" ><i class="fa-solid fa-eye"></i></button>
                                 </form>
                                 <form method="post" action="edit-member-frontend.php">
-                                    <input type="hidden" name="checkmemberID" id="checkmemberID" value="" />
+                                    <input type="hidden" name="checkmemberID" id="checkmemberID" value='<?php echo $rows["customer_id"]; ?>'  />
                                     <button type="submit"><i class="fa-solid fa-pen"></i></button>
                                 </form>
                                 <i class='fa-solid fa-trash' onclick='displayDeleteQuestion(this)' name='memberID' value='<?php echo $rows["customer_id"]; ?>'></i>
                             </td>
                         </tr>
-                    <?php  echo "<script>
-                                    saveCurrentID();
-                            </script>"; }
+                    <?php   }
 
                     require_once 'php-function/dbAuthentication.php';
                     $conn = OpenConnection();

@@ -32,14 +32,17 @@
             $stmt->bind_param("sssi", $c_fname, $c_lname, $c_email, $c_memberID);
 
 
-            if ($stmt->execute()) {
-            } else {
-                echo nl2br("\r\n SQL error: " . mysqli_error($conn));
-            }
-            $stmt->close();
-           
-            CloseConnection($conn);
-            return true;
+            try {
+                $stmt->execute();
+                return true;
+              }
+              
+              //catch exception
+              catch(Exception $ignored) {
+                
+                return false;
+              }
+              return false;
         }
     }
     function readMember($memberID)

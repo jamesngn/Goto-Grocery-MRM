@@ -12,7 +12,7 @@ include '../includes/header.inc';
 
         <div class="form-container">
             <div id="addProductForm">
-                <form action="edit-member-sucess.php" method="post">
+                <form action="edit-member-validation.php" method="post">
 
                     <div class="backButton">
                         <a href="member.php">
@@ -49,7 +49,7 @@ include '../includes/header.inc';
                                 <div class="form-wrap">
                                     <div class="form-item">
                                         <label for="email">Email</label>
-                                        <input type="text" name="email" id="email" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" maxlength="50" required value="<?php echo $member['customer_email']; ?>">
+                                        <input type="text" name="email" id="email" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" maxlength="50" required value="<?php echo $member['customer_email']; ?>"/>
                                     </div>
                                 </div>
                                 <div class="form-wrap">
