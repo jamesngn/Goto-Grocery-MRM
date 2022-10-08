@@ -1,9 +1,9 @@
 <?php 
     session_start();
     if ($_SERVER["REQUEST_METHOD"] == "GET") { 
-        $categoryID = $_GET["categoryID"];
+        $categoryID = $_GET["CategoryID"];
     } else {
-        $categoryID = $_POST["categoryID"];
+        $categoryID = $_POST["CategoryID"];
     }
    
    echo $categoryID;

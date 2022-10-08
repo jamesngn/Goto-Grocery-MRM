@@ -3,7 +3,7 @@
 
        
 
-        $categoryID = $_GET["categoryID"];
+        $categoryID = $_GET["CategoryID"];
         if ($categoryID) {
             include '../includes/dbAuthentication.inc';
             $conn = OpenConnection();
