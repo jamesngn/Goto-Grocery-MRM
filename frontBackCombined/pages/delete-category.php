@@ -5,7 +5,7 @@
     $id = $_POST['delete_id'];
 
         
-    $sql = "DELETE FROM product WHERE id = $id";
+    $sql = "DELETE FROM category WHERE CategoryID = $id";
     $result = mysqli_query($conn,$sql);
 
     CloseConnection($conn);

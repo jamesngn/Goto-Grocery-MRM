@@ -64,7 +64,7 @@
                         if (mysqli_num_rows($result) > 0) {
                             while($row = $result -> fetch_assoc()) { ?>
                             
-                            <tr id="CategoryID<?php echo $row["CategoryID"];?>" value="<?php echo $page; ?>">
+                            <tr id="category<?php echo $row["CategoryID"];?>" value="<?php echo $page; ?>">
                                 <td class="checkBox"><input type="checkbox" name="<?php echo $row["CategoryID"];?>" onclick="highlightCategory(this)"></td>
                                 
                                 <td><?php echo $row["CategoryID"];?></td>

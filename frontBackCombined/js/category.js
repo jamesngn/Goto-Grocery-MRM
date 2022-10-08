@@ -43,7 +43,7 @@ function highlightAll(allCheckBox) {
 }
 
 function displayActionIcons(deleteButton) {
-    console.log("hello");
+    var id = deleteButton.getAttribute("value");
     var parentElement = deleteButton.parentElement.parentElement;
     var child = parentElement.lastElementChild;
     while (child) {
@@ -53,17 +53,18 @@ function displayActionIcons(deleteButton) {
     parentElement.classList.remove("delete-message");
     parentElement.innerHTML = 
     "<form action='read-category.php' method='get'>"+
-        "<input type='hidden' name='categoryID' value='100000'>"+
+        "<input type='hidden' name='categoryID' value='"+id+"'>"+
         "<button type='submit'><i class='fa-solid fa-eye'></i></button>"+
     "</form>"+
     "<form action='edit-category.php' method='get'>"+
-        "<input type='hidden' name='categoryID' value='100000'>"+
+        "<input type='hidden' name='categoryID' value='"+id+"'>"+
         "<button type='submit'><i class='fa-solid fa-pen'></i></button>"+
     "</form>"+
-    "<i class='fa-solid fa-trash' onclick='displayDeleteQuestion(this)' name = 'categoryID' value = '100000'></i>";
+    "<i class='fa-solid fa-trash' onclick='displayDeleteQuestion(this)' name = 'categoryID' value = '"+id+"'></i>";
 }
 
 function displayDeleteQuestion(deleteButton) {
+    var id = deleteButton.getAttribute("value");
     var parentElement = deleteButton.parentElement;
     var child = parentElement.lastElementChild;
     while (child) {
@@ -75,12 +76,12 @@ function displayDeleteQuestion(deleteButton) {
     "<div class='question'>DELETE ? </div>"+
     "<div class='choice'>"+
         "<div class='yes-choice'>"+
-                "<button type='submit' onclick='deleteAjax(this)' value='"+deleteButton.getAttribute("value")+"'>"+
+                "<button type='submit' onclick='deleteAjax(this)' value='"+id+"'>"+
                     "<i class='fa-solid fa-check'></i>"+
                 "</button>"+
             "</form>"+
         "</div>"+
-        "<div class='no-choice'onclick='displayActionIcons(this)'>"+
+        "<div class='no-choice' value = '"+id+"' onclick='displayActionIcons(this)'>"+
             "<i class='fa-solid fa-xmark'></i>"+
         "</div>"+
     "</div>";
@@ -94,7 +95,6 @@ function deleteAjax(deleteButton) {
         data: {delete_id:deletedID},
         success:function(data){
             var parentElement = document.getElementById("category"+deletedID);
-            console.log(parentElement);
             var child = parentElement.lastElementChild;
             while (child) {
                 parentElement.removeChild(child);
