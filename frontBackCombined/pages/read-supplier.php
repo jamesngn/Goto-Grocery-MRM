@@ -3,17 +3,17 @@
 
        
 
-        $categoryID = $_GET["CategoryID"];
-        if ($categoryID) {
+        $supplier_id = $_GET["supplier_id"];
+        if ($supplier_id) {
             include '../includes/dbAuthentication.inc';
             $conn = OpenConnection();
     
-            $sql = "SELECT * FROM category WHERE CategoryID = '$categoryID'";
+            $sql = "SELECT * FROM supplier WHERE supplier_id = '$supplier_id'";
             $result = mysqli_query($conn,$sql);
     
             if ($result) {
                 if (mysqli_num_rows($result) > 0) {
-                    $category = mysqli_fetch_assoc($result);   
+                    $supplier = mysqli_fetch_assoc($result);   
                                
                 }
             }
@@ -37,16 +37,16 @@
     <section class="home-section">
         <div class="top-bar">
             <i class="fas fa-solid fa-bars"></i>
-            <span class="title">READ CATEGORY</span>
+            <span class="title">READ SUPPLIER</span>
         </div>
 
         <div class="form-container">
             <div id="addProductForm">
 
                 <div class="backButton">
-                    <a href="category-table.php">
+                    <a href="supplier-table.php">
                         <i class="fa-solid fa-delete-left"></i>
-                        <span>Category Page</span>
+                        <span>Supplier Page</span>
                     </a>
                 </div>
                 
@@ -55,12 +55,12 @@
                 <div class="text-input-container">
                    
                         <div class="form-item">
-                            <label for="categoryID">Category ID</label>
-                            <input type="text" name="categoryID" id="categoryID" value="<?php echo $category['CategoryID'];?>" readonly>
+                            <label for="supplier_id">Supplier ID</label>
+                            <input type="text" name="supplier_id" id="supplier_id" value="<?php echo $supplier['supplier_id'];?>" readonly>
                         </div>
                         <div class="form-item">
-                            <label for="Name">Name</label>
-                            <input type="text" name="Name" id="Name" value="<?php echo $category['Name'];?>" readonly>
+                            <label for="supplier_name">Supplier Name</label>
+                            <input type="text" name="supplier_name" id="supplier_name" value="<?php echo $supplier['supplier_name'];?>" readonly>
                         </div>
                    
 

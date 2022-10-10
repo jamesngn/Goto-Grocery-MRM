@@ -3,17 +3,17 @@
 
        
 
-        $categoryID = $_GET["CategoryID"];
-        if ($categoryID) {
+        $wishlistid = $_GET["wishlistid"];
+        if ($wishlistid) {
             include '../includes/dbAuthentication.inc';
             $conn = OpenConnection();
     
-            $sql = "SELECT * FROM category WHERE CategoryID = '$categoryID'";
+            $sql = "SELECT * FROM wishlist WHERE wishlistid = '$wishlistid'";
             $result = mysqli_query($conn,$sql);
     
             if ($result) {
                 if (mysqli_num_rows($result) > 0) {
-                    $category = mysqli_fetch_assoc($result);   
+                    $wishlist = mysqli_fetch_assoc($result);   
                                
                 }
             }
@@ -37,16 +37,16 @@
     <section class="home-section">
         <div class="top-bar">
             <i class="fas fa-solid fa-bars"></i>
-            <span class="title">READ CATEGORY</span>
+            <span class="title">READ WISHLIST</span>
         </div>
 
         <div class="form-container">
             <div id="addProductForm">
 
                 <div class="backButton">
-                    <a href="category-table.php">
+                    <a href="wishlist-table.php">
                         <i class="fa-solid fa-delete-left"></i>
-                        <span>Category Page</span>
+                        <span>Wishlist Page</span>
                     </a>
                 </div>
                 
@@ -55,14 +55,17 @@
                 <div class="text-input-container">
                    
                         <div class="form-item">
-                            <label for="categoryID">Category ID</label>
-                            <input type="text" name="categoryID" id="categoryID" value="<?php echo $category['CategoryID'];?>" readonly>
+                            <label for="wishlistid">Wishlist ID</label>
+                            <input type="text" name="wishlistid" id="wishlistid" value="<?php echo $wishlist['wishlistid'];?>" readonly>
                         </div>
                         <div class="form-item">
-                            <label for="Name">Name</label>
-                            <input type="text" name="Name" id="Name" value="<?php echo $category['Name'];?>" readonly>
+                            <label for="cust_id">Customer ID</label>
+                            <input type="text" name="cust_id" id="cust_id" value="<?php echo $wishlist['cust_id'];?>" readonly>
                         </div>
-                   
+                        <div class="form-item">
+                            <label for="prod_id">Product ID</label>
+                            <input type="text" name="prod_id" id="prod_id" value="<?php echo $wishlist['prod_id'];?>" readonly>
+                        </div>
 
                     
 

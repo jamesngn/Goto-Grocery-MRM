@@ -1,23 +1,23 @@
 <?php 
     session_start();
     if ($_SERVER["REQUEST_METHOD"] == "GET") { 
-        $categoryID = $_GET["CategoryID"];
+        $wishlistid = $_GET["wishlistid"];
     } else {
-        $categoryID = $_POST["CategoryID"];
+        $wishlistid = $_POST["wishlistid"];
     }
    
-   echo $categoryID;
+   echo $wishlistid;
    
-   if ($categoryID) {
+   if ($wishlistid) {
         include '../includes/dbAuthentication.inc';
         $conn = OpenConnection();
 
-        $sql = "SELECT * FROM category WHERE CategoryID = '$categoryID'";
+        $sql = "SELECT * FROM wishlist WHERE wishlistid = '$wishlistid'";
         $result = mysqli_query($conn,$sql);
 
         if ($result) {
             if (mysqli_num_rows($result) > 0) {
-                $category = mysqli_fetch_assoc($result);
+                $wishlist = mysqli_fetch_assoc($result);
                             
             }
         }
@@ -39,15 +39,15 @@
     <section class="home-section">
         <div class="top-bar">
             <i class="fas fa-solid fa-bars"></i>
-            <span class="title">EDIT CATEGORY</span>
+            <span class="title">EDIT WISHLIST</span>
         </div>
 
         <div class="form-container">
-            <form action="edit-category.php?categoryID=<?php echo $categoryID;?>" method="post"  id="addProductForm">
+            <form action="edit-wishlist.php?wishlistid=<?php echo $wishlistid;?>" method="post"  id="addProductForm">
                 <div class="backButton">
-                    <a href="category-table.php">
+                    <a href="wishlist-table.php">
                         <i class="fa-solid fa-delete-left"></i>
-                        <span>Category Page</span>
+                        <span>Wishlist Page</span>
                     </a>
                 </div>
                 
@@ -57,14 +57,22 @@
                     <div>
                     <div class="form-wrap">
                         <div class="form-item">
-                            <label for="CategoryID">Category ID</label>
-                            <input type="text" name="categoryID" id="CategoryID" value="<?php echo $category['CategoryID'];?>" readonly>
-                        </div>    
+                            <label for="wishlistid">Wishlist ID</label>
+                            <input type="text" name="wishlistid" id="wishlistid" value="<?php echo $wishlist['wishlistid'];?>" readonly>
+                        </div>   
+
                     </div>
+                    <div>
+                        <div class="form-item">
+                            <label for="cust_id">Customer ID</label>
+                            <input type="text" name="cust_id" id="cust_id" value="<?php echo $wishlist['cust_id'];?>" required>
+                        </div>
+                    </div>
+                     <div>
 
                         <div class="form-item">
-                            <label for="Name">Category Name</label>
-                            <input type="text" name="Name" id="Name" value="<?php echo $category['Name'];?>" required>
+                            <label for="prod_id">Product ID</label>
+                            <input type="text" name="prod_id" id="prod_id" value="<?php echo $wishlist['prod_id'];?>" required>
                         </div>
                     </div>
 
@@ -106,18 +114,20 @@
         
 
         // the cleaned – "safe" – inputs ready to be added to the database
-        $c_category_name = mysqli_real_escape_string($conn, cleanInput($_POST['Name']));
-       
+        
+        $c_wishlist_customer_id = mysqli_real_escape_string($conn, cleanInput($_POST['cust_id']));
+        $c_wishlist_product_id = mysqli_real_escape_string($conn, cleanInput($_POST['prod_id']));
     
         //Add to database
-        $sql = "UPDATE category
-        SET name = '$c_category_name'
-        WHERE CategoryID = '$categoryID'";
+        $sql = "UPDATE wishlist
+        SET cust_id = '$c_wishlist_customer_id',
+            prod_id = '$c_wishlist_product_id'
+        WHERE wishlistid = '$wishlistid'";
 
         if (mysqli_query($conn,$sql)) {
-            $_SESSION['categoryID'] = $categoryID;
-            echo "<script>sessionStorage.setItem('categoryID',".$categoryID.");</script>";
-            echo '<script>window.location.href = "edit-category-success.php"; </script>';
+            $_SESSION['wishlistid'] = $wishlistid;
+            echo "<script>sessionStorage.setItem('wishlistid',".$wishlistid.");</script>";
+            echo '<script>window.location.href = "edit-wishlist-success.php"; </script>';
         } else {
             echo nl2br ("\r\nSQL errror: " . mysqli_error($conn));
         }

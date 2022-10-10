@@ -14,8 +14,8 @@
 			<p id="checkbox">	
                 <p>
                 <label for="member">Member Data</label> 
-				<input type="checkbox" id="member_mysql_table" name="Table[]" value="member"/>
-                
+				<input type="checkbox"  onclick='displayDateMemberQuestion(this)' id="member_mysql_table" name="Table[]" value="member"/>
+               
                 </p>
                 <p>
 				<label for="product">Product Data</label> 

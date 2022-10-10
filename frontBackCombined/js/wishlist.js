@@ -1,4 +1,4 @@
-function highlightCategory(checkbox) {
+function highlightWishlist(checkbox) {
     var parentElement = checkbox.parentElement.parentElement;
     var data = parentElement.getElementsByTagName("td");
     var viewIcon = data[data.length - 1].getElementsByClassName("fa-eye")[0];
@@ -27,12 +27,12 @@ function highlightAll(allCheckBox) {
 
         if (checkBox.checked == false && allCheckBox.checked == true) {
             checkBox.checked = true;
-            highlightCategory(checkBox);
+            highlightWishlist(checkBox);
         }
         else if (checkBox.checked) {
             if (!allCheckBox.checked) {
                 checkBox.checked = false;
-                highlightCategory(checkBox);
+                highlightWishlist(checkBox);
             } 
             else {
             }
@@ -52,15 +52,15 @@ function displayActionIcons(deleteButton) {
     }
     parentElement.classList.remove("delete-message");
     parentElement.innerHTML = 
-    "<form action='read-category.php' method='get'>"+
-        "<input type='hidden' name='categoryID' value='"+id+"'>"+
+    "<form action='read-wishlist.php' method='get'>"+
+        "<input type='hidden' name='wishlistid' value='"+id+"'>"+
         "<button type='submit'><i class='fa-solid fa-eye'></i></button>"+
     "</form>"+
-    "<form action='edit-category.php' method='get'>"+
-        "<input type='hidden' name='categoryID' value='"+id+"'>"+
+    "<form action='edit-wishlist.php' method='get'>"+
+        "<input type='hidden' name='wishlistid' value='"+id+"'>"+
         "<button type='submit'><i class='fa-solid fa-pen'></i></button>"+
     "</form>"+
-    "<i class='fa-solid fa-trash' onclick='displayDeleteQuestion(this)' name = 'categoryID' value = '"+id+"'></i>";
+    "<i class='fa-solid fa-trash' onclick='displayDeleteQuestion(this)' name = 'wishlistid' value = '"+id+"'></i>";
 }
 
 function displayDeleteQuestion(deleteButton) {
@@ -91,16 +91,16 @@ function deleteAjax(deleteButton) {
     var deletedID = deleteButton.getAttribute("value");
     $.ajax({
         type:'post',
-        url: 'delete-category.php',
+        url: 'delete-wishlist.php',
         data: {delete_id:deletedID},
         success:function(data){
-            var parentElement = document.getElementById("category"+deletedID);
+            var parentElement = document.getElementById("wishlist"+deletedID);
             var child = parentElement.lastElementChild;
             while (child) {
                 parentElement.removeChild(child);
                 child = parentElement.lastElementChild;
             }
-            parentElement.innerHTML = "<td colspan = '7' class='delete-success-msg'>Succeeded in deleting the category from the database</td>";
+            parentElement.innerHTML = "<td colspan = '7' class='delete-success-msg'>Succeeded in deleting the wishlist from the database</td>";
 
             setTimeout(removeMessage,2000,parentElement);
             setTimeout("window.location.reload();",500);
@@ -114,18 +114,18 @@ function removeMessage(parentElement) {
 
 function goToPage(number, maxNumber) {
     if (maxNumber >= number && number > 0) {
-        window.location.href = "category-table.php?page="+number;
+        window.location.href = "wishlist-table.php?page="+number;
     }
 }
 
 
 
-function RedirectToAddCategoryPage() {
-    window.location.href = "add-category.php";
+function RedirectToAddWishlistPage() {
+    window.location.href = "add-wishlist.php";
 }
-function RedirectToEditCategoryPage(categoryID) {
-    window.location.href = "edit-category.php?categoryID="+categoryID;
+function RedirectToEditWishlistPage(wishlistid) {
+    window.location.href = "edit-wishlist.php?wishlistid="+wishlistid;
 }
-function RedirectToCategoryPage() {
-    window.location.href = "category-table.php";
+function RedirectToWishlistPage() {
+    window.location.href = "wishlist-table.php";
 }

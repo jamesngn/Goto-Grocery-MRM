@@ -1,4 +1,14 @@
-function highlightCategory(checkbox) {
+function ResetInput() {
+    var img = document.getElementById("img-container").getElementsByTagName("img");
+    if (img[0]) {
+        img[0].remove();
+    }
+    var imgUploader = document.getElementsByClassName("img-uploader");
+    if (imgUploader[0].classList.contains("unshown")) {
+        imgUploader[0].classList.remove("unshown");
+    }
+}
+function highlightProduct(checkbox) {
     var parentElement = checkbox.parentElement.parentElement;
     var data = parentElement.getElementsByTagName("td");
     var viewIcon = data[data.length - 1].getElementsByClassName("fa-eye")[0];
@@ -27,12 +37,12 @@ function highlightAll(allCheckBox) {
 
         if (checkBox.checked == false && allCheckBox.checked == true) {
             checkBox.checked = true;
-            highlightCategory(checkBox);
+            highlightProduct(checkBox);
         }
         else if (checkBox.checked) {
             if (!allCheckBox.checked) {
                 checkBox.checked = false;
-                highlightCategory(checkBox);
+                highlightProduct(checkBox);
             } 
             else {
             }
@@ -42,31 +52,33 @@ function highlightAll(allCheckBox) {
     }
 }
 
+
 function displayActionIcons(deleteButton) {
-    var id = deleteButton.getAttribute("value");
+    console.log("hello");
     var parentElement = deleteButton.parentElement.parentElement;
     var child = parentElement.lastElementChild;
+    var id = deleteButton.getAttribute("value")
     while (child) {
         parentElement.removeChild(child);
         child = parentElement.lastElementChild;
     }
-    parentElement.classList.remove("delete-message");
+    parentElement.classList.remove("delete-message"); 
     parentElement.innerHTML = 
-    "<form action='read-category.php' method='get'>"+
-        "<input type='hidden' name='categoryID' value='"+id+"'>"+
-        "<button type='submit'><i class='fa-solid fa-eye'></i></button>"+
+    "<form method='post' action='read-member-frontend.php'>" +
+         "<input type='hidden' name='checkmemberID' id='checkmemberID' value='"+id+"'/>" +
+         "<button type='submit' ><i class='fa-solid fa-eye'></i></button>"+
     "</form>"+
-    "<form action='edit-category.php' method='get'>"+
-        "<input type='hidden' name='categoryID' value='"+id+"'>"+
-        "<button type='submit'><i class='fa-solid fa-pen'></i></button>"+
+    "<form method='post' action='edit-member-frontend.php'>"+
+        "<input type='hidden' name='checkmemberID' id='checkmemberID' value='"+id+"'/>"+
+        "<button type='submit' ><i class='fa-solid fa-pen'></i></button>"+
     "</form>"+
-    "<i class='fa-solid fa-trash' onclick='displayDeleteQuestion(this)' name = 'categoryID' value = '"+id+"'></i>";
+    "<i class='fa-solid fa-trash' onclick='displayDeleteQuestion(this)' name='memberID' value='"+id+"''></i>";
 }
 
 function displayDeleteQuestion(deleteButton) {
-    var id = deleteButton.getAttribute("value");
     var parentElement = deleteButton.parentElement;
     var child = parentElement.lastElementChild;
+    var id = deleteButton.getAttribute("value");
     while (child) {
         parentElement.removeChild(child);
         child = parentElement.lastElementChild;
@@ -81,7 +93,7 @@ function displayDeleteQuestion(deleteButton) {
                 "</button>"+
             "</form>"+
         "</div>"+
-        "<div class='no-choice' value = '"+id+"' onclick='displayActionIcons(this)'>"+
+        "<div class='no-choice'onclick='displayActionIcons(this)' value='"+id+"'>"+
             "<i class='fa-solid fa-xmark'></i>"+
         "</div>"+
     "</div>";
@@ -90,17 +102,18 @@ function displayDeleteQuestion(deleteButton) {
 function deleteAjax(deleteButton) {
     var deletedID = deleteButton.getAttribute("value");
     $.ajax({
-        type:'post',
-        url: 'delete-category.php',
+        type:"POST",
+        url: "php-function/delete-member.php",
         data: {delete_id:deletedID},
         success:function(data){
-            var parentElement = document.getElementById("category"+deletedID);
+            var parentElement = document.getElementById("member"+deletedID);
+            console.log(parentElement);
             var child = parentElement.lastElementChild;
             while (child) {
                 parentElement.removeChild(child);
                 child = parentElement.lastElementChild;
             }
-            parentElement.innerHTML = "<td colspan = '7' class='delete-success-msg'>Succeeded in deleting the category from the database</td>";
+            parentElement.innerHTML = "<td colspan = '7' class='delete-success-msg'>Succeed to delete the product from the database</td>";
 
             setTimeout(removeMessage,2000,parentElement);
             setTimeout("window.location.reload();",500);
@@ -114,18 +127,16 @@ function removeMessage(parentElement) {
 
 function goToPage(number, maxNumber) {
     if (maxNumber >= number && number > 0) {
-        window.location.href = "category-table.php?page="+number;
+        window.location.href = "member.php?page="+number;
     }
 }
 
-
-
-function RedirectToAddCategoryPage() {
-    window.location.href = "add-category.php";
+function RedirectToAddProductPage() {
+    window.location.href = "member.php";
 }
-function RedirectToEditCategoryPage(categoryID) {
-    window.location.href = "edit-category.php?categoryID="+categoryID;
+function RedirectToEditProductPage() {
+    window.location.href = "edit-member-fronted.php";
 }
-function RedirectToCategoryPage() {
-    window.location.href = "category-table.php";
+function RedirectToProductPage() {
+    window.location.href = "member.php";
 }

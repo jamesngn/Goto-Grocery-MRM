@@ -1,33 +1,34 @@
 <?php 
     session_start();
     if ($_SERVER["REQUEST_METHOD"] == "GET") { 
-        $categoryID = $_GET["CategoryID"];
+        $suppid = $_GET["supplier_id"];
     } else {
-        $categoryID = $_POST["CategoryID"];
+        $suppname = $_POST["supplier_name"];
     }
    
-   echo $categoryID;
+   echo $suppid;
    
-   if ($categoryID) {
+   if ($suppid) {
         include '../includes/dbAuthentication.inc';
         $conn = OpenConnection();
 
-        $sql = "SELECT * FROM category WHERE CategoryID = '$categoryID'";
+        $sql = "SELECT * FROM supplier WHERE supplier_id = '$'";
         $result = mysqli_query($conn,$sql);
 
         if ($result) {
             if (mysqli_num_rows($result) > 0) {
-                $category = mysqli_fetch_assoc($result);
+                $supplier = mysqli_fetch_assoc($result);
                             
             }
         }
-        else {
-            echo nl2br ("\r\n SQL error: " . mysqli_error($conn));
-        }
+    }
+        // else {
+        //     echo nl2br ("\r\n SQL error: " . mysqli_error($conn));
+        // }
 
        
 
-    }
+    
 ?>
 
 <?php 
@@ -39,15 +40,15 @@
     <section class="home-section">
         <div class="top-bar">
             <i class="fas fa-solid fa-bars"></i>
-            <span class="title">EDIT CATEGORY</span>
+            <span class="title">EDIT SUPPLIER</span>
         </div>
 
         <div class="form-container">
-            <form action="edit-category.php?categoryID=<?php echo $categoryID;?>" method="post"  id="addProductForm">
+            <form action="edit-supplier.php?supplier_id=<?php echo $suppid;?>" method="post"  id="addProductForm">
                 <div class="backButton">
-                    <a href="category-table.php">
+                    <a href="supplier-table.php">
                         <i class="fa-solid fa-delete-left"></i>
-                        <span>Category Page</span>
+                        <span>Supplier Page</span>
                     </a>
                 </div>
                 
@@ -57,14 +58,14 @@
                     <div>
                     <div class="form-wrap">
                         <div class="form-item">
-                            <label for="CategoryID">Category ID</label>
-                            <input type="text" name="categoryID" id="CategoryID" value="<?php echo $category['CategoryID'];?>" readonly>
+                            <label for="supplier_id">Supplier ID</label>
+                            <input type="text" name="supplier_id" id="supplier_id" value="<?php echo $supplier['supplier_id'];?>" readonly>
                         </div>    
                     </div>
 
                         <div class="form-item">
-                            <label for="Name">Category Name</label>
-                            <input type="text" name="Name" id="Name" value="<?php echo $category['Name'];?>" required>
+                            <label for="supplier_name">Category Name</label>
+                            <input type="text" name="supplier_name" id="supplier_name" value="<?php echo $supplier['supplier_name'];?>" required>
                         </div>
                     </div>
 
@@ -110,14 +111,14 @@
        
     
         //Add to database
-        $sql = "UPDATE category
-        SET name = '$c_category_name'
-        WHERE CategoryID = '$categoryID'";
+        $sql = "UPDATE supplier
+        SET supplier_name = '$suppname'
+        WHERE supplier_id = '$suppid'";
 
         if (mysqli_query($conn,$sql)) {
-            $_SESSION['categoryID'] = $categoryID;
-            echo "<script>sessionStorage.setItem('categoryID',".$categoryID.");</script>";
-            echo '<script>window.location.href = "edit-category-success.php"; </script>';
+            $_SESSION['supplier_id'] = $suppid;
+            echo "<script>sessionStorage.setItem('supplier_id',".$suppid.");</script>";
+            echo '<script>window.location.href = "edit-supplier-success.php"; </script>';
         } else {
             echo nl2br ("\r\nSQL errror: " . mysqli_error($conn));
         }

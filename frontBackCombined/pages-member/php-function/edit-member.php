@@ -12,6 +12,7 @@
         require 'dbAuthentication.php';
         // put all the stuff to be done following form submission in here
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $conn = OpenConnection();
 
             // the cleaned – "safe" – inputs ready to be added to the database
             $c_fname = mysqli_real_escape_string($conn, cleanInput( $c_fname));
@@ -31,14 +32,17 @@
             $stmt->bind_param("sssi", $c_fname, $c_lname, $c_email, $c_memberID);
 
 
-            if ($stmt->execute()) {
-                echo nl2br("\r\n Edited customer $c_fname $c_lname to the database.");
-            } else {
-                echo nl2br("\r\n SQL error: " . mysqli_error($conn));
-            }
-            $stmt->close();
-           
-            return true;
+            try {
+                $stmt->execute();
+                return true;
+              }
+              
+              //catch exception
+              catch(Exception $ignored) {
+                
+                return false;
+              }
+              return false;
         }
     }
     function readMember($memberID)
