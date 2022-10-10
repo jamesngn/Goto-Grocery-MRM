@@ -46,8 +46,35 @@ include 'php-function/read-member.php'
                         ?>
                         <th class="actionHeading">Actions</th>
                 </thead>
-                <?php $testRow = getAllMemberRow(); ?>
+                <?php //$testRow = getAllMemberRow(); ?>
                 <tbody>
+                <?php 
+                    require_once 'php-function/dbAuthentication.php';
+                    $conn = OpenConnection();
+                    $num_per_page = 8;
+                    if (isset($_GET["page"])) {
+                        $page = $_GET["page"];
+            
+                        
+                    }
+                    else {
+                        $page = 1;
+                    }
+                    
+                    $start_from = ($page - 1) * $num_per_page;
+
+                    $sql = "SELECT 
+                     member.customer_id as customer_id, 
+                     member.customer_firstname as customer_firstname,
+                     member.customer_lastname as customer_lastname, 
+                     member.customer_email as customer_email, 
+                     member.customer_password as customer_password, 
+                     member.CREATED_AT as CREATED_AT
+                            FROM member
+                            LIMIT $start_from,$num_per_page
+                            ";
+                    $testRow = mysqli_query($conn,$sql);
+                    ?>
 
                     <?php
                     while ($rows = $testRow->fetch_assoc()) { ?>
@@ -77,18 +104,43 @@ include 'php-function/read-member.php'
                         </tr>
                     <?php   }
 
-                    require_once 'php-function/dbAuthentication.php';
-                    $conn = OpenConnection();
-                    CloseConnection($conn);
+
+
                     ?>
 
                 </tbody>
             </table>
         </div>
+        <div class="pageNumbers-container">
+             
+            
+            <?php
+                $sql = "SELECT * FROM member";
+                $result = mysqli_query($conn, $sql);
+                $total_members = mysqli_num_rows($result);
+
+                $total_pages = ceil($total_members/$num_per_page);
+                
+                echo '<button class="previous-btn" onClick="goToPage('.($page-1).','.$total_pages.')">Previous</button>';
+
+                for ($i = 1; $i <= $total_pages; $i++) {
+                    if ($page == $i) {
+                        echo '<button class="pageNumber active">'.$i.'</button>';
+                    } else {
+                        echo '<button class="pageNumber" onClick="goToPage('.$i.','.$total_pages.')">'.$i.'</button>';
+                    }
+                }
+
+                echo '<button class="next-btn" onClick="goToPage('.($page+1).','.$total_pages.')">Next</button>';
+                CloseConnection($conn);
+            ?>
+        </div>
+
 
     </section>
     <script src="../js/member.js"></script>
     <script src="../js/sidebar.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 </body>
 
 </html>
