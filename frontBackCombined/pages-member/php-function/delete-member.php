@@ -1,8 +1,9 @@
 <?php
-    $c_memberID = $_POST['delete_id'];
+  
 
     require 'dbAuthentication.php';
     $conn = OpenConnection();
+    $c_memberID = $_POST['delete_id'];
 
     $del =
         "DELETE FROM member 
@@ -15,7 +16,7 @@
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $c_memberID);
 
-    if ($stmt->execute) {
+    if ($stmt->execute()) {
 
     } else {
         echo nl2br("\r\n SQL error: " . mysqli_error($conn));
