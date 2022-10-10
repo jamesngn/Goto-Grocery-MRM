@@ -30,7 +30,7 @@
                     </div>
                     <form method="post" action="edit-member-frontend.php">
                         <p>
-                            <input type="hidden" name="existmemberID" id="existmemberID" value="<?php echo $c_memberID; ?>">
+                            <input type="hidden" name="checkmemberID" id="checkmemberID" value="<?php echo $c_memberID; ?>">
                         </p>
                         <button id=" addMoreButton" class="add">
                             Edit Again
