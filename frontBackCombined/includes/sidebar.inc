@@ -25,7 +25,7 @@
                 </div>
                 <ul class="sub-menu">
                     <li><a class="link-name" href="#">People</a></li>
-                    <li><a href="#">Customer</a></li>
+                    <li><a href="../pages-member/member.php">Customer</a></li>
                     <li><a href="#">Employee</a></li>
                 </ul>
             </li>
