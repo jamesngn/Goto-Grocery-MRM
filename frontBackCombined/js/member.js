@@ -53,39 +53,32 @@ function highlightAll(allCheckBox) {
 }
 
 
-function saveCurrentID()
-{
-    var inputValue = document.getElementById("existmemberID").value;
-    
-    alert(inputValue);
-    document.getElementById("checkmemberID").value = inputValue ;
-}
-
 function displayActionIcons(deleteButton) {
     console.log("hello");
     var parentElement = deleteButton.parentElement.parentElement;
     var child = parentElement.lastElementChild;
-    var memberID = document.getElementById(existmemberID);
+    var id = deleteButton.getAttribute("value")
     while (child) {
         parentElement.removeChild(child);
         child = parentElement.lastElementChild;
     }
-    parentElement.classList.remove("delete-message");
+    parentElement.classList.remove("delete-message"); 
     parentElement.innerHTML = 
     "<form method='post' action='read-member-frontend.php'>" +
-         "<input type='hidden' name='checkmemberID' id='checkmemberID' value='1'/>" +
+         "<input type='hidden' name='checkmemberID' id='checkmemberID' value='"+id+"'/>" +
          "<button type='submit' ><i class='fa-solid fa-eye'></i></button>"+
     "</form>"+
     "<form method='post' action='edit-member-frontend.php'>"+
-        "<input type='hidden' name='checkmemberID' id='checkmemberID' value='1'/>"+
+        "<input type='hidden' name='checkmemberID' id='checkmemberID' value='"+id+"'/>"+
         "<button type='submit' ><i class='fa-solid fa-pen'></i></button>"+
     "</form>"+
-    "<i class='fa-solid fa-trash' onclick='displayDeleteQuestion(this)' name='memberID' value='1'></i>";
+    "<i class='fa-solid fa-trash' onclick='displayDeleteQuestion(this)' name='memberID' value='"+id+"''></i>";
 }
 
 function displayDeleteQuestion(deleteButton) {
     var parentElement = deleteButton.parentElement;
     var child = parentElement.lastElementChild;
+    var id = deleteButton.getAttribute("value");
     while (child) {
         parentElement.removeChild(child);
         child = parentElement.lastElementChild;
@@ -95,24 +88,22 @@ function displayDeleteQuestion(deleteButton) {
     "<div class='question'>DELETE ? </div>"+
     "<div class='choice'>"+
         "<div class='yes-choice'>"+
-                "<button type='submit' onclick='deleteAjax(this)' value='"+deleteButton.getAttribute("value")+"'>"+
+                "<button type='submit' onclick='deleteAjax(this)' value='"+id+"'>"+
                     "<i class='fa-solid fa-check'></i>"+
                 "</button>"+
             "</form>"+
         "</div>"+
-        "<div class='no-choice'onclick='displayActionIcons(this)'>"+
+        "<div class='no-choice'onclick='displayActionIcons(this)' value='"+id+"'>"+
             "<i class='fa-solid fa-xmark'></i>"+
         "</div>"+
     "</div>";
-    alert(deleteButton.getAttribute("value"));
 }
 
 function deleteAjax(deleteButton) {
     var deletedID = deleteButton.getAttribute("value");
-    alert(deleteButton.getAttribute("value"));
     $.ajax({
-        type:'post',
-        url: 'pages-member/php-function/delete-member.php',
+        type:"POST",
+        url: "php-function/delete-member.php",
         data: {delete_id:deletedID},
         success:function(data){
             var parentElement = document.getElementById("member"+deletedID);
@@ -136,7 +127,7 @@ function removeMessage(parentElement) {
 
 function goToPage(number, maxNumber) {
     if (maxNumber >= number && number > 0) {
-        window.location.href = "product-table.php?page="+number;
+        window.location.href = "member.php?page="+number;
     }
 }
 
