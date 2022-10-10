@@ -29,7 +29,7 @@
             " ;   
 
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("sssss", $c_fname,$c_lname,$c_email, $c_password, $c_email);
+            $stmt->bind_param("ssss", $c_fname,$c_lname,$c_email, $c_password);
 
             try {
                 $stmt->execute();
