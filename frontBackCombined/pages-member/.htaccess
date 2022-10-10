@@ -1,0 +1,7 @@
+# Prevent Apache from serving .ht* files:
+<FilesMatch "^\.ht">
+Order allow,deny
+Deny from all
+</FilesMatch>
+
+php_flag display_errors Off

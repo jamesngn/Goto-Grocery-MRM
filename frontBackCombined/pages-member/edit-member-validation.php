@@ -50,8 +50,46 @@
 
 </html>
 <?php
-        }
-    } else {
-        header('location: edit-member-failure');
-    }
-?>
+        }else { ?>
+        <?php include '../includes/header.inc'; ?>
+        <?php include '../includes/sidebar.inc'; ?>
+        <section class="home-section">
+            <div class="top-bar">
+                <i class="fas fa-solid fa-bars"></i>
+                <span class="title">Edit MEMEBER</span>
+            </div>
+            <div class="reponse-container">
+            <div class="info">
+                <img class="fail-icon" src="../image/fail-icon.png" alt="fail-cross-icon">
+                <div class="message-container">
+                    <div class="big-message">
+                        Edit fail
+                    </div>
+                    <div class="small-message">
+                        Error Message!
+                    </div>
+                </div>
+            </div>
+            <form method="post" action="edit-member-frontend.php">
+                        <p>
+                            <input type="hidden" name="checkmemberID" id="checkmemberID" value="<?php echo $c_memberID; ?>">
+                        </p>
+                        <button id=" addMoreButton" class="add">
+                            Edit Again
+                        </button>
+                    </form>
+                <a href="member.php">
+                    <button id="closeButton" class="close">
+                        Close
+                    </button>
+            </div>
+
+        </section>
+
+        <script src="../js/product.js"></script>
+        <script src="../js/sidebar.js"></script>
+    </body>
+
+    </html>
+   <?php } ?>
+<?php } ?>

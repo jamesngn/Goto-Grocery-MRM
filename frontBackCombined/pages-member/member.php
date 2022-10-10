@@ -71,7 +71,7 @@ include 'php-function/read-member.php'
                      member.customer_password as customer_password, 
                      member.CREATED_AT as CREATED_AT
                             FROM member
-                            LIMIT $start_from,$num_per_page
+                            LIMIT $start_from,$num_per_page 
                             ";
                     $testRow = mysqli_query($conn,$sql);
                     ?>

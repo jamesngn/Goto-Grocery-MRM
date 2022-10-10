@@ -37,8 +37,8 @@
               }
               
               //catch exception
-              catch(Exception $e) {
-                errorMessage($e);
+              catch(Exception $ignore) {
+                
                 return false;
               }
               return false;
