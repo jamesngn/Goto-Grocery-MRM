@@ -25,8 +25,22 @@
 
             $sql = "INSERT INTO employee (fname, lname, email, password)
             VALUES ('$c_fname','$c_lname','$c_email','$c_password')";  
-            
 
+            $stmt = $conn->prepare($sql);
+
+            try {
+                $stmt->execute();
+                return true;
+              }
+              
+              //catch exception
+              catch(Exception $ignore) {
+                
+                return false;
+              }
+              return false;
+            $stmt->close();
+            CloseConnection($conn);
 
               
         }
