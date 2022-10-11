@@ -32,7 +32,7 @@
       }
       parentElement.classList.add("delete-message");
       parentElement.innerHTML = 
-      "<div class='question'>Do you wish allocate period of time for data? </div>"+
+      "<div class='question'>Do you wish allocate period of time for Member Data? </div>"+
       "<div class='choice'>"+
           "<div class='yes-choice'>"+
                   "<button type='submit' onclick='additionalDateMemberButton(this)' >"+
