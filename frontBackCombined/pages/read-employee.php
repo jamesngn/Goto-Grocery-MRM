@@ -3,17 +3,17 @@
 
        
 
-        $c_ID = $_GET["employee_ID"];
-        if ($c_ID) {
+        $ID = $_GET["employee_ID"];
+        if ($ID) {
             include '../includes/dbAuthentication.inc';
             $conn = OpenConnection();
     
-            $sql = "SELECT * FROM employee WHERE employee_ID = '$c_ID'";
+            $sql = "SELECT * FROM employee WHERE employee_ID = '$ID'";
             $result = mysqli_query($conn,$sql);
     
             if ($result) {
                 if (mysqli_num_rows($result) > 0) {
-                    $employee = mysqli_fetch_assoc($result);   
+                    $ID = mysqli_fetch_assoc($result);   
                                
                 }
             }
@@ -54,20 +54,20 @@ include '../includes/header.inc';
                             <div class="form-wrap">
                                 <div class="form-item">
                                     <label for="fname">First Name</label>
-                                    <input type="text" name="fname" id="fname" value="<?php echo $employee['fname']; ?>" readonly>
+                                    <input type="text" name="fname" id="fname" value="<?php echo $ID['fname']; ?>" readonly>
                                 </div>
                             </div>
                             <div class="form-wrap">
                                 <div class="form-item">
                                     <label for="memberID">Employee ID</label>
-                                    <input type="text" name="memberID" id="memberID" value="<?php echo $employee['employee_ID']; ?>" readonly>
+                                    <input type="text" name="memberID" id="memberID" value="<?php echo $ID['employee_ID']; ?>" readonly>
                                 </div>
 
                             </div>
                             <div class="form-wrap">
                                 <div class="form-item">
                                     <label for="email">Email</label>
-                                    <input type="text" name="email" id="email" value="<?php echo $employee['email']; ?>" readonly>
+                                    <input type="text" name="email" id="email" value="<?php echo $ID['email']; ?>" readonly>
                                 </div>
                             </div>
                         </div>

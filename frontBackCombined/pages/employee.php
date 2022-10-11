@@ -1,6 +1,6 @@
 <?php
 include '../includes/header.inc';
-include 'read-employee.php'
+// include 'read-employee.php'
 ?>
 
 <body>
@@ -91,11 +91,11 @@ include 'read-employee.php'
                             <?php } ?> 
                             <td class="actions">
                             <input type="hidden" name="existmemberID" id="existmemberID" value='<?php echo $rows["employee_ID"]; ?>' />
-                                <form method="post" action="read-member-frontend.php">
+                                <form method="post" action="read-employee.php">
                                     <input type="hidden"  name="checkmemberID" id="checkmemberID" value='<?php echo $rows["employee_ID"]; ?>'  />
                                     <button type="submit" ><i class="fa-solid fa-eye"></i></button>
                                 </form>
-                                <form method="post" action="edit-member-frontend.php">
+                                <form method="post" action="edit-employee.php">
                                     <input type="hidden" name="checkmemberID" id="checkmemberID" value='<?php echo $rows["employee_ID"]; ?>'  />
                                     <button type="submit"><i class="fa-solid fa-pen"></i></button>
                                 </form>
