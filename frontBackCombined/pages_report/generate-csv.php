@@ -11,6 +11,7 @@ ob_end_clean();
 //purchase
 $purchaseStartDate = $_POST['Start_Date-Purchase'];
 $purchaseEndDate = $_POST['End_Date-Purchase'];
+ob_end_clean();
  //Zipping
  $zipname = 'csv.zip';
  $zip = new ZipArchive;
@@ -61,7 +62,7 @@ $purchaseEndDate = $_POST['End_Date-Purchase'];
     elseif($table[$i]="purchase" && !is_null($purchaseStartDate) && !is_null($purchaseEndDate)){
         $verifytable;
         $sql = "SELECT * FROM  $verifytable 
-        WHERE CREATED_AT = '$purchaseStartDate' AND CREATED_AT = '$purchaseEndDate' ";
+        WHERE purchaseTime = '$purchaseStartDate' AND purchaseTime = '$purchaseEndDate' ";
         $result = mysqli_query($conn, $sql) or die("Selection Error " . mysqli_error($conn));
     
         // write the data to csv
