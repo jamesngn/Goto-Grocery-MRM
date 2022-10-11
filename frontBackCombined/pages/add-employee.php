@@ -25,6 +25,7 @@
 
             $sql = "INSERT INTO employee (fname, lname, email, password)
             VALUES ('$c_fname','$c_lname','$c_email','$c_password')";  
+            
 
 
               
