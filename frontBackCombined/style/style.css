@@ -991,3 +991,76 @@
 .not-found-img-container img {
     height: 100%;;
 }
+
+/* Member form */
+#addMemberForm .backButton {
+    margin-top: 1vh;
+    margin-left: 1vw;
+}
+#addMemberForm .backButton a {
+    color:#5477C0;
+    text-decoration: none;
+    font-size: 1.4vw;
+    font-weight: 700;
+}
+#addMemberForm .backButton a:hover{
+    text-decoration: underline;
+}
+
+
+#addMemberForm .text-input-container {
+    padding: 0 2.79vw;
+    height: calc(82.16vh - 27.31vh - 5.51vh - 5vh);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+#addMemberForm .form-wrap {
+    display: flex;
+    justify-content: space-between;
+}
+#addMemberForm .form-item {
+    display:flex;
+    flex-direction: column;
+    width:45%;
+}
+#addMemberForm .form-item label {
+    color:#B2B2B2;
+    font-weight: 600;
+    font-size: 1.13vw;
+}
+#addMemberForm .form-item input,
+#addMemberForm .form-item select {
+    border: none;
+    height:4vh;
+    border-bottom: 0.126vh solid #000000;
+    font-size: 1.1vw;
+    font-weight: 600;
+}
+#addMemberForm .form-item input:focus,
+#addMemberForm .form-item select:focus {
+    outline:none;
+    border-bottom: 3px solid #000000;
+}
+#addMemberForm .form-item.description {
+    width: 100%;
+}
+#addMemberForm .form-wrap button {
+    width:49%;
+    height: 6.34vh;
+    border-radius: 5px;    
+    cursor: pointer;
+}
+#addMemberForm .form-wrap button[type="submit"],
+#addMemberForm .form-wrap button[type="reset"] {
+    background-color: #5CB85C;
+    border: 2px solid #707070;
+    color:white;
+    font-size: 1.65vw;
+}
+#addMemberForm .form-wrap button.edit {
+    background-color: #E9B003;
+}
+#addMemberForm .form-wrap button[type="reset"] {
+    background-color: #F55A4E;
+}

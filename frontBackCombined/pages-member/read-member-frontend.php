@@ -11,7 +11,7 @@ include '../includes/header.inc';
         </div>
 
         <div class="form-container">
-            <div id="addProductForm">
+            <div id="addMemberForm">
 
                 <div class="backButton">
                     <a href="member.php">
@@ -60,6 +60,8 @@ include '../includes/header.inc';
                                     <input type="text" name="created_date" id="created_date" value="<?php echo $member['CREATED_AT']; ?>" readonly>
                                 </div>
                             </div>
+                        </div>
+                        <div class="form-container">
                         </div>
 
 
