@@ -80,6 +80,65 @@
        "<input type='date' id='End_Date-Member' name='End_Date-Member' required>"
     }
 
+
+
+    function displayDatePurchaseQuestion(datePurchaseButton) {
+      var parentElement = datePurchaseButton.parentElement;
+      var child = parentElement.lastElementChild;
+      while (child) {
+          parentElement.removeChild(child);
+          child = parentElement.lastElementChild;
+      }
+      parentElement.classList.add("delete-message");
+      parentElement.innerHTML = 
+      "<div class='question'>Do you wish allocate period of time for Purchase Data? </div>"+
+      "<div class='choice'>"+
+          "<div class='yes-choice'>"+
+                  "<button type='submit' onclick='additionalDatePurchaseButton(this)' >"+
+                      "<i class='fa-solid fa-check'></i>"+
+                  "</button>"+
+              "</form>"+
+          "</div>"+
+          "<div class='no-choice'onclick='displayDatePurchaseButton(this)' >"+
+              "<i class='fa-solid fa-xmark'></i>"+
+          "</div>"+
+      "</div>";
+    }
+
+    function displayDatePurchaseButton(datePurchaseButton) {
+      console.log("hello");
+      var parentElement = datePurchaseButton.parentElement.parentElement;
+      var child = parentElement.lastElementChild;
+      
+      while (child) {
+          parentElement.removeChild(child);
+          child = parentElement.lastElementChild;
+      }
+      parentElement.classList.remove("delete-message"); 
+      parentElement.innerHTML = 
+      "<p>" +
+           "<label for='purchase'>PurchaseData</label> " +
+           "<input type='checkbox' onclick='displayDatePurchaseQuestion(this)' id='purchase_mysql_table' name='Table[]' value='purchase'/>"+
+      "</p>"
+  }
+    
+  function additionalDatePurchaseButton(datePurchaseButton) {
+    var parentElement = datePurchaseButton.parentElement;
+    var child = parentElement.lastElementChild;
+   
+    while (child) {
+      parentElement.removeChild(child);
+      child = parentElement.lastElementChild;
+  }
+  parentElement.classList.remove("delete-message"); 
+  parentElement.innerHTML = 
+  "<input type='hidden'  id='purchase_mysql_table' name='Table[]' value='purchase'/>"+
+       "<label for='Start_Date-Purchase'>Start Date:</label> " +
+       "<input type='date' id='Start_Date-Purchase' name='Start_Date-Purchase' required>"+
+       "<label for='End_Date-Purchase'>End Date:</label>"+
+       "<input type='date' id='End_Date-Purchase' name='End_Date-Purchase' required>"
+    }
+
 function removeMessage(parentElement) {
     parentElement.remove();
     

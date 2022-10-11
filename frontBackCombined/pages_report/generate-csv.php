@@ -5,9 +5,12 @@ ob_start();
 ob_end_clean();
  $conn = OpenConnection();
  $table = $_POST['Table'];
+//member
  $memberStartDate = $_POST['Start_Date-Member'];
-
  $memberEndDate = $_POST['End_Date-Member'];
+//purchase
+$purchaseStartDate = $_POST['Start_Date-Purchase'];
+$purchaseEndDate = $_POST['End_Date-Purchase'];
  //Zipping
  $zipname = 'csv.zip';
  $zip = new ZipArchive;
@@ -55,10 +58,35 @@ ob_end_clean();
         $memberEndDate = NULL;
         
     }
+    elseif($table[$i]="purchase" && !is_null($purchaseStartDate) && !is_null($purchaseEndDate)){
+        $verifytable;
+        $sql = "SELECT * FROM  $verifytable 
+        WHERE CREATED_AT = '$purchaseStartDate' AND CREATED_AT = '$purchaseEndDate' ";
+        $result = mysqli_query($conn, $sql) or die("Selection Error " . mysqli_error($conn));
+    
+        // write the data to csv
+        if (mysqli_num_rows($column_name) > 0)
+        {
+            while($column_row = mysqli_fetch_array($column_name))
+            {
+                array_push($column_table, $column_row[0]);
+                
+            }
+            fputcsv($fd, $column_table);
+        }
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                fputcsv($fd, $row);
+            }
+        }
+        
+        $purchaseStartDate = NULL;
+        $purchaseEndDate = NULL;
+    }
+
     else
     {
         
-  
     $sql = "SELECT * FROM ".$verifytable;
     $result = mysqli_query($conn, $sql) or die("Selection Error " . mysqli_error($conn));
 
