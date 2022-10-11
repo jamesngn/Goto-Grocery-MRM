@@ -11,7 +11,7 @@ include '../includes/header.inc';
         </div>
 
         <div class="form-container">
-            <div id="addProductForm">
+            <div id="addMemberForm">
                 <form action="add-member-validation.php" method="post">
 
                     <div class="backButton">

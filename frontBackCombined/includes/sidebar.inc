@@ -82,12 +82,12 @@
                 </ul>
             </li>
             <li>
-                <a href="#">
+                <a href="../pages-report/configuration-generate-csv.php">
                     <i class="fas fa-paperclip me-2"></i>
                     <span class="link-name">Report</span>
                 </a>
-                <ul class="sub-menu blank">
-                    <li><a class="link-name" href="#">Report</a></li>
+                <ul class="sub-menu">
+                    <li><a class="link-name" href="../pages-report/configuration-generate-csv.php">Report</a></li>
                 </ul>
             </li>
             <div class="profile-details">
