@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 03, 2022 at 04:07 AM
+-- Generation Time: Oct 11, 2022 at 06:07 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -50,8 +50,10 @@ CREATE TABLE `category` (
 
 INSERT INTO `category` (`CategoryID`, `Name`) VALUES
 (236, 'Phone'),
-(237, 'Laptop'),
-(238, 'Audio');
+(238, 'Audio'),
+(240, 'Tablet'),
+(241, 'Power Drink'),
+(242, 'Laptop');
 
 -- --------------------------------------------------------
 
@@ -111,52 +113,53 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `image`, `name`, `description`, `qty_stock`, `retailPrice`, `category_ID`) VALUES
-(100000, '../image/product/100000.png', 'iPhone 14 Pro Max', 'The latest Apple iPhone', 0, 2500, 236),
-(100001, '../image/product/100001.jpg', 'Apple HomePod mini', 'Fills the entire room with rich 360-degree audio. I love it !', 0, 155, 238),
-(100002, '../image/product/100002.png', 'Apple MacBook Air 13-inch with M1 chip, 7-core GPU', 'Apple-designed M1 chip for a giant leap in CPU, GPU and machine learning performance', 0, 1499, 237);
+(100000, '../image/product/100000.jpg', 'Quang Nguyen', '', 0, 1500, 242),
+(100001, '../image/product/100001.jpg', 'Quang Nguyen', 'A gaming and powerful laptop', 0, 1300, 242),
+(100002, '../image/product/100002.jpg', 'iPhone 14 Pro Max', 'An wonderful smartphone', 0, 1300, 236),
+(100003, '../image/product/100003.jpg', 'MacBook', '', 0, 329999, 242);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `purchase`
+-- Table structure for table `sale`
 --
 
-CREATE TABLE `purchase` (
-  `purchaseID` int(11) NOT NULL,
+CREATE TABLE `sale` (
+  `saleID` int(11) NOT NULL,
   `memberID` int(11) NOT NULL,
-  `purchaseTime` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `purchaseTime` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `purchase`
+-- Dumping data for table `sale`
 --
 
-INSERT INTO `purchase` (`purchaseID`, `memberID`, `purchaseTime`) VALUES
-(2, 2, '2022-09-10 01:46:05'),
-(3, 2, '2022-09-10 02:06:28'),
-(4, 2, '2022-09-10 02:21:47'),
-(5, 1, '2022-09-10 02:29:53'),
-(6, 1, '2022-09-10 02:30:16'),
-(7, 1, '2022-09-10 11:27:31');
+INSERT INTO `sale` (`saleID`, `memberID`, `purchaseTime`) VALUES
+(2, 2, '2022-09-10'),
+(3, 2, '2022-09-10'),
+(4, 2, '2022-09-10'),
+(5, 1, '2022-09-10'),
+(6, 1, '2022-09-10'),
+(7, 1, '2022-09-10');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `purchaseitem`
+-- Table structure for table `saleitem`
 --
 
-CREATE TABLE `purchaseitem` (
-  `purchaseID` int(11) NOT NULL,
+CREATE TABLE `saleitem` (
+  `saleID` int(11) NOT NULL,
   `lineNo` int(11) NOT NULL,
   `productID` int(11) NOT NULL,
   `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `purchaseitem`
+-- Dumping data for table `saleitem`
 --
 
-INSERT INTO `purchaseitem` (`purchaseID`, `lineNo`, `productID`, `quantity`) VALUES
+INSERT INTO `saleitem` (`saleID`, `lineNo`, `productID`, `quantity`) VALUES
 (2, 1, 4, 1),
 (3, 1, 6, 40),
 (4, 1, 13, 12),
@@ -209,7 +212,8 @@ CREATE TABLE `supplier` (
 
 INSERT INTO `supplier` (`supplier_id`, `supplier_name`) VALUES
 (321, 'Jim'),
-(123, 'Sam');
+(123, 'Sam'),
+(100000, 'Apple Inc');
 
 -- --------------------------------------------------------
 
@@ -267,16 +271,16 @@ ALTER TABLE `product`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `purchase`
+-- Indexes for table `sale`
 --
-ALTER TABLE `purchase`
-  ADD PRIMARY KEY (`purchaseID`);
+ALTER TABLE `sale`
+  ADD PRIMARY KEY (`saleID`);
 
 --
--- Indexes for table `purchaseitem`
+-- Indexes for table `saleitem`
 --
-ALTER TABLE `purchaseitem`
-  ADD PRIMARY KEY (`lineNo`,`purchaseID`);
+ALTER TABLE `saleitem`
+  ADD PRIMARY KEY (`lineNo`,`saleID`);
 
 --
 -- Indexes for table `suppdelivery`
@@ -298,7 +302,7 @@ ALTER TABLE `wishlist`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `CategoryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=239;
+  MODIFY `CategoryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=243;
 
 --
 -- AUTO_INCREMENT for table `employee`
@@ -313,10 +317,10 @@ ALTER TABLE `member`
   MODIFY `customer_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `purchase`
+-- AUTO_INCREMENT for table `sale`
 --
-ALTER TABLE `purchase`
-  MODIFY `purchaseID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+ALTER TABLE `sale`
+  MODIFY `saleID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `suppdelivery`
