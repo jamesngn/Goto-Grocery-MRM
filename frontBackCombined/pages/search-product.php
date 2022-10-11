@@ -2,7 +2,7 @@
     include '../includes/dbAuthentication.inc';
     $conn = OpenConnection();
 
-    $limit = '3';
+    $limit = '8';
     $page = 1;
 
     if ($_POST['page'] > 1) {
