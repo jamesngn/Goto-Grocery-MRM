@@ -692,7 +692,8 @@
 }
 
 .tablePage .table-container table .actions.delete-message {
-    width: 70%;
+    width: fit-content;
+    height: fit-content;
     margin: 0 auto;
     background-color: #435D7D;
     display: flex;
@@ -1064,3 +1065,4 @@
 #addMemberForm .form-wrap button[type="reset"] {
     background-color: #F55A4E;
 }
+
