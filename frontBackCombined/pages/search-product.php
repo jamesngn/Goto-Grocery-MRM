@@ -140,7 +140,7 @@
         {
 
             if ($page - 1 < 0) {
-                $previous_link = '<button class="previous-btn page-link" >Previous</button>
+                $previous_link = '<button class="previous-btn" >Previous</button>
                 ';
             } else {
                 $previous_link = '<button class="previous-btn page-link" data-page_number="'.($page-1).'">Previous</button>
@@ -148,7 +148,7 @@
             }
 
             if ($page + 1 > count($page_array)) {
-                $next_link = '<button class="next-btn page-link" >Next</button>
+                $next_link = '<button class="next-btn" >Next</button>
                 ';
             } else {
                 $next_link = '<button class="next-btn page-link" data-page_number="'.($page+1).'">Next</button>
