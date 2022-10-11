@@ -59,7 +59,7 @@
       parentElement.innerHTML = 
       "<p>" +
            "<label for='member'>Member Data</label> " +
-           "<input type='checkbox' onclick='displayDateMemberQuestion(this)' id='member_mysql_table' name='Table[]' value='member'/>"+
+           "<input type='checkbox' onclick='displayDateMemberQuestion(this)' id='member_mysql_table' name='Table[]' value='member' checked/>"+
       "</p>"
   }
     
@@ -118,7 +118,7 @@
       parentElement.innerHTML = 
       "<p>" +
            "<label for='purchase'>PurchaseData</label> " +
-           "<input type='checkbox' onclick='displayDatePurchaseQuestion(this)' id='purchase_mysql_table' name='Table[]' value='purchase'/>"+
+           "<input type='checkbox' onclick='displayDatePurchaseQuestion(this)' id='purchase_mysql_table' name='Table[]' value='purchase' checked/>"+
       "</p>"
   }
     
