@@ -26,30 +26,7 @@
         </div>
 
         <div id="dynamic_content">
-            <div class="table-container">
-                <table>
-                    <thead>
-                            <th class="checkBox">
-                                <input type="checkbox" id="" onclick="highlightAll(this)">
-                            </th>
-                            <th class="imageHeading">Image</th>
-                            <th>ID</th>
-                            <th class="nameHeading">Name</th>
-                            <th>Retail Price</th>
-                            <th>Category</th>
-                            <th class="actionHeading">Actions</th>
-                    </thead>
-                    <tbody>
-
-                    
-                    </tbody>
-                </table>
-            </div>
-    
-            <div class="pageNumbers-container">
-                 
-
-            </div>
+            
         </div>
 
     </section>
