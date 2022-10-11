@@ -87,7 +87,7 @@
                     <span class="link-name">Report</span>
                 </a>
                 <ul class="sub-menu blank">
-                    <li><a class="link-name" href="#">Report</a></li>
+                    <li><a class="link-name" href="../pages-report/configuration-generate-csv.php">Report</a></li>
                 </ul>
             </li>
             <div class="profile-details">
