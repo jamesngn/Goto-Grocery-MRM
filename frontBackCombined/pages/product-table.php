@@ -14,7 +14,7 @@
             <div class="left-items">
                 <div class="pageTitle">Product</div>
                 <div class="search-bar">
-                    <form action="product-table.php" method="get">
+                    <form>
                         <input type="text" name="query" id="search_box" placeholder="Search Products">
                         <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                     </form>
