@@ -73,7 +73,7 @@ function highlightAll(allCheckBox) {
 }
 
 function displayActionIcons(deleteButton) {
-    console.log("hello");
+    var id = deleteButton.getAttribute("value");
     var parentElement = deleteButton.parentElement.parentElement;
     var child = parentElement.lastElementChild;
     while (child) {
@@ -83,17 +83,18 @@ function displayActionIcons(deleteButton) {
     parentElement.classList.remove("delete-message");
     parentElement.innerHTML = 
     "<form action='read-product.php' method='get'>"+
-        "<input type='hidden' name='productID' value='100000'>"+
+        "<input type='hidden' name='productID' value='"+id+"'>"+
         "<button type='submit'><i class='fa-solid fa-eye'></i></button>"+
     "</form>"+
     "<form action='edit-product.php' method='get'>"+
-        "<input type='hidden' name='productID' value='100000'>"+
+        "<input type='hidden' name='productID' value='"+id+"'>"+
         "<button type='submit'><i class='fa-solid fa-pen'></i></button>"+
     "</form>"+
-    "<i class='fa-solid fa-trash' onclick='displayDeleteQuestion(this)' name = 'productID' value = '100000'></i>";
+    "<i class='fa-solid fa-trash' onclick='displayDeleteQuestion(this)' name = 'productID' value = '"+id+"'></i>";
 }
 
 function displayDeleteQuestion(deleteButton) {
+    var id = deleteButton.getAttribute("value");
     var parentElement = deleteButton.parentElement;
     var child = parentElement.lastElementChild;
     while (child) {
@@ -105,12 +106,12 @@ function displayDeleteQuestion(deleteButton) {
     "<div class='question'>DELETE ? </div>"+
     "<div class='choice'>"+
         "<div class='yes-choice'>"+
-                "<button type='submit' onclick='deleteAjax(this)' value='"+deleteButton.getAttribute("value")+"'>"+
+                "<button type='submit' onclick='deleteAjax(this)' value='"+id+"'>"+
                     "<i class='fa-solid fa-check'></i>"+
                 "</button>"+
             "</form>"+
         "</div>"+
-        "<div class='no-choice'onclick='displayActionIcons(this)'>"+
+        "<div class='no-choice' value = '"+id+"' onclick='displayActionIcons(this)'>"+
             "<i class='fa-solid fa-xmark'></i>"+
         "</div>"+
     "</div>";
@@ -133,20 +134,15 @@ function deleteAjax(deleteButton) {
             parentElement.innerHTML = "<td colspan = '7' class='delete-success-msg'>Succeed to delete the product from the database</td>";
 
             setTimeout(removeMessage,2000,parentElement);
-            setTimeout("window.location.reload();",500);
+           
         }
     })
 }
 function removeMessage(parentElement) {
     parentElement.remove();
-    
 }
+  
 
-function goToPage(number, maxNumber) {
-    if (maxNumber >= number && number > 0) {
-        window.location.href = "product-table.php?page="+number;
-    }
-}
 
 function RedirectToAddProductPage() {
     window.location.href = "add-product.php";
