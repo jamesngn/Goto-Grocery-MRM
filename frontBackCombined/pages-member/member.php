@@ -21,7 +21,7 @@ include 'php-function/read-member.php'
                     </form>
                 </div>
             </div>
-            <div class="right-items addProductButton">
+            <div class="right-items addMemberButton">
                 <a href="add-member-frontend.php">+ Add Member</a>
             </div>
         </div>
@@ -79,7 +79,7 @@ include 'php-function/read-member.php'
                     <?php
                     while ($rows = $testRow->fetch_assoc()) { ?>
                         <tr class="member" id="member<?php echo $rows["customer_id"]; ?>" value="<?php echo $page; ?>">
-                            <td class="checkBox"><input type="checkbox" name="<?php echo $rows["customer_id"]; ?>" onclick="highlightProduct(this)"></td>
+                            <td class="checkBox"><input type="checkbox" name="<?php echo $rows["customer_id"]; ?>" onclick="highlightMember(this)"></td>
                             <?php foreach ($testColumn as $column) { ?>
 
 

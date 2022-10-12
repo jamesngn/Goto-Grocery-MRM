@@ -13,20 +13,23 @@
     }
 
     $query = "
-    SELECT product.id as id, product.image as image, product.name as name, product.retailPrice as retailPrice, category.Name as category 
-    FROM product
-    LEFT JOIN category
-    ON product.category_ID = category.CategoryID
+    SELECT sale.saleID as saleID, member.customer_firstname as firstname, member.customer_lastname as lastname, count(saleitem.lineNo) as noOfItems, sale.purchaseTime as purchaseTime
+    FROM sale
+    LEFT JOIN member
+    ON sale.memberID = member.customer_id
+    LEFT JOIN saleitem
+    ON sale.saleID = saleitem.saleID
+    GROUP BY saleitem.saleID
     ";
 
     if($_POST['query'] != '')
     {
     $query .= '
-    WHERE product.name LIKE "%'.str_replace(' ', '%', $_POST['query']).'%" OR category.Name LIKE "%'.str_replace(' ', '%', $_POST['query']).'%" OR product.id LIKE "%'.str_replace(' ', '%', $_POST['query']).'%" OR product.retailPrice LIKE "%'.str_replace(' ', '%', $_POST['query']).'%"
+    WHERE member.customer_firstname LIKE "%'.str_replace(' ', '%', $_POST['query']).'%" OR member.customer_lastname LIKE "%'.str_replace(' ', '%', $_POST['query']).'%" OR sale.purchaseTime LIKE "%'.str_replace(' ', '%', $_POST['query']).'%" OR sale.saleID LIKE "%'.str_replace(' ', '%', $_POST['query']).'%"
     ';
     }
 
-    $query .= 'ORDER BY id ASC ';
+    $query .= 'ORDER BY sale.saleID ASC ';
 
     $filter_query = $query . 'LIMIT '.$start.', '.$limit.'';
 
@@ -44,11 +47,10 @@
                 <th class="checkBox">
                     <input type="checkbox" id="" onclick="highlightAll(this)">
                 </th>
-                <th class="imageHeading">Image</th>
-                <th>ID</th>
-                <th class="nameHeading">Name</th>
-                <th>Retail Price</th>
-                <th>Category</th>
+                <th>Sales ID</th>
+                <th class="nameHeading">Customer Name</th>
+                <th># of items</th>
+                <th>Date of Sales</th>
                 <th class="actionHeading">Actions</th>
         </thead>
         <tbody>
@@ -56,23 +58,22 @@
     if ($total_data > 0) {
         foreach($result as $row) {
             $output .= '
-            <tr id="product'.$row['id'].'" value="<?php echo $page; ?>">
-                <td class="checkBox"><input type="checkbox" name="'.$row['id'].'" onclick="highlightProduct(this)"></td>
-                <td><img src="'.$row['image'].'" alt=""></td>
-                <td>'.$row['id'].'</td>
-                <td class="nameData">'.$row['name'].'</td>
-                <td>$'.number_format($row["retailPrice"],2).'</td>
-                <td>'.$row['category'].'</td>
+            <tr>
+                <td class="checkBox"><input type="checkbox" name="'.$row['saleID'].'" onclick="highlightProduct(this)"></td>
+                <td>'.$row['saleID'].'</td>
+                <td class="nameData">'.$row['firstname'].' '.$row['lastname'].'</td>
+                <td>'.$row['noOfItems'].'</td>
+                <td>'.$row['purchaseTime'].'</td>
                 <td class="actions">
-                    <form action="read-product.php" method="get">
-                        <input type="hidden" name="productID" value="'.$row['id'].'">
+                    <form action="read-sales.php" method="get">
+                        <input type="hidden" name="saleID" value="'.$row['saleID'].'">
                         <button type="submit"><i class="fa-solid fa-eye"></i></button>
                     </form>
-                    <form action="edit-product.php" method="get">
-                        <input type="hidden" name="productID" value="'.$row['id'].'">
+                    <form action="edit-sales.php" method="get">
+                        <input type="hidden" name="saleID" value="'.$row['saleID'].'">
                         <button type="submit"><i class="fa-solid fa-pen"></i></button>
                     </form>
-                    <i class="fa-solid fa-trash" onclick="displayDeleteQuestion(this)" name = "productID" value = "'.$row['id'].'"></i>
+                    <i class="fa-solid fa-trash" onclick="displayDeleteQuestion(this)" name = "saleID" value = "'.$row['saleID'].'"></i>
                 </td>
             </tr>
             ';

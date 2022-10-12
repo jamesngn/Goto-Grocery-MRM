@@ -1,6 +1,6 @@
 /* Google Fonts Import Link */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,300;1,400;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
     --sidebar-bg-color: #1C6758;
@@ -692,7 +692,8 @@
 }
 
 .tablePage .table-container table .actions.delete-message {
-    width: 70%;
+    width: fit-content;
+    height: fit-content;
     margin: 0 auto;
     background-color: #435D7D;
     display: flex;
@@ -789,17 +790,17 @@
     border-radius: 15px;
     margin: calc((100vh - 7.2vh - 82.16vh)/2) auto;
 }
-#addProductForm .backButton {
+.form-container .backButton {
     margin-top: 1vh;
     margin-left: 1vw;
 }
-#addProductForm .backButton a {
+.form-container .backButton a {
     color:#5477C0;
     text-decoration: none;
     font-size: 1.4vw;
     font-weight: 700;
 }
-#addProductForm .backButton a:hover{
+.form-container .backButton a:hover{
     text-decoration: underline;
 }
 #addProductForm .product-img {
@@ -889,14 +890,16 @@
 #addProductForm .form-item.description {
     width: 100%;
 }
-#addProductForm .form-wrap button {
+#addProductForm .form-wrap button,
+#addSaleForm .button-container button {
     width:49%;
     height: 6.34vh;
     border-radius: 5px;    
     cursor: pointer;
 }
 #addProductForm .form-wrap button[type="submit"],
-#addProductForm .form-wrap button[type="reset"] {
+#addProductForm .form-wrap button[type="reset"],
+#addSaleForm .button-container button {
     background-color: #5CB85C;
     border: 2px solid #707070;
     color:white;
@@ -905,7 +908,8 @@
 #addProductForm .form-wrap button.edit {
     background-color: #E9B003;
 }
-#addProductForm .form-wrap button[type="reset"] {
+#addProductForm .form-wrap button[type="reset"],
+#addSaleForm .button-container button[type="reset"]  {
     background-color: #F55A4E;
 }
 
@@ -990,4 +994,212 @@
 }
 .not-found-img-container img {
     height: 100%;;
+}
+
+/* Member form */
+#addMemberForm .backButton {
+    margin-top: 1vh;
+    margin-left: 1vw;
+}
+#addMemberForm .backButton a {
+    color:#5477C0;
+    text-decoration: none;
+    font-size: 1.4vw;
+    font-weight: 700;
+}
+#addMemberForm .backButton a:hover{
+    text-decoration: underline;
+}
+
+
+#addMemberForm .text-input-container {
+    padding: 0 2.79vw;
+    height: calc(82.16vh - 27.31vh - 5.51vh - 5vh);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+#addMemberForm .form-wrap {
+    display: flex;
+    justify-content: space-between;
+}
+#addMemberForm .form-item {
+    display:flex;
+    flex-direction: column;
+    width:45%;
+}
+#addMemberForm .form-item label {
+    color:#B2B2B2;
+    font-weight: 600;
+    font-size: 1.13vw;
+}
+#addMemberForm .form-item input,
+#addMemberForm .form-item select {
+    border: none;
+    height:4vh;
+    border-bottom: 0.126vh solid #000000;
+    font-size: 1.1vw;
+    font-weight: 600;
+}
+#addMemberForm .form-item input:focus,
+#addMemberForm .form-item select:focus {
+    outline:none;
+    border-bottom: 3px solid #000000;
+}
+#addMemberForm .form-item.description {
+    width: 100%;
+}
+#addMemberForm .form-wrap button {
+    width:49%;
+    height: 6.34vh;
+    border-radius: 5px;    
+    cursor: pointer;
+}
+#addMemberForm .form-wrap button[type="submit"],
+#addMemberForm .form-wrap button[type="reset"] {
+    background-color: #5CB85C;
+    border: 2px solid #707070;
+    color:white;
+    font-size: 1.65vw;
+}
+#addMemberForm .form-wrap button.edit {
+    background-color: #E9B003;
+}
+#addMemberForm .form-wrap button[type="reset"] {
+    background-color: #F55A4E;
+}
+
+/* Add Sales Page */
+#addSaleForm .member-section {
+    height:17.407vh;
+    margin-top: calc(13vh*100/1080);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+#addSaleForm .member-section label {
+    display: block;
+    text-align: center;
+    color: #F55A4E;
+    font-weight: 700;
+    font-size: 1.5vw;
+}
+#addSaleForm .member-section .select-container {
+    text-align: center;
+    margin-top: calc(20vh*100/1080);
+}
+#addSaleForm .member-section .select-container select {
+    border: none;
+    border-bottom: 3.5px solid #C0CDE8;
+    width: calc(345vw*100/1920);
+    padding:5px;
+    color: #5477C0;
+    font-size: 1.1vw;
+    font-weight:600;
+}
+#addSaleForm .member-section .select-container #members * {
+    border: 2px solid #808080;
+    color: #808080;
+    margin-top: 10px;
+}
+#addSaleForm .member-section hr {
+    width: calc(600vw*100/1920);
+    border-top:5px solid #9796A9;
+}
+#addSaleForm .sale-section {
+    padding: calc(22.5vh*100/1080) calc(50vw*100/1920);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#addSaleForm .sale-section .heading {
+    color: #F55A4E;
+    font-size: 1.5vw;
+    font-weight: 700;
+}
+#addSaleForm .sale-section .form-wrap {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: calc(30vh*100/1080);
+}
+#addSaleForm .sale-section .form-wrap .form-item {
+    display: flex;
+    flex-direction: column;
+}
+#addSaleForm .sale-section .form-wrap .form-item label {
+    font-size: 1.1vw;
+    color: #5477C0;
+    font-weight: 700;
+}
+#addSaleForm .sale-section .form-wrap .form-item input,
+#addSaleForm .sale-section .form-wrap .form-item select {
+    border: none;
+    border-bottom: 4px solid #C0CDE8;
+    height: calc(40vh*100/1080);
+    margin-top: calc(20vh*100/1080);
+    font-size:1.1vw;
+    color:black;
+}
+#addSaleForm .sale-section .form-wrap .form-item #product {
+    width: calc(234vw*100/1920);
+}
+#addSaleForm .sale-section .form-wrap .form-item #price,
+#addSaleForm .sale-section .form-wrap .form-item #subtotal {
+    width: calc(160vw*100/1920);
+    text-align: center;
+}
+#addSaleForm .sale-section .form-wrap .form-item #price {
+    color: black;
+    font-weight: 400;
+    font-size: 1.2vw;
+}
+#addSaleForm .sale-section .form-wrap .form-item #subtotal {
+    color: #C054AA;
+    font-weight: 600;
+    font-size: 1.3vw;
+}
+#addSaleForm .sale-section .form-wrap .form-item #quantity {
+    width: calc(88vw*100/1920);
+    border: 3px solid #C0CDE8;
+    border-radius: 10px;
+    color: #000000;
+    font-weight: 600;
+    text-align: center;
+} 
+#addSaleForm .sale-section .add-new-product-section {
+    width: 100%;
+    height: calc(83vh*100/1080);
+    margin-top: calc(40vh*100/1080);
+    padding: calc(23vh*100/1080) 0;
+    background-color: #DFE6F3;
+    border: 3px solid #C0CDE8;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 1.4vw;
+    color: #809AD0;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+#addSaleForm .sale-section .add-new-product-section:hover{
+    border: 3px solid #809AD0;
+    background-color: #809AD0;
+    color: #DFE6F3;
+}
+#addSaleForm .sale-section .add-new-product-section i{
+    font-size: 2.1vw;
+    margin-right: 1vw;
+}
+#addSaleForm .button-container {
+    padding: calc(22.5vh*100/1080) calc(50vw*100/1920);
+    display: flex;
+    justify-content: space-between;
+}
+.salePage {
+    height: auto;
+    padding-bottom:3vh;
 }
