@@ -1,90 +1,71 @@
-<?php 
-    if ($_SERVER["REQUEST_METHOD"] == "GET") { 
+<?php
+function readEmployee($employeeID)
+{
+    if ($employeeID) {
+        require 'dbAuthentication.php';
+        $conn = OpenConnection();
 
-       
+        $sql = "SELECT * FROM employee WHERE employee_ID = '$employeeID'";
+        $result = mysqli_query($conn, $sql);
 
-        $ID = $_GET["employee_ID"];
-        if ($ID) {
-            include '../includes/dbAuthentication.inc';
-            $conn = OpenConnection();
-    
-            $sql = "SELECT * FROM employee WHERE employee_ID = '$ID'";
-            $result = mysqli_query($conn,$sql);
-    
-            if ($result) {
-                if (mysqli_num_rows($result) > 0) {
-                    $ID = mysqli_fetch_assoc($result);   
-                               
-                }
+        if ($result) {
+            if (mysqli_num_rows($result) > 0) {
+
+                $employee = mysqli_fetch_assoc($result);
+                return $employee;
             }
-            else {
-                echo nl2br ("\r\n SQL error: " . mysqli_error($conn));
-            }
-    
-            
-
+        } else {
+            echo nl2br("\r\n SQL error: " . mysqli_error($conn));
         }
-
-
+        CloseConnection($conn);
     }
-    ?>
+}
+function hasEmployee($employeeID)
+{
+    if (is_null($employeeID)) {
+        return false;
+    } else {
+        return true;
+    }
+}
 
-    <?php
-include '../includes/header.inc';
+function getAllEmployeeColumn()
+{
+    ob_start();
+    require_once 'dbAuthentication.php';
+    ob_end_clean();
+    $conn = OpenConnection();
+    // Table Column
+    $sql = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_SCHEMA='epiz_32522623_gotogromrmDB' and TABLE_NAME='employee'";
+    $column_name = mysqli_query($conn, $sql) or die("Selection Error " . mysqli_error($conn));
+    $column_table = array();
+
+    // write the data to csv
+    if (mysqli_num_rows($column_name) > 0) {
+        while ($column_row = mysqli_fetch_array($column_name)) {
+            array_push($column_table, $column_row[0]);
+        }
+        return $column_table;
+    }
+
+    CloseConnection($conn);
+}
+
+function getAllEmployeeRow()
+{
+    ob_start();
+    require_once 'dbAuthentication.php';
+    ob_end_clean();
+    $conn = OpenConnection();
+
+    // get data from table
+    $sql = "SELECT * FROM employee";
+    $result = mysqli_query($conn, $sql) or die("Selection Error " . mysqli_error($conn));
+
+    return $result;
+}
 ?>
 
-<body>
-    <?php include '../includes/sidebar.inc'; ?>;
-    <section class="home-section">
-        <div class="top-bar">
-            <i class="fas fa-solid fa-bars"></i>
-            <span class="title">READ Employee</span>
-        </div>
+<?php
 
-        <div class="form-container">
-            <div id="addProductForm">
-
-                <div class="backButton">
-                        <i class="fa-solid fa-delete-left"></i>
-                        <span>Employee Page</span>
-                    </a>
-                </div>
-
-                        <div class="text-input-container">
-                            <div class="form-wrap">
-                                <div class="form-item">
-                                    <label for="fname">First Name</label>
-                                    <input type="text" name="fname" id="fname" value="<?php echo $ID['fname']; ?>" readonly>
-                                </div>
-                            </div>
-                            <div class="form-wrap">
-                                <div class="form-item">
-                                    <label for="memberID">Employee ID</label>
-                                    <input type="text" name="memberID" id="memberID" value="<?php echo $ID['employee_ID']; ?>" readonly>
-                                </div>
-
-                            </div>
-                            <div class="form-wrap">
-                                <div class="form-item">
-                                    <label for="email">Email</label>
-                                    <input type="text" name="email" id="email" value="<?php echo $ID['email']; ?>" readonly>
-                                </div>
-                            </div>
-                        </div>
-
-
-            </div>
-
-    <?php 
-                
-    ?>
-
-        </div>
-        </div>
-
-    </section>
-
-    <script src="../js/sidebar.js"></script>
-</body>
-
-</html>
+?>

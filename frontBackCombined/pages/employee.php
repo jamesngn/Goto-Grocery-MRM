@@ -22,13 +22,13 @@ include '../includes/header.inc';
                 </div>
             </div>
             <div class="right-items addProductButton">
-                <a href="add-employee-frontend.php">+ Add Member</a>
+                <a href="add-employee-frontend.php">+ Add Employee</a>
             </div>
         </div>
 
 
         <?php
-        $testColumn = getAllMemberColumn();
+        $testColumn = getAllEmployeeColumn();
         ?>
         <div class="table-container">
             <table >
@@ -90,7 +90,7 @@ include '../includes/header.inc';
 
                             <?php } ?> 
                             <td class="actions">
-                            <input type="hidden" name="existmemberID" id="existmemberID" value='<?php echo $rows["employee_ID"]; ?>' />
+                            <input type="hidden" name="employeeID" id="employeeID" value='<?php echo $rows["employee_ID"]; ?>' />
                                 <form method="post" action="read-employee.php">
                                     <input type="hidden"  name="checkmemberID" id="checkmemberID" value='<?php echo $rows["employee_ID"]; ?>'  />
                                     <button type="submit" ><i class="fa-solid fa-eye"></i></button>
