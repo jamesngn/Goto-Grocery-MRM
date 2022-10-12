@@ -1,11 +1,11 @@
 <?php
-function readEmployee($employeeID)
+function readEmployee($employeID)
 {
-    if ($employeeID) {
-        require 'dbAuthentication.php';
+    if ($employeID) {
+        require '../includes/dbAuthentication.inc';
         $conn = OpenConnection();
 
-        $sql = "SELECT * FROM employee WHERE employee_ID = '$employeeID'";
+        $sql = "SELECT * FROM employee WHERE employee_ID = '$employeID'";
         $result = mysqli_query($conn, $sql);
 
         if ($result) {
@@ -32,7 +32,7 @@ function hasEmployee($employeeID)
 function getAllEmployeeColumn()
 {
     ob_start();
-    require_once 'dbAuthentication.php';
+    require_once '../includes/dbAuthentication.inc';
     ob_end_clean();
     $conn = OpenConnection();
     // Table Column
@@ -54,7 +54,7 @@ function getAllEmployeeColumn()
 function getAllEmployeeRow()
 {
     ob_start();
-    require_once 'dbAuthentication.php';
+    require_once '../includes/dbAuthentication.inc';
     ob_end_clean();
     $conn = OpenConnection();
 

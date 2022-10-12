@@ -68,7 +68,7 @@ include 'read-employee.php'
                      employee.fname as fname,
                      employee.lname as lname, 
                      employee.email as email, 
-                     employee.password as password, 
+                     employee.password as password
                             FROM employee
                             LIMIT $start_from,$num_per_page 
                             ";
@@ -77,7 +77,7 @@ include 'read-employee.php'
 
                     <?php
                     while ($rows = $testRow->fetch_assoc()) { ?>
-                        <tr class="member" id="member<?php echo $rows["employee_ID"]; ?>" value="<?php echo $page; ?>">
+                        <tr class="employee" id="employee<?php echo $rows["employee_ID"]; ?>" value="<?php echo $page; ?>">
                             <td class="checkBox"><input type="checkbox" name="<?php echo $rows["employee_ID"]; ?>" onclick="highlightProduct(this)"></td>
                             <?php foreach ($testColumn as $column) { ?>
 
@@ -90,12 +90,12 @@ include 'read-employee.php'
                             <?php } ?> 
                             <td class="actions">
                             <input type="hidden" name="employeeID" id="employeeID" value='<?php echo $rows["employee_ID"]; ?>' />
-                                <form method="post" action="read-employee.php">
-                                    <input type="hidden"  name="checkmemberID" id="checkmemberID" value='<?php echo $rows["employee_ID"]; ?>'  />
+                                <form method="post" action="read-employee-frontend.php">
+                                    <input type="hidden"  name="checkemployeeID" id="checkemployeeID" value='<?php echo $rows["employee_ID"]; ?>'  />
                                     <button type="submit" ><i class="fa-solid fa-eye"></i></button>
                                 </form>
                                 <form method="post" action="edit-employee.php">
-                                    <input type="hidden" name="checkmemberID" id="checkmemberID" value='<?php echo $rows["employee_ID"]; ?>'  />
+                                    <input type="hidden" name="employeeID" id="employeeID" value='<?php echo $rows["employee_ID"]; ?>'  />
                                     <button type="submit"><i class="fa-solid fa-pen"></i></button>
                                 </form>
                                 <i class='fa-solid fa-trash' onclick='displayDeleteQuestion(this)' name='memberID' value='<?php echo $rows["employee_ID"]; ?>'></i>

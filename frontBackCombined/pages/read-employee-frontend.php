@@ -22,7 +22,7 @@ include '../includes/header.inc';
                 <?php
                 require 'read-employee.php';
                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                    $employeeID = $_POST["employee_ID"];
+                    $employeeID = $_POST["checkemployeeID"];
                     $employee = readEmployee($employeeID);
 
 
