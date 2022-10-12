@@ -19,7 +19,6 @@
     ON sale.memberID = member.customer_id
     LEFT JOIN saleitem
     ON sale.saleID = saleitem.saleID
-    GROUP BY saleitem.saleID
     ";
 
     if($_POST['query'] != '')
@@ -29,7 +28,8 @@
     ';
     }
 
-    $query .= 'ORDER BY sale.saleID ASC ';
+    $query .= 'GROUP BY saleitem.saleID ';
+    $query .= 'ORDER BY saleID ASC ';
 
     $filter_query = $query . 'LIMIT '.$start.', '.$limit.'';
 
@@ -65,11 +65,11 @@
                 <td>'.$row['noOfItems'].'</td>
                 <td>'.$row['purchaseTime'].'</td>
                 <td class="actions">
-                    <form action="read-sales.php" method="get">
+                    <form action="read-sale.php" method="get">
                         <input type="hidden" name="saleID" value="'.$row['saleID'].'">
                         <button type="submit"><i class="fa-solid fa-eye"></i></button>
                     </form>
-                    <form action="edit-sales.php" method="get">
+                    <form action="edit-sale.php" method="get">
                         <input type="hidden" name="saleID" value="'.$row['saleID'].'">
                         <button type="submit"><i class="fa-solid fa-pen"></i></button>
                     </form>
