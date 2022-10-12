@@ -54,12 +54,10 @@ include '../includes/header.inc';
                                 </div>
                             </div>
                         </div>
-
-
             </div>
 
-    <?php 
-                
+            <?php }
+                }
     ?>
 
         </div>
