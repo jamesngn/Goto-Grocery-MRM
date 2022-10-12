@@ -28,7 +28,7 @@ include 'read-employee.php'
 
 
         <?php
-        // $testColumn = getAllEmployeeColumn();
+        $testColumn = getAllEmployeeColumn();
         ?>
         <div class="table-container">
             <table >
