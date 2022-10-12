@@ -1,6 +1,6 @@
 <?php
 include '../includes/header.inc';
-// include 'read-employee.php'
+include 'read-employee.php'
 ?>
 
 <body>
@@ -15,8 +15,8 @@ include '../includes/header.inc';
             <div class="left-items">
                 <div class="pageTitle">EMPLOYEE</div>
                 <div class="search-bar">
-                    <form action="member-table.php" method="get">
-                        <input type="text" name="query" id="query" placeholder="Search Member">
+                    <form action="employee.php" method="get">
+                        <input type="text" name="query" id="query" placeholder="Search Employee">
                         <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                     </form>
                 </div>
@@ -28,7 +28,7 @@ include '../includes/header.inc';
 
 
         <?php
-        $testColumn = getAllEmployeeColumn();
+        // $testColumn = getAllEmployeeColumn();
         ?>
         <div class="table-container">
             <table >
@@ -69,7 +69,6 @@ include '../includes/header.inc';
                      employee.lname as lname, 
                      employee.email as email, 
                      employee.password as password, 
-                     employee.CREATED_AT as CREATED_AT
                             FROM employee
                             LIMIT $start_from,$num_per_page 
                             ";
