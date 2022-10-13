@@ -230,9 +230,9 @@
 /* Dashboard */
 .home-section {
     font-family: 'Nunito Sans', sans-serif;
-    background-color: #FFFF;
+    background-color: #F9F8FF;
     position:relative;
-    height:90vh;
+    height:100vh;
     left:260px;
     width:calc(100% - 260px);
     transition: all 0.5s ease;
@@ -784,6 +784,7 @@
 }
 /* Add new product page */
 .form-container {
+    background-color: #FFFFFF;
     width: 45.27vw;
     height: 82.16vh;
     border: 5px solid #9796A9;
@@ -1202,4 +1203,100 @@
 .salePage {
     height: auto;
     padding-bottom:3vh;
+}
+/* Read sale details */
+#saleReadPage .content {
+    height: calc(100vh - 7.2vh);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#saleReadPage .invoice-container{
+    width: calc(1305.25vw*100/1920);
+    /* height: calc(896vh*100/1080); */
+    background-color: #FFFFFF;
+    border: 5px solid #5477C0;
+    border-radius: 1vw;
+    box-shadow: 4px 4px rgba(0,0,0,0.16); 
+    padding: 0 calc(71.2vw * 100 / 1920) calc(50vh * 100 / 1080);
+}
+#saleReadPage .backButton {
+    margin-top: calc(18.2vh * 100 / 1080);
+}
+#saleReadPage .backButton a {
+    font-size: 1.6vw;
+    text-decoration: none;
+    color: #5477C0;
+    font-weight: 600;
+}
+#saleReadPage .backButton a:hover {
+    text-decoration: underline;
+}
+#saleReadPage .heading {
+    text-align: center;
+    margin: calc(26vh * 100 / 1080);
+}
+#saleReadPage .heading {
+    font-size: 2vw;
+    font-weight: 600;
+}
+#saleReadPage hr {
+    border-top: 2px solid #9796A9;
+}
+#saleReadPage .sale-top-info {
+    margin-top: calc(31.5vh * 100 / 1080);
+    display: flex;
+    justify-content: space-between;
+}
+#saleReadPage .sale-top-info .above-item {
+    font-size:1.2vw;
+    font-weight: 600;
+    margin-bottom: calc(7vh*100/1080);
+}
+#saleReadPage .sale-top-info .below-item {
+    color: #A5A5B0;
+    font-size: 1vw;
+}
+#saleReadPage table {
+    margin: calc(62vh*100/1080) 0 calc(46vh*100/1080) 0;
+    width: 100%;
+}
+#saleReadPage table,
+#saleReadPage th,
+#saleReadPage td {
+    border: 1px solid #707070;
+    border-collapse: collapse;
+}
+#saleReadPage td,
+#saleReadPage th {
+    padding-left: calc(12.5vw*100/1920);
+    font-size: 1vw;
+}
+
+#saleReadPage table thead th {
+    text-align: left;
+}
+#saleReadPage table thead th:first-of-type {
+    width: calc(393vw*100/1920);
+}
+#saleReadPage table thead th:nth-of-type(3) {
+    width: calc(292vw*100/1920);
+}
+#saleReadPage table tr {
+    height: calc(58vh*100/1080);
+}
+#saleReadPage table tbody tr {
+    color: #A5A5B0;
+    font-weight: 600;
+}
+#saleReadPage .total-section {
+    text-align: right;
+    color:#5477C0;
+    font-size: 1.8vw;
+    font-weight: 700;
+}
+#saleReadPage .total-section span {
+    color: #555555;
+    font-size: 1.3vw;
+    margin-right: calc(60vw*100/1920);
 }
