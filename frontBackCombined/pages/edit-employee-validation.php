@@ -21,7 +21,7 @@
                         <img class="success-icon" src="../image/success-icon.png" alt="success-check-icon">
                         <div class="message-container">
                             <div class="big-message">
-                                Edition Success
+                                Successfully Edited
                             </div>
                         </div>
                     </div>
