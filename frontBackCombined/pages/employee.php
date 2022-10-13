@@ -13,7 +13,7 @@ include 'read-employee.php'
 
         <div class="top-section">
             <div class="left-items">
-                <div class="pagetitle">EMPLOYEE</div>
+                <div class="pageTitle">EMPLOYEE</div>
                 <div class="search-bar">
                     <form action="employee.php" method="get">
                         <input type="text" name="query" id="query" placeholder="Search Employee">
