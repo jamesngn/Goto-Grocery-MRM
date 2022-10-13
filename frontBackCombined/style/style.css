@@ -998,6 +998,31 @@
 }
 
 /* Member form */
+
+.tablePage .top-section .addMemberButton {
+    width: 12.14vw;
+    height: 5.09vh;
+    background-color: transparent;
+    font-size:1.4vw;
+    border:2px solid #00C897;
+    border-radius: 11px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.tablePage .top-section .addMemberButton a {
+    text-decoration: none;
+    color: #00C897;
+    font-weight: 700;
+}
+.tablePage .top-section .addMemberButton:hover{
+    transition: all 0.2s ease-in-out;
+    background-color: #00C897;
+}
+.tablePage .top-section .addMemberButton a:hover{
+    color: white;
+}
 #addMemberForm .backButton {
     margin-top: 1vh;
     margin-left: 1vw;
@@ -1020,6 +1045,16 @@
     flex-direction: column;
     justify-content: space-evenly;
 }
+
+#addMemberForm .form-container-product{
+    background-color: #FFFFFF;
+    width: 41.27vw;
+    height: 30.16vh;
+    border: 5px solid #9796A9;
+    border-radius: 15px;
+    margin: calc((100vh - 7.2vh - 82.16vh)/2) auto;
+}
+
 #addMemberForm .form-wrap {
     display: flex;
     justify-content: space-between;
@@ -1069,6 +1104,19 @@
 #addMemberForm .form-wrap button[type="reset"] {
     background-color: #F55A4E;
 }
+ /*Read Member*/
+#addProductForm .product-img {
+    width: 22.34vw;
+    height: 27.31vh;
+    margin: 5.51vh auto 0 auto;
+    border: 3px solid #ccc;
+    border-radius: 40px;
+    padding: 6px 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
 /* Add Sales Page */
 #addSaleForm .member-section {
