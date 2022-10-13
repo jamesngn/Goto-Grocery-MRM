@@ -17,8 +17,7 @@ include 'read-employee.php'
                 <div class="search-bar">
                     <form action="employee.php" method="get">
                         <input type="text" name="query" id="query" placeholder="Search Employee">
-                        <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-                    </form>
+                       </form>
                 </div>
             </div>
             <div class="right-items addProductButton">
@@ -94,8 +93,8 @@ include 'read-employee.php'
                                     <input type="hidden"  name="checkemployeeID" id="checkemployeeID" value='<?php echo $rows["employee_ID"]; ?>'  />
                                     <button type="submit" ><i class="fa-solid fa-eye"></i></button>
                                 </form>
-                                <form method="post" action="edit-employee.php">
-                                    <input type="hidden" name="employeeID" id="employeeID" value='<?php echo $rows["employee_ID"]; ?>'  />
+                                <form method="post" action="edit-employee-frontend.php">
+                                    <input type="hidden" name="checkemployeeID" id="checkemployeeID" value='<?php echo $rows["employee_ID"]; ?>'  />
                                     <button type="submit"><i class="fa-solid fa-pen"></i></button>
                                 </form>
                                 <i class='fa-solid fa-trash' onclick='displayDeleteQuestion(this)' name='memberID' value='<?php echo $rows["employee_ID"]; ?>'></i>

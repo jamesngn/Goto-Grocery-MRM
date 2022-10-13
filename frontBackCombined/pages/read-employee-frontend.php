@@ -36,7 +36,7 @@ include '../includes/header.inc';
                         <div class="text-input-container">
                             <div class="form-wrap">
                                 <div class="form-item">
-                                    <label for="fname">First Name</label>
+                                    <label for="fname">Full Name</label>
                                     <input type="text" name="fname" id="fname" value="<?php echo $fullname; ?>" readonly>
                                 </div>
                             </div>
