@@ -15,12 +15,28 @@
                 <p>
                 <label for="member">Member Data</label> 
 				<input type="checkbox"  onclick='displayDateMemberQuestion(this)' id="member_mysql_table" name="Table[]" value="member"/>
-               
                 </p>
+
+                <p>
+                <label for="member">Purchase Data</label> 
+				<input type="checkbox"  onclick='displayDatePurchaseQuestion(this)' id="purchase_mysql_table" name="Table[]" value="purchase"/>
+                </p>
+
                 <p>
 				<label for="product">Product Data</label> 
 				<input type="checkbox" id="product_mysql_table" name="Table[]" value="product"/>
                 </p>
+
+                <p>
+				<label for="supplier">Supplier Data</label> 
+				<input type="checkbox" id="supplier_mysql_table" name="Table[]" value="supplier"/>
+                </p>
+
+                <p>
+				<label for="employee">Employee Data</label> 
+				<input type="checkbox" id="employee_mysql_table" name="Table[]" value="employee"/>
+                </p>
+
                 <p>
                 <label for="category">Catergory Data</label> 
 				<input type="checkbox" id="category_mysql_table" name="Table[]" value="category"/>

@@ -8,7 +8,7 @@ function ResetInput() {
         imgUploader[0].classList.remove("unshown");
     }
 }
-function highlightProduct(checkbox) {
+function highlightMember(checkbox) {
     var parentElement = checkbox.parentElement.parentElement;
     var data = parentElement.getElementsByTagName("td");
     var viewIcon = data[data.length - 1].getElementsByClassName("fa-eye")[0];

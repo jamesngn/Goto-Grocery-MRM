@@ -15,20 +15,19 @@ include 'read-employee.php'
             <div class="left-items">
                 <div class="pageTitle">EMPLOYEE</div>
                 <div class="search-bar">
-                    <form action="member-table.php" method="get">
-                        <input type="text" name="query" id="query" placeholder="Search Member">
-                        <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-                    </form>
+                    <form action="employee.php" method="get">
+                        <input type="text" name="query" id="query" placeholder="Search Employee">
+                       </form>
                 </div>
             </div>
             <div class="right-items addProductButton">
-                <a href="add-employee-frontend.php">+ Add Member</a>
+                <a href="add-employee-frontend.php">+ Add Employee</a>
             </div>
         </div>
 
 
         <?php
-        $testColumn = getAllMemberColumn();
+        $testColumn = getAllEmployeeColumn();
         ?>
         <div class="table-container">
             <table >
@@ -68,8 +67,7 @@ include 'read-employee.php'
                      employee.fname as fname,
                      employee.lname as lname, 
                      employee.email as email, 
-                     employee.password as password, 
-                     employee.CREATED_AT as CREATED_AT
+                     employee.password as password
                             FROM employee
                             LIMIT $start_from,$num_per_page 
                             ";
@@ -78,7 +76,7 @@ include 'read-employee.php'
 
                     <?php
                     while ($rows = $testRow->fetch_assoc()) { ?>
-                        <tr class="member" id="member<?php echo $rows["employee_ID"]; ?>" value="<?php echo $page; ?>">
+                        <tr class="employee" id="employee<?php echo $rows["employee_ID"]; ?>" value="<?php echo $page; ?>">
                             <td class="checkBox"><input type="checkbox" name="<?php echo $rows["employee_ID"]; ?>" onclick="highlightProduct(this)"></td>
                             <?php foreach ($testColumn as $column) { ?>
 
@@ -90,13 +88,13 @@ include 'read-employee.php'
 
                             <?php } ?> 
                             <td class="actions">
-                            <input type="hidden" name="existmemberID" id="existmemberID" value='<?php echo $rows["employee_ID"]; ?>' />
-                                <form method="post" action="read-member-frontend.php">
-                                    <input type="hidden"  name="checkmemberID" id="checkmemberID" value='<?php echo $rows["employee_ID"]; ?>'  />
+                            <input type="hidden" name="employeeID" id="employeeID" value='<?php echo $rows["employee_ID"]; ?>' />
+                                <form method="post" action="read-employee-frontend.php">
+                                    <input type="hidden"  name="checkemployeeID" id="checkemployeeID" value='<?php echo $rows["employee_ID"]; ?>'  />
                                     <button type="submit" ><i class="fa-solid fa-eye"></i></button>
                                 </form>
-                                <form method="post" action="edit-member-frontend.php">
-                                    <input type="hidden" name="checkmemberID" id="checkmemberID" value='<?php echo $rows["employee_ID"]; ?>'  />
+                                <form method="post" action="edit-employee-frontend.php">
+                                    <input type="hidden" name="checkemployeeID" id="checkemployeeID" value='<?php echo $rows["employee_ID"]; ?>'  />
                                     <button type="submit"><i class="fa-solid fa-pen"></i></button>
                                 </form>
                                 <i class='fa-solid fa-trash' onclick='displayDeleteQuestion(this)' name='memberID' value='<?php echo $rows["employee_ID"]; ?>'></i>

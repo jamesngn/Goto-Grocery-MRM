@@ -11,7 +11,7 @@ include '../includes/header.inc';
         </div>
 
         <div class="form-container">
-            <div id="addProductForm">
+            <div id="addMemberForm">
 
                 <div class="backButton">
                     <a href="member.php">
@@ -34,33 +34,35 @@ include '../includes/header.inc';
                         $fullname = "${fname} ${lname}";
                 ?>
                         <div class="text-input-container">
+                            <i class="fa-solid fa-user fa-5x" style="display: block; margin-left: auto; margin-right: auto;"></i>
+
                             <div class="form-wrap">
                                 <div class="form-item">
-                                    <label for="cName">First Name</label>
+                                    <label for="cName">Full Name</label>
                                     <input type="text" name="cName" id="cName" value="<?php echo $fullname; ?>" readonly>
                                 </div>
-                            </div>
-                            <div class="form-wrap">
                                 <div class="form-item">
                                     <label for="memberID">Member ID</label>
                                     <input type="text" name="memberID" id="memberID" value="<?php echo $member['customer_id']; ?>" readonly>
                                 </div>
 
                             </div>
+
                             <div class="form-wrap">
                                 <div class="form-item">
                                     <label for="email">Email</label>
                                     <input type="text" name="email" id="email" value="<?php echo $member['customer_email']; ?>" readonly>
                                 </div>
-                            </div>
 
-                            <div class="form-wrap">
                                 <div class="form-item">
                                     <label for="created_date">Date Joined</label>
                                     <input type="text" name="created_date" id="created_date" value="<?php echo $member['CREATED_AT']; ?>" readonly>
                                 </div>
                             </div>
+
                         </div>
+
+
 
 
             </div>
