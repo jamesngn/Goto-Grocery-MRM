@@ -12,13 +12,13 @@
         include '../includes/dbAuthentication.inc';
         $conn = OpenConnection();
 
-        $sql = "SELECT * FROM supplier WHERE supplier_id = '$'";
+        $sql = "SELECT * FROM supplier WHERE supplier_id = '$suppid'";
         $result = mysqli_query($conn,$sql);
 
         if ($result) {
             if (mysqli_num_rows($result) > 0) {
                 $supplier = mysqli_fetch_assoc($result);
-                            
+                print_r($supplier);
             }
         }
     }
@@ -36,7 +36,7 @@
     
 ?>
 <body>
-    <?php include '../includes/sidebar.inc';?>;
+<?php include '../includes/sidebar.inc';?>;
     <section class="home-section">
         <div class="top-bar">
             <i class="fas fa-solid fa-bars"></i>

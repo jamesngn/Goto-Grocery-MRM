@@ -61,7 +61,7 @@ function deleteAjax(deleteButton) {
                 parentElement.removeChild(child);
                 child = parentElement.lastElementChild;
             }
-            parentElement.innerHTML = "<td colspan = '7' class='delete-success-msg'>Succeeded in deleting the category from the database</td>";
+            parentElement.innerHTML = "<td colspan = '7' class='delete-success-msg'>Succeeded in deleting the supplier from the database</td>";
 
             setTimeout(removeMessage,2000,parentElement);
             setTimeout("window.location.reload();",500);
@@ -91,7 +91,7 @@ function displayDeleteQuestion(deleteButton) {
         "</div>"+
     "</div>";
 }
-function highlightCategory(checkbox) {
+function highlightSupplier(checkbox) {
     var parentElement = checkbox.parentElement.parentElement;
     var data = parentElement.getElementsByTagName("td");
     var viewIcon = data[data.length - 1].getElementsByClassName("fa-eye")[0];
@@ -120,12 +120,12 @@ function highlightAll(allCheckBox) {
 
         if (checkBox.checked == false && allCheckBox.checked == true) {
             checkBox.checked = true;
-            highlightCategory(checkBox);
+            highlightSupplier(checkBox);
         }
         else if (checkBox.checked) {
             if (!allCheckBox.checked) {
                 checkBox.checked = false;
-                highlightCategory(checkBox);
+                highlightSupplier(checkBox);
             } 
             else {
             }
@@ -145,12 +145,12 @@ function displayActionIcons(deleteButton) {
     }
     parentElement.classList.remove("delete-message");
     parentElement.innerHTML = 
-    "<form action='read-category.php' method='get'>"+
-        "<input type='hidden' name='categoryID' value='"+id+"'>"+
+    "<form action='read-supplier.php' method='get'>"+
+        "<input type='hidden' name='supplier_id' value='"+id+"'>"+
         "<button type='submit'><i class='fa-solid fa-eye'></i></button>"+
     "</form>"+
-    "<form action='edit-category.php' method='get'>"+
-        "<input type='hidden' name='categoryID' value='"+id+"'>"+
+    "<form action='edit-supplier.php' method='get'>"+
+        "<input type='hidden' name='supplier_id' value='"+id+"'>"+
         "<button type='submit'><i class='fa-solid fa-pen'></i></button>"+
     "</form>"+
     "<i class='fa-solid fa-trash' onclick='displayDeleteQuestion(this)' name = 'categoryID' value = '"+id+"'></i>";

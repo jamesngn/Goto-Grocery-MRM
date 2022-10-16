@@ -42,7 +42,7 @@
                     include '../includes/dbAuthentication.inc';
                     $conn = OpenConnection();
 
-                    $num_per_page = 3;
+                    $num_per_page = 8;
 
                     if (isset($_GET["page"])) {
                         $page = $_GET["page"];
@@ -65,7 +65,7 @@
                             while($row = $result -> fetch_assoc()) { ?>
                             
                             <tr id="supplier<?php echo $row["supplier_id"];?>" value="<?php echo $page; ?>">
-                                <td class="checkBox"><input type="checkbox" name="<?php echo $row["supplier_id"];?>" onclick="highlightCategory(this)"></td>
+                                <td class="checkBox"><input type="checkbox" name="<?php echo $row["supplier_id"];?>" onclick="highlightSupplier(this)"></td>
                                 
                                 <td><?php echo $row["supplier_id"];?></td>
                                 <td class="nameData"><?php echo $row["supplier_name"];?></td>
