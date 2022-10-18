@@ -32,10 +32,10 @@ function ResetInput() {
 function RedirectToAddSupplierPage() {
     window.location.href = "add-new-supplier.php";
 }
-function RedirectToEditSupplierPage(productID) {
-    window.location.href = "edit-new-supplier.php?productID="+productID;
+function RedirectToEditSupplierPage(supplier_id) {
+    window.location.href = "edit-supplier.php?supplier_id="+supplier_id;
 }
-function RedirectToProductPage() {
+function RedirectToPage() {
     window.location.href = "supplier-table.php";
 }
 function removeMessage(parentElement) {

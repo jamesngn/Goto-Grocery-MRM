@@ -1,7 +1,4 @@
-<?php
-    session_start();
-    $suppid = $_SESSION['supplier_id'];
-    
+<?php    
     include '../includes/header.inc';
 ?>
 <body>
@@ -23,10 +20,10 @@
                     </div>
                 </div>
             </div>
-            <button id="addMoreButton" class="add" onclick="RedirectToEditCategoryPage(<?php echo $suppid; session_unset(); session_destroy(); ?>)">
+            <button id="addMoreButton" class="add" onclick="RedirectToEditSupplierPage(sessionStorage.getItem('supplier_id'))">
                 Edit Again
             </button>
-            <button id = "closeButton" class="close" onclick="RedirectToCategoryPage()">
+            <button id = "closeButton" class="close" onclick="RedirectToPage()">
                 Close
             </button>
         </div>

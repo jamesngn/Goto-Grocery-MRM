@@ -41,7 +41,7 @@
         <form action="add-new-supplier.php" method="post"   id="addProductForm">
 
 <div class="backButton">
-    <a href="product-table.php">
+    <a href="supplier-table.php">
         <i class="fa-solid fa-delete-left"></i>
         <span>Supplier Page</span>
     </a>

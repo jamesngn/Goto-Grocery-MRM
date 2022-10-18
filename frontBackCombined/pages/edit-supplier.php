@@ -3,7 +3,7 @@
     if ($_SERVER["REQUEST_METHOD"] == "GET") { 
         $suppid = $_GET["supplier_id"];
     } else {
-        $suppname = $_POST["supplier_name"];
+        $suppid = $_POST["supplier_id"];
     }
    
    echo $suppid;
@@ -64,7 +64,7 @@
                     </div>
 
                         <div class="form-item">
-                            <label for="supplier_name">Category Name</label>
+                            <label for="supplier_name">Supplier Name</label>
                             <input type="text" name="supplier_name" id="supplier_name" value="<?php echo $supplier['supplier_name'];?>" required>
                         </div>
                     </div>
@@ -107,7 +107,7 @@
         
 
         // the cleaned – "safe" – inputs ready to be added to the database
-        $c_category_name = mysqli_real_escape_string($conn, cleanInput($_POST['Name']));
+        $suppname = mysqli_real_escape_string($conn, cleanInput($_POST['supplier_name']));
        
     
         //Add to database

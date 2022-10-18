@@ -23,7 +23,7 @@
             <button id="addMoreButton" class="add" onclick=" RedirectToAddSupplierPage()">
                 Add More
             </button>
-            <button id = "closeButton" class="close" onclick="RedirectToEditSupplierPage()">
+            <button id = "closeButton" class="close" onclick="RedirectToPage()">
                 Close
             </button>
         </div>
