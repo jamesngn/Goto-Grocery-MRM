@@ -53,14 +53,14 @@ function displayActionIcons(deleteButton) {
     parentElement.classList.remove("delete-message");
     parentElement.innerHTML = 
     "<form action='read-category.php' method='get'>"+
-        "<input type='hidden' name='categoryID' value='"+id+"'>"+
+        "<input type='hidden' name='CategoryID' value='"+id+"'>"+
         "<button type='submit'><i class='fa-solid fa-eye'></i></button>"+
     "</form>"+
     "<form action='edit-category.php' method='get'>"+
-        "<input type='hidden' name='categoryID' value='"+id+"'>"+
+        "<input type='hidden' name='CategoryID' value='"+id+"'>"+
         "<button type='submit'><i class='fa-solid fa-pen'></i></button>"+
     "</form>"+
-    "<i class='fa-solid fa-trash' onclick='displayDeleteQuestion(this)' name = 'categoryID' value = '"+id+"'></i>";
+    "<i class='fa-solid fa-trash' onclick='displayDeleteQuestion(this)' name = 'CategoryID' value = '"+id+"'></i>";
 }
 
 function displayDeleteQuestion(deleteButton) {
@@ -123,8 +123,8 @@ function goToPage(number, maxNumber) {
 function RedirectToAddCategoryPage() {
     window.location.href = "add-category.php";
 }
-function RedirectToEditCategoryPage(categoryID) {
-    window.location.href = "edit-category.php?categoryID="+categoryID;
+function RedirectToEditCategoryPage(CategoryID) {
+    window.location.href = "edit-category.php?CategoryID="+CategoryID;
 }
 function RedirectToCategoryPage() {
     window.location.href = "category-table.php";

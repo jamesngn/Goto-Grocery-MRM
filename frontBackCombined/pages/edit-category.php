@@ -58,7 +58,7 @@
                     <div class="form-wrap">
                         <div class="form-item">
                             <label for="CategoryID">Category ID</label>
-                            <input type="text" name="categoryID" id="CategoryID" value="<?php echo $category['CategoryID'];?>" readonly>
+                            <input type="text" name="CategoryID" id="CategoryID" value="<?php echo $category['CategoryID'];?>" readonly>
                         </div>    
                     </div>
 
@@ -111,12 +111,12 @@
     
         //Add to database
         $sql = "UPDATE category
-        SET name = '$c_category_name'
+        SET Name = '$c_category_name'
         WHERE CategoryID = '$categoryID'";
 
         if (mysqli_query($conn,$sql)) {
             $_SESSION['categoryID'] = $categoryID;
-            echo "<script>sessionStorage.setItem('categoryID',".$categoryID.");</script>";
+            echo "<script>sessionStorage.setItem('CategoryID',".$categoryID.");</script>";
             echo '<script>window.location.href = "edit-category-success.php"; </script>';
         } else {
             echo nl2br ("\r\nSQL errror: " . mysqli_error($conn));

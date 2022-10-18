@@ -1,7 +1,4 @@
-<?php
-    session_start();
-    $category_id = $_SESSION['categoryID'];
-    
+<?php    
     include '../includes/header.inc';
 ?>
 <body>
@@ -9,7 +6,7 @@
     <section class="home-section">
         <div class="top-bar">
             <i class="fas fa-solid fa-bars"></i>
-            <span class="title">EDIT Category</span>
+            <span class="title">EDIT CATEGORY</span>
         </div>
         <div class="reponse-container">
             <div class="info">
@@ -23,7 +20,7 @@
                     </div>
                 </div>
             </div>
-            <button id="addMoreButton" class="add" onclick="RedirectToEditCategoryPage(<?php echo $category_id; session_unset(); session_destroy(); ?>)">
+            <button id="addMoreButton" class="add" onclick="RedirectToEditCategoryPage(sessionStorage.getItem('CategoryID'))">
                 Edit Again
             </button>
             <button id = "closeButton" class="close" onclick="RedirectToCategoryPage()">
